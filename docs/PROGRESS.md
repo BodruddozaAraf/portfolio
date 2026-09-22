@@ -5,11 +5,11 @@
 
 ## Now
 - **Current phase:** Phase 0: Planning
-- **Current step:** 0.2 GitHub remote. Docs are merged into `main` locally.
+- **Current step:** Phase 0 complete. Remote: https://github.com/BodruddozaAraf/portfolio
 - **Active branch:** `main` (no step branch open)
-- **Next action:** Araf runs `gh auth login` → agent creates public repo
-  `BodruddozaAraf/portfolio`, pushes `main` + tag `v0.0.0-plan` → start step 1.1 on `phase-1/scaffold`.
-- **Blockers:** GitHub CLI installed (winget, 2026-09-23) but **not authenticated yet**.
+- **Next action:** start step 1.1 on branch `phase-1/scaffold`.
+- **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
+  PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16), real photo for the
   wanted poster later (A06).
 
@@ -18,7 +18,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 0: Planning
 - [x] 0.1 Planning docs (`docs/planning`), open questions answered (D10–D23)
-- [~] 0.2 GitHub remote + push `main` + tag `v0.0.0-plan`
+- [x] 0.2 GitHub remote + push `main` + tag `v0.0.0-plan`
 
 ### Phase 1: Foundation
 - [ ] 1.1 scaffold
@@ -50,6 +50,14 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (c) · `chore/remove-legacy-site` → `main`
+- Araf authenticated `gh`. Repo `BodruddozaAraf/portfolio` already existed (old HTML/CSS/JS
+  site, Feb 2026, Netlify `portfolioaraf.netlify.app`). Per Araf: its contents were deleted
+  (commit on `chore/remove-legacy-site`, merged with `--allow-unrelated-histories`; the old
+  site remains in history at `6122b3f`). See D24.
+- Pushed `main` + tag `v0.0.0-plan`. Set repo description + homepage.
+- **Next:** Phase 1, step 1.1 `phase-1/scaffold`.
 
 ### 2026-09-23 (b) · `docs/planning` → `main`
 - Inspected `BodruddozaAraf/BodruddozaAraf.github.io`: only README + `CNAME` (bodruddozaaraf.me),

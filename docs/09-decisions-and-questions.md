@@ -29,6 +29,7 @@ new row that supersedes the old one.
 | D21 | 2026-09-23 | Wanted poster name: just **"ARAF"** (full name elsewhere); no outlaw nickname | Q11 |
 | D22 | 2026-09-23 | No Blender assumed: free CC0 models + procedural geometry | Q13 default |
 | D23 | 2026-09-23 | Nothing beyond the resume to feature | Q14 |
+| D24 | 2026-09-23 | Reuse existing GitHub repo `portfolio`: old site's files deleted in a normal commit (history kept at `6122b3f`, no force-push). Old Netlify site `portfolioaraf.netlify.app` is obsolete; Araf to remove it on Netlify | Araf: "delete the contents… I don't need them anymore" |
 
 ## Open questions for Araf
 None currently open. Add new ones here as `Q15`, `Q16`, … with a default.
