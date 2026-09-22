@@ -1,0 +1,38 @@
+# 09 — Decisions and Open Questions
+
+## Decision log
+Newest at the bottom. Don't re-open a decision without Araf's say-so; if one changes, add a
+new row that supersedes the old one.
+
+| # | Date | Decision | Why |
+|---|---|---|---|
+| D1 | 2026-09-23 | Theme: Wild West outlaw journal inspired by Arthur Morgan / RDR2; original art only | Araf's choice; IP-safe approach |
+| D2 | 2026-09-23 | Content comes from the resume, **not** GitHub | Araf's instruction |
+| D3 | 2026-09-23 | Stack: Next.js 16 App Router, TS, Tailwind v4, R3F, GSAP, Lenis, Motion, MDX, Vercel | Matches Araf's skills; best-in-class for this kind of site |
+| D4 | 2026-09-23 | Phone number never shown on the site | Privacy |
+| D5 | 2026-09-23 | Phase 1 ships a content-complete static site before any 3D | Always have a working, deployable portfolio |
+| D6 | 2026-09-23 | Git: `main` + one branch per step, merge commits (`--no-ff`), milestone tags | Easy tracking and rollback (Araf's request) |
+| D7 | 2026-09-23 | Jack The Jelli gets its own bounty case study (besides the 3 resume projects) | It's the strongest story on the resume |
+| D8 | 2026-09-23 | ~~AI chat persona is "an old camp hand"~~ superseded by D19 | IP safety |
+| D9 | 2026-09-23 | npm as package manager | Already installed |
+| D10 | 2026-09-23 | GitHub repo name: **`portfolio`** (public), under `BodruddozaAraf` | Q1 |
+| D11 | 2026-09-23 | Domain: **`bodruddozaaraf.me`** (Namecheap, free via GitHub Student Pack, **expires ~Sept 2027**, renew or migrate before then). Status: Active | Q2 |
+| D12 | 2026-09-23 | Hosting: **Vercel**, not GitHub Pages. DNS at Namecheap: `A @ 76.76.21.21`, `CNAME www cname.vercel-dns.com`. Remove `CNAME` file from the old `BodruddozaAraf.github.io` repo | Server features + previews; GitHub Pages is static only |
+| D13 | 2026-09-23 | Wanted poster uses a **real photo turned into a sketch**, but a **placeholder image** is used until the site is built | Q3, Q12 |
+| D14 | 2026-09-23 | Resume PDF is public at `/resume.pdf` | Q4 |
+| D15 | 2026-09-23 | BRAC University start: **Fall 2022** | Q5 |
+| D16 | 2026-09-23 | News Topic Classification has no public link | Q6 |
+| D17 | 2026-09-23 | Thesis figures/sample outputs are **deferred to "Future work"** (roadmap "Later"). v1 shows metrics, the architecture diagram and the metaphor animation only | Q7 |
+| D18 | 2026-09-23 | Jack The Jelli: may show screenshots + client name/link (Araf to provide screenshots) | Q8 |
+| D19 | 2026-09-23 | **No email service (Resend dropped).** Contact = "telegram" form that composes the message client-side and opens it in the visitor's own mail (Gmail compose link + `mailto:` option), addressed to bodruddozaaraf@gmail.com. No server code for contact | Q9: Araf wants mail to come *from the sender's own address*; a service like Resend can only send from our domain (with the visitor as reply-to), so it was dropped |
+| D20 | 2026-09-23 | **Ask Arthur AI chat dropped for now** (moved to "Later"). Phase 5 removed; Polish & launch is now Phase 5 | Araf's decision |
+| D21 | 2026-09-23 | Wanted poster name: just **"ARAF"** (full name elsewhere); no outlaw nickname | Q11 |
+| D22 | 2026-09-23 | No Blender assumed: free CC0 models + procedural geometry | Q13 default |
+| D23 | 2026-09-23 | Nothing beyond the resume to feature | Q14 |
+
+## Open questions for Araf
+None currently open. Add new ones here as `Q15`, `Q16`, … with a default.
+
+| # | Question | Default if unanswered |
+|---|---|---|
+| — | — | — |
