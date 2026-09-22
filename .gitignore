@@ -1,0 +1,35 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# next.js
+.next/
+out/
+build/
+
+# env
+.env
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# os / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# raw design source files (keep exported assets only)
+*.blend1
