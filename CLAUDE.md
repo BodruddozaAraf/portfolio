@@ -31,7 +31,8 @@ but built with **original art only** (see IP rules in `docs/01-vision.md`).
 
 ## Tech stack (short)
 Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · React Three Fiber + drei · GSAP +
-ScrollTrigger · Lenis · Motion (Framer Motion) · MDX · Vercel AI SDK (Phase 5) · Vercel hosting.
+ScrollTrigger · Lenis · Motion (Framer Motion) · MDX · Vercel hosting.
+Domain: **bodruddozaaraf.me** (Namecheap DNS → Vercel). Repo: `BodruddozaAraf/portfolio`.
 Package manager: **npm**. Node >= 20.9 (machine has v22).
 
 ## Commands (filled in once Phase 1 scaffolds the app)

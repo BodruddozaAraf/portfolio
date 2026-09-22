@@ -13,25 +13,26 @@ new row that supersedes the old one.
 | D5 | 2026-09-23 | Phase 1 ships a content-complete static site before any 3D | Always have a working, deployable portfolio |
 | D6 | 2026-09-23 | Git: `main` + one branch per step, merge commits (`--no-ff`), milestone tags | Easy tracking and rollback (Araf's request) |
 | D7 | 2026-09-23 | Jack The Jelli gets its own bounty case study (besides the 3 resume projects) | It's the strongest story on the resume |
-| D8 | 2026-09-23 | AI chat persona is "an old camp hand", not literally Arthur Morgan | IP safety |
+| D8 | 2026-09-23 | ~~AI chat persona is "an old camp hand"~~ superseded by D19 | IP safety |
 | D9 | 2026-09-23 | npm as package manager | Already installed |
+| D10 | 2026-09-23 | GitHub repo name: **`portfolio`** (public), under `BodruddozaAraf` | Q1 |
+| D11 | 2026-09-23 | Domain: **`bodruddozaaraf.me`** (Namecheap, free via GitHub Student Pack, **expires ~Sept 2027**, renew or migrate before then). Status: Active | Q2 |
+| D12 | 2026-09-23 | Hosting: **Vercel**, not GitHub Pages. DNS at Namecheap: `A @ 76.76.21.21`, `CNAME www cname.vercel-dns.com`. Remove `CNAME` file from the old `BodruddozaAraf.github.io` repo | Server features + previews; GitHub Pages is static only |
+| D13 | 2026-09-23 | Wanted poster uses a **real photo turned into a sketch**, but a **placeholder image** is used until the site is built | Q3, Q12 |
+| D14 | 2026-09-23 | Resume PDF is public at `/resume.pdf` | Q4 |
+| D15 | 2026-09-23 | BRAC University start: **Fall 2022** | Q5 |
+| D16 | 2026-09-23 | News Topic Classification has no public link | Q6 |
+| D17 | 2026-09-23 | Thesis figures/sample outputs are **deferred to "Future work"** (roadmap "Later"). v1 shows metrics, the architecture diagram and the metaphor animation only | Q7 |
+| D18 | 2026-09-23 | Jack The Jelli: may show screenshots + client name/link (Araf to provide screenshots) | Q8 |
+| D19 | 2026-09-23 | **No email service (Resend dropped).** Contact = "telegram" form that composes the message client-side and opens it in the visitor's own mail (Gmail compose link + `mailto:` option), addressed to bodruddozaaraf@gmail.com. No server code for contact | Q9: Araf wants mail to come *from the sender's own address*; a service like Resend can only send from our domain (with the visitor as reply-to), so it was dropped |
+| D20 | 2026-09-23 | **Ask Arthur AI chat dropped for now** (moved to "Later"). Phase 5 removed; Polish & launch is now Phase 5 | Araf's decision |
+| D21 | 2026-09-23 | Wanted poster name: just **"ARAF"** (full name elsewhere); no outlaw nickname | Q11 |
+| D22 | 2026-09-23 | No Blender assumed: free CC0 models + procedural geometry | Q13 default |
+| D23 | 2026-09-23 | Nothing beyond the resume to feature | Q14 |
 
 ## Open questions for Araf
-Status: ❓ open · ✅ answered (move the answer into the decision log)
+None currently open. Add new ones here as `Q15`, `Q16`, … with a default.
 
 | # | Question | Default if unanswered |
 |---|---|---|
-| Q1 | GitHub repo: name and **public or private**? | `portfolio`, public (portfolio repos help recruiters) |
-| Q2 | Do you have a **custom domain** (e.g. `araf.dev`)? Want to buy one? | Use `*.vercel.app` until launch |
-| Q3 | **Photo** for the wanted poster: use a real photo (turned into a sketch look), or a fully illustrated/anonymous silhouette? | Silhouette with hat, swap later |
-| Q4 | Can the **resume PDF** be downloadable on the site? | Yes, from `/resume.pdf` |
-| Q5 | **BRAC University start year** (for the map timeline)? | Show "BRAC University" without a start year |
-| Q6 | **News Topic Classification**: any GitHub repo / notebook link? | No link, case study only |
-| Q7 | **Thesis**: can you share the paper/report, figures, sample outputs (input/masked/output images)? Is it publishable? | Use metrics and a diagram only; metaphor animation |
-| Q8 | **Jack The Jelli**: OK to show screenshots of the store / mention the client by name? (Resume already names it.) | Yes, name + link, screenshots if you provide them |
-| Q9 | **Contact form email provider**: OK with Resend (free tier) via Vercel? Or just a `mailto:`? | Resend |
-| Q10 | **Ask Arthur AI**: OK with small ongoing API cost (via Vercel AI Gateway)? Preferred model? | Yes, cheap fast model via AI Gateway, strict rate limits |
-| Q11 | **Nickname / outlaw alias** for the wanted poster? (e.g. "Araf 'The Sole Engineer'", or something friends call you) | "The Sole Engineer" |
-| Q12 | **Sketch art**: will you draw/commission any, or should we generate SVG line art (AI-assisted + cleaned)? | Generated SVG line art |
-| Q13 | Can you use **Blender**, or should the 3D scene rely on free models + code-generated geometry? | Free models + procedural |
-| Q14 | Anything else to feature beyond the resume (certifications, talks, hackathons)? | No |
+| — | — | — |

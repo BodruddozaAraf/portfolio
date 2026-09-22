@@ -76,7 +76,6 @@ X.Y: <name> (docs/06-roadmap.md)
 | `v0.2.0` | Phase 2: 2D motion |
 | `v0.3.0` | Phase 3: 3D hero |
 | `v0.4.0` | Phase 4: signature features |
-| `v0.5.0` | Phase 5: Ask Arthur |
 | `v1.0.0` | Launch |
 
 Annotated tags: `git tag -a v0.1.0 -m "Phase 1: foundation"` then `git push --tags`.

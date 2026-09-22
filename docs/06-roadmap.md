@@ -28,8 +28,8 @@ Goal: a fast, correct, good-looking *static* journal site with all content. No 3
 | 1.6 | `phase-1/case-studies` | `/bounties/[slug]` ×4 and `/research/image-completion` in MDX | All pages render, links correct |
 | 1.7 | `phase-1/plain-mode` | `/plain` + toggle (Zustand store, persisted) | Plain page has all content, prints cleanly |
 | 1.8 | `phase-1/seo-meta` | Metadata, JSON-LD, sitemap, robots, 404, favicon, OG image (static v1) | Lighthouse SEO 100 |
-| 1.9 | `phase-1/contact-form` | Telegram form Server Action + email provider + Zod + honeypot + rate limit | Test email arrives from preview deployment |
-| 1.10 | `phase-1/deploy` | Vercel project linked, preview per PR, production on `main` | Live URL works; tag `v0.1.0` |
+| 1.9 | `phase-1/contact-form` | Telegram form: client-side Zod validation → Gmail compose link + `mailto:` (D19) | Both links open pre-filled correctly |
+| 1.10 | `phase-1/deploy` | Vercel project linked, preview per PR, production on `main`; Namecheap DNS → Vercel; remove `CNAME` from old github.io repo | https://bodruddozaaraf.me serves the site over HTTPS; tag `v0.1.0` |
 
 ## Phase 2: 2D Motion and journal feel 🎞️
 Goal: the journal comes alive. Smooth scroll, drawing sketches, stamps, the map trail.
@@ -69,24 +69,18 @@ Goal: the jaw-drop opener.
 | 4.4 | `phase-4/og-images` | Dynamic wanted-poster OG images per page (`next/og`) | Shares look great on LinkedIn/X |
 | — | merge | tag `v0.4.0` | |
 
-## Phase 5: Ask Arthur (AI) 🤖
+## Phase 5: Polish and launch 🚀
 | Step | Branch | Deliverable | Done when |
 |---|---|---|---|
-| 5.1 | `phase-5/ask-api` | `/api/ask` with AI SDK + AI Gateway, grounded system prompt from `src/content`, streaming, rate limiting, input limits | Answers only from content; refuses off-topic |
-| 5.2 | `phase-5/ask-ui` | Lantern chat panel, suggested questions, streaming UI, a11y | Works on mobile; keyboard accessible |
-| 5.3 | `phase-5/ask-evals` | A small eval set (≈20 Q&A) checking factual accuracy + refusals; script to run it | ≥ 95% pass |
-| — | merge | tag `v0.5.0` | |
-
-## Phase 6: Polish and launch 🚀
-| Step | Branch | Deliverable | Done when |
-|---|---|---|---|
-| 6.1 | `phase-6/perf-pass` | Bundle analysis, asset compression, Lighthouse fixes | Budgets in 04 met |
-| 6.2 | `phase-6/a11y-pass` | Keyboard, screen reader (NVDA), contrast, reduced-motion audit | A11y ≥ 95, manual checks pass |
-| 6.3 | `phase-6/cross-browser` | Chrome, Firefox, Safari (iOS), Android mid-range | No blocking bugs |
-| 6.4 | `phase-6/tests` | Playwright smoke tests + CI (GitHub Actions: lint, typecheck, build, e2e) | CI green on PRs |
-| 6.5 | `phase-6/launch` | Custom domain, analytics, final content proofread, resume PDF | tag `v1.0.0` 🎉 |
+| 5.1 | `phase-5/perf-pass` | Bundle analysis, asset compression, Lighthouse fixes | Budgets in 04 met |
+| 5.2 | `phase-5/a11y-pass` | Keyboard, screen reader (NVDA), contrast, reduced-motion audit | A11y ≥ 95, manual checks pass |
+| 5.3 | `phase-5/cross-browser` | Chrome, Firefox, Safari (iOS), Android mid-range | No blocking bugs |
+| 5.4 | `phase-5/tests` | Playwright smoke tests + CI (GitHub Actions: lint, typecheck, build, e2e) | CI green on PRs |
+| 5.5 | `phase-5/launch` | Real photo sketch for the wanted poster, analytics, final content proofread, resume PDF update | tag `v1.0.0` 🎉 |
 
 ## Later / nice-to-have (not scheduled)
+- **Ask Arthur** AI chat grounded in site content (dropped for v1, D20).
+- **Thesis future work** (D17): real figures + sample outputs, report link.
 - Blog ("Campfire Tales"), Bangla language toggle, a real image-completion demo running a
   small ONNX model in the browser (WebGPU), day/night cycle based on visitor's local time,
   guestbook ("Sign the ledger").

@@ -39,14 +39,14 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
 - **Content:** journal-voice summary (02) + the plain professional summary in a small typed
   note "for the lawmen" (recruiter-friendly version). Sketch of a lamp-lit desk or laptop.
 - **Layout:** two-page spread. Left: handwritten entry. Right: sketch + pasted "photograph"
-  (❓ Araf's photo or a sketch portrait?), key facts in a margin note: location,
+  (Araf's real photo turned into a sketch look; placeholder image until then, D13), key facts in a margin note: location,
   graduating Oct 2026, languages.
 - **Animation:** handwriting reveals line by line (clip-path wipe per line) as it scrolls in;
   the sketch draws itself; margin notes fade in with slight rotation.
 - **Done when:** all summary facts readable as real text; animation plays once.
 
 ## 3. Wanted Poster: "Skills & Reputation"
-- **Content:** WANTED poster: sketch portrait, name, "For shipping a whole store in two months,
+- **Content:** WANTED poster: sketch portrait (placeholder for now, D13), name "ARAF", "For shipping a whole store in two months,
   single-handed…", REWARD line, "Known associates" = top skills. Below/around it: key
   stats as tally marks and stamps: `2 months · sole engineer`, `64 districts`, `91.9% acc`,
   `27.60 dB PSNR`, `2nd of 6`.
@@ -85,7 +85,7 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
 - **Done when:** the metaphor animation reads clearly; all metrics present as text.
 
 ## 6. The Map: "Trail So Far" (Experience + Education timeline)
-- **Content (chronological):** BRAC University start (❓ year) → projects era → EduBridge AI
+- **Content (chronological):** BRAC University start (Fall 2022) → projects era → EduBridge AI
   (Freelancer.com client) → Jack The Jelli (Jun–Aug 2026) → Thesis defended (2026) →
   Graduation (Oct 2026) → "Next: your outfit?" (CTA to contact).
 - **Layout:** an old paper map (original illustration: rivers, hills, a Dhaka-inspired town
@@ -117,10 +117,13 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
 - **Interaction:** typing shows typewriter-style chars; submit plays telegraph clicks, and
   the message "transmits" (letters convert to dots and dashes along a wire), then the page
   shows "DELIVERED" stamp.
-- **Server:** Server Action, Zod validation, honeypot field, rate limit (per IP, e.g. 3/hour),
-  sends email via provider. Clear error states.
-- **Done when:** real email arrives; validation + rate limit work; works without JS for the
-  mailto fallback.
+- **How sending works (D19, no server):** on "Send", validate (Zod, client-side), play the
+  "transmitting" animation, then show two buttons: **"Send via Gmail"** (opens
+  `https://mail.google.com/mail/?view=cm&to=bodruddozaaraf@gmail.com&su=…&body=…` in a new tab)
+  and **"Use my mail app"** (`mailto:` with subject/body). The mail comes from the visitor's
+  own address. Subject: `Telegram from <Name> via bodruddozaaraf.me`.
+- **Done when:** both links open pre-filled correctly (URL-encoded, long messages OK); a plain
+  `mailto:` link works without JS.
 
 ## 10. Footer / Colophon
 - "Built by hand in Dhaka", tech credits, "Inspired by a certain outlaw's journal. All art
@@ -148,13 +151,8 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
   marked link. Honored only when not in reduced-motion. A small "Dead Eye" meter depletes.
 - **Discoverability:** mentioned in a loading tip.
 
-### Ask Arthur (Phase 5)
-- A small lantern-lit chat panel ("Ask around camp") where visitors ask about Araf's work.
-- Answers in a light frontier voice but factually precise; grounded ONLY in `src/content/*`
-  (system prompt includes the content; no web). Refuses unrelated or personal questions and
-  never invents facts. Rate-limited. Streams responses.
-- **IP note:** the persona is "an old camp hand", not literally Arthur Morgan. Label it
-  "Ask around camp" with a wink, and don't claim to be the game character.
+### Ask Arthur: dropped for now (D20)
+An AI chat about Araf's work was planned; deferred to "Later" in the roadmap.
 
 ### Plain mode
 - Toggle in the top bar + `/plain`. Pure HTML/CSS: paper background, body serif, all content,

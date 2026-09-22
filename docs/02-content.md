@@ -52,6 +52,7 @@ learning for computer vision. Graduating October 2026 and available full time.
 
 🤠 Poster headline: "The Leather Job: one gun, two months, sixty-four districts."
 🤠 Nice thematic fit: a *leather goods* brand in a leather-journal site.
+- Screenshots of the store may be shown (D18). ❗ Araf to provide them; placeholders until then.
 
 ---
 
@@ -83,7 +84,7 @@ learning for computer vision. Graduating October 2026 and available full time.
 
 ### 3. News Topic Classification: NLP Architecture Comparison
 - **Stack:** Python, TensorFlow/Keras, Gensim, scikit-learn
-- **Links:** none on resume (❓ see open questions: repo/notebook link?)
+- **Links:** none (no public repo/notebook; D16). Case study page only.
 - Ran a controlled comparison, as sole implementer, of **three preprocessing strategies**, **two
   word representations (TF-IDF, custom Skip-gram)** and **six architectures (DNN, SimpleRNN,
   GRU, LSTM, Bi-GRU, Bi-LSTM)**, reaching **91.9% accuracy and 0.919 macro F1**.
@@ -112,6 +113,8 @@ learning for computer vision. Graduating October 2026 and available full time.
 - 🤠 Headline: "The Torn Page": seeing what the fire took.
 - 🤠 Signature visual: a torn or burnt journal sketch that "completes itself" as you scroll
   (a visual metaphor for image completion; not a real model run in v1).
+- **Future work (not v1, D17):** real thesis figures and sample input/masked/output images,
+  paper/report link, and possibly an in-browser demo.
 
 ---
 
@@ -130,7 +133,7 @@ learning for computer vision. Graduating October 2026 and available full time.
 
 ## Education 📌
 - **BRAC University**, Dhaka: B.Sc. in Computer Science. **Expected October 2026.**
-- ❓ Start year unknown (needed for the map timeline).
+- **Started:** Fall 2022 (D15).
 
 ## Extracurricular 📌
 - Won the **Rising Star Football Tournament twice** with the Football Club of BRAC University,
@@ -141,7 +144,7 @@ learning for computer vision. Graduating October 2026 and available full time.
 ---
 
 ## Themed microcopy drafts 🤠
-- **Wanted poster:** "WANTED: BODRUDDOZA ARAF. For shipping a whole store in two months,
+- **Wanted poster** (name shown as just **ARAF**, D21): "WANTED: ARAF. For shipping a whole store in two months,
   single-handed. Also suspected in crimes against legacy code. REWARD: one full-time offer.
   Available from October 2026."
 - **Loading tips:**
@@ -150,6 +153,7 @@ learning for computer vision. Graduating October 2026 and available full time.
   - "Tip: Never deploy on a Friday, partner."
   - "Tip: Hold Tab to open the wheel."
   - "Tip: Press E to steady your aim."
-- **Telegram (contact):** "SEND WORD STOP ARAF READS EVERY TELEGRAM STOP"
+- **Telegram (contact):** "SEND WORD STOP ARAF READS EVERY TELEGRAM STOP". The form opens the
+  visitor's own mail (Gmail compose / mail app) pre-filled to bodruddozaaraf@gmail.com (D19).
 - **404:** "You've wandered off the map, partner."
 - **Footer colophon:** "Built by hand in Dhaka. Inspired by a certain outlaw's journal. All art original."

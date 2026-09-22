@@ -28,7 +28,7 @@ journal of a Wild West outlaw.
 |---|---|---|
 | G1 | Land interviews for full-time SWE / AI / ML roles | Contact form submissions, recruiter feedback |
 | G2 | Be memorable: people share the link | Social shares, Awwwards / CSSDA submission |
-| G3 | Prove engineering skill through the site itself | Lighthouse ≥ 90, clean repo, Ask Arthur AI feature |
+| G3 | Prove engineering skill through the site itself | Lighthouse ≥ 90, clean repo, well-engineered 3D and motion |
 | G4 | Never block the work behind the art | Plain mode; key info visible within 5 s of load |
 
 ## Success criteria for v1.0 launch
@@ -38,7 +38,7 @@ journal of a Wild West outlaw.
 - Lighthouse (mobile) Performance ≥ 85, Accessibility ≥ 95, Best Practices ≥ 95, SEO 100.
 - `prefers-reduced-motion` fully respected; Plain mode available from every page.
 - Works on latest Chrome, Firefox, Safari, and mid-range Android.
-- Deployed on Vercel with a custom domain (if Araf has one; see open questions).
+- Deployed on Vercel at **https://bodruddozaaraf.me** (with `www` redirect).
 
 ## Feel / mood keywords
 Dusk. Campfire glow. Graphite on aged paper. Ink blots. Leather and brass. Slow, cinematic

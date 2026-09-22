@@ -13,8 +13,7 @@
 | Content | **MDX** (`@next/mdx` or `next-mdx-remote`) + typed TS data | Case studies in markdown, data typed |
 | Validation | **Zod** | Content schemas, contact form |
 | Audio | **howler** | Simple, reliable |
-| AI (Phase 5) | **Vercel AI SDK** + **AI Gateway** | Ask Arthur chat |
-| Contact form | Server Action → email provider (❓ Resend via Vercel Marketplace; see decisions) | |
+| Contact form | **Client-side only**: builds a Gmail compose URL / `mailto:` link (D19). No email service, no API keys | Mail arrives from the sender's own address |
 | Hosting | **Vercel** | Zero-config Next.js, previews per branch |
 | Analytics | Vercel Analytics + Speed Insights | Free, privacy-friendly |
 | Lint/format | ESLint (next config) + Prettier | |
@@ -25,7 +24,7 @@
 - 3D canvas is **client-only** and **lazy-loaded** (`next/dynamic`, `ssr: false`), mounted
   after first paint. A static poster image (`hero-fallback.avif`) renders server-side first,
   so the hero has content immediately and the canvas crossfades in.
-- Only the contact form and the Ask Arthur API use server code.
+- **No server code at all in v1.** The whole site is static (contact is client-side, D19).
 
 ## Routes
 | Route | Content |
@@ -34,8 +33,7 @@
 | `/bounties/[slug]` | Project case study (EduBridge AI, PC-Builders, News Topic Classification, Jack The Jelli) |
 | `/research/image-completion` | Thesis case study |
 | `/plain` | Plain mode: fast, text-first, printable, everything on one page |
-| `/resume.pdf` | Static resume download (❓ confirm Araf wants it public) |
-| `/api/ask` | Ask Arthur chat endpoint (Phase 5) |
+| `/resume.pdf` | Static resume download (public, D14) |
 | `not-found` | Themed 404 ("off the map") |
 
 Plain mode is ALSO a toggle (persisted) that disables 3D, smooth scroll and effects on `/`.
@@ -54,8 +52,7 @@ Plain mode is ALSO a toggle (persisted) that disables 3D, smooth scroll and effe
    │  ├─ layout.tsx, page.tsx, not-found.tsx, globals.css
    │  ├─ plain/page.tsx
    │  ├─ bounties/[slug]/page.tsx
-   │  ├─ research/[slug]/page.tsx
-   │  └─ api/ask/route.ts           (Phase 5)
+   │  └─ research/[slug]/page.tsx
    ├─ content/
    │  ├─ profile.ts                 # identity, summary, links (from 02-content.md)
    │  ├─ experience.ts, projects.ts, research.ts, skills.ts, extras.ts
@@ -128,13 +125,20 @@ each heavy section with `dynamic()`.
 ## Environment variables
 | Var | Phase | Purpose |
 |---|---|---|
-| `RESEND_API_KEY` (or chosen provider) | 2 | Contact form email |
-| `CONTACT_TO_EMAIL` | 2 | Destination inbox |
-| `AI_GATEWAY_API_KEY` (or Vercel OIDC) | 5 | Ask Arthur |
-Managed with `vercel env`. Never commit `.env*`.
+| (none in v1) | | The site needs no secrets. |
+If any are added later: manage with `vercel env`, never commit `.env*`.
 
 ## Testing and quality
 - `npm run typecheck`, `npm run lint`, `npm run build` must pass before every merge.
-- Playwright smoke test (Phase 6): home loads, plain mode has all projects, contact form
-  validates, 404 renders, no console errors.
-- Lighthouse CI on preview deployments (Phase 6).
+- Playwright smoke test (Phase 5): home loads, plain mode has all projects, contact form
+  builds a correct compose link, 404 renders, no console errors.
+- Lighthouse CI on preview deployments (Phase 5).
+
+## Hosting and domain
+- Vercel project linked to GitHub repo `BodruddozaAraf/portfolio`; production = `main`,
+  preview deployment per branch/PR.
+- Domain `bodruddozaaraf.me` at Namecheap. DNS (Advanced DNS): `A @ 76.76.21.21`,
+  `CNAME www cname.vercel-dns.com`; apex is primary, `www` redirects to apex.
+- The old `BodruddozaAraf.github.io` repo's `CNAME` file must be removed so GitHub Pages stops
+  claiming the domain.
+- ⚠️ Free 1-year Student Pack domain: renew before ~Sept 2027.

@@ -13,7 +13,7 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | 3D models | Poly Haven, Quaternius, Kenney, Sketchfab (filter: CC0 / CC-BY, downloadable), or made in Blender | CC0 / CC-BY |
 | Sound | freesound.org (CC0 filter), Sonniss GDC bundles, Pixabay audio | CC0 / royalty-free |
 | Icons / tech logos | Simple Icons (redrawn in ink style) | CC0 |
-| Sketch illustrations | Original. Hand-drawn SVG, or AI-assisted then traced/cleaned by hand. ❓ See open questions | Original |
+| Sketch illustrations | Original. Hand-drawn SVG, or AI-assisted then traced/cleaned by hand (generated SVG line art, D22) | Original |
 
 ## Needed assets list
 | ID | Asset | Format target | Phase | Status |
@@ -23,7 +23,7 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | A03 | Wood planks (bounty board) | AVIF ≤ 150 KB | 1 | todo |
 | A04 | Map illustration (original, stylized) | SVG | 2 | todo |
 | A05 | Sketch set: campfire, desk/laptop, football, satchel items, horse, lantern | SVG line art | 1–2 | todo |
-| A06 | Portrait (sketch-style) for the wanted poster | SVG or high-contrast PNG | 1 | ❓ need photo |
+| A06 | Portrait (sketch-style) for the wanted poster | SVG or high-contrast PNG | 1 | placeholder first; real photo → sketch later (D13) |
 | A07 | Hero fallback render | AVIF 1920w + 960w | 3 (placeholder in 1) | todo |
 | A08 | Campfire, logs, stones | glTF (meshopt) | 3 | todo |
 | A09 | Horse (low-poly, idle anim) | glTF ≤ 800 KB | 3 | todo |
@@ -32,7 +32,8 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | A12 | Night HDRI | 1k HDR / KTX2 | 3 | todo |
 | A13 | Audio: fire crackle, wind, page flip, pin tack, stamp, telegraph, heartbeat, harmonica sting | OGG + MP3, mono, ≤ 200 KB each | 4 | todo |
 | A14 | Favicon / monogram "B.A." stamp | SVG + PNG set | 1 | todo |
-| A15 | Resume PDF | PDF | 1 | ❓ confirm public |
+| A15 | Resume PDF | PDF | 1 | todo (public, D14) |
+| A16 | Jack The Jelli store screenshots | AVIF | 1 | ❗ Araf to provide (D18) |
 
 ## Pipeline
 - Images: export AVIF + WebP; use `next/image`.
