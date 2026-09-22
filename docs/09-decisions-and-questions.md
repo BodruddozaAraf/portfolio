@@ -47,6 +47,9 @@ new row that supersedes the old one.
 | D39 | 2026-09-23 | `/styleguide` ships in builds but is unlinked and `noindex` | Useful on Vercel previews for review; not part of the site |
 | D40 | 2026-09-23 | No overshoot/bounce easing tokens. The "pin settle" becomes a keyframed swing in step 2.4 | impeccable detector (bounce-easing); `03` motion principle "nothing bounces" |
 | D41 | 2026-09-23 | Theme mechanics: every region uses one surface utility (`paper`, `paper-light`, `paper-dark`, `leather`, `night`) that sets `--surface-*` vars; buttons, links, selection, caret and focus read them. Radius scale cleared (square only), Tailwind default palette cleared | See DESIGN.md "The Surface Rule" |
+| D42 | 2026-09-23 | **No Netlify, anywhere** (supersedes the Netlify note in D24). The Netlify connector is disabled in Claude sessions; Araf unlinks the `portfolioaraf` site from the repo and removes the Netlify GitHub App's access. Vercel is the only host (D12) | Araf: "I don't want any affiliations with Netlify" |
+| D43 | 2026-09-23 | Content layer: typed data in `src/content/*`, parsed by Zod and cross-checked (no dashes, no phone-like numbers, balanced `**key term**` markers, known skill ids, real bounty/research links) when `@/content` loads; the root layout imports it, so every build validates. Grouped resume skills are split into single skills for "Used in". Optional fields (`client`, `metric`, timeline `when`) stay empty rather than guessed | Step 1.3; never invent facts |
+| D44 | 2026-09-23 | Case-study metadata lives in `src/content/projects.ts`; MDX files hold only the body. `@next/mdx` with `src/mdx-components.tsx` (strong renders italic, D36) | One source of truth per fact |
 
 ## Open questions for Araf
 None currently open. Add new ones here as `Q15`, `Q16`, … with a default.
