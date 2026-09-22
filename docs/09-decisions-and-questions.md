@@ -41,6 +41,7 @@ new row that supersedes the old one.
 | D32 | 2026-09-23 | No dark-mode variant: one deliberate night → paper theme switch; heritage serif + paper palette are justified overrides | Brief is explicitly vintage; taste 4.11 allows one theme switch |
 | D33 | 2026-09-23 | No eyebrow labels or section numbers; chapter numbering only on the loader title card | impeccable craft floor (hard ban), taste 9.F |
 | D34 | 2026-09-23 | Taste dials: VARIANCE 8, MOTION 8, DENSITY 3. impeccable mode: Experience. Build path: code-first | See `10-design-skills.md` |
+| D35 | 2026-09-23 | Theme/plan beats the design skills on any conflict; skills are guardrails only. Agent decides conflicts (delegated by Araf). `PRODUCT.md` accepted | Araf: "if the skills conflict with the design then drop them, it's your call" |
 
 ## Open questions for Araf
 None currently open. Add new ones here as `Q15`, `Q16`, … with a default.
