@@ -6,3 +6,4 @@ package-lock.json
 .claude
 .impeccable
 skills-lock.json
+public/textures/*.json

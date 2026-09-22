@@ -1,8 +1,155 @@
 @import "tailwindcss";
+@import "../styles/tokens.css";
 
-/* Design tokens arrive in step 1.2 (src/styles/tokens.css, see docs/03-design-system.md). */
-body {
-  background: #e9dcc0;
-  color: #2a2118;
-  font-family: Georgia, serif;
+/* Surfaces. The site has two: paper (the journal) and night (the camp). Each one sets the
+   variables that browser surfaces below read, so selection, caret, focus and scrollbars
+   follow whichever surface they sit on. */
+
+@utility paper {
+  --surface-fg: var(--color-ink);
+  --surface-accent: var(--color-blood);
+  --surface-selection: color-mix(in srgb, var(--color-blood) 22%, transparent);
+  --surface-selection-fg: var(--color-ink);
+  --surface-solid: var(--color-ink);
+  --surface-on-solid: var(--color-paper-light);
+  --surface-solid-hover: var(--color-blood);
+  color-scheme: light;
+  color: var(--color-ink);
+  background-color: var(--color-paper);
+  background-image: url("/textures/paper.webp");
+  background-size: 512px 512px;
+}
+
+@utility paper-light {
+  background-color: var(--color-paper-light);
+  background-image: url("/textures/paper.webp");
+  background-size: 512px 512px;
+}
+
+@utility paper-dark {
+  background-color: var(--color-paper-dark);
+  background-image: url("/textures/paper.webp");
+  background-size: 512px 512px;
+}
+
+/* Scorched page edges: the sheet darkens toward every border, never a hard frame. Pair it with
+   a paper surface; it positions the element so the burn can sit on an inner layer. */
+@utility burn {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow:
+      inset 0 0 2.75rem
+        color-mix(in srgb, var(--color-leather) 34%, transparent),
+      inset 0 0 0.6rem color-mix(in srgb, var(--color-leather) 30%, transparent);
+  }
+}
+
+@utility night {
+  --surface-fg: var(--color-paper-light);
+  --surface-accent: var(--color-ember);
+  --surface-selection: var(--color-ember);
+  --surface-selection-fg: var(--color-night);
+  --surface-solid: var(--color-ember);
+  --surface-on-solid: var(--color-night);
+  --surface-solid-hover: var(--color-ember-glow);
+  color-scheme: dark;
+  color: var(--color-paper-light);
+  background-color: var(--color-night);
+}
+
+@utility leather {
+  --surface-fg: var(--color-paper-light);
+  --surface-accent: var(--color-ember-glow);
+  --surface-selection: var(--color-ember-glow);
+  --surface-selection-fg: var(--color-night);
+  --surface-solid: var(--color-paper-light);
+  --surface-on-solid: var(--color-leather);
+  --surface-solid-hover: var(--color-ember-glow);
+  color: var(--color-paper-light);
+  background-color: var(--color-leather);
+  background-image: url("/textures/leather.webp");
+  background-size: 320px 320px;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    scrollbar-color: var(--color-leather) var(--color-paper-dark);
+    scrollbar-width: thin;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  figcaption,
+  blockquote {
+    text-wrap: pretty;
+  }
+
+  /* Browser surfaces carry the design too */
+  ::selection {
+    background-color: var(
+      --surface-selection,
+      color-mix(in srgb, var(--color-blood) 22%, transparent)
+    );
+    color: var(--surface-selection-fg, var(--color-ink));
+  }
+
+  * {
+    caret-color: var(--surface-accent, var(--color-blood));
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--surface-accent, var(--color-blood));
+    outline-offset: 3px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-paper-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-leather);
+    border: 2px solid var(--color-paper-dark);
+  }
+
+  a {
+    text-underline-offset: 0.22em;
+    text-decoration-thickness: 1px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    ::before,
+    ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
