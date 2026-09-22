@@ -1,0 +1,23 @@
+## The Job
+
+A leather goods brand in Dhaka needed a store that could take **cash-on-delivery orders** from
+every district, run by one engineer, launched in two months.
+
+### How it was done
+
+Order placement had to stay correct under failure:
+
+- **Idempotency keys** block duplicate orders.
+- **Guarded atomic decrements** restore stock exactly once on cancellation.
+- **Snapshotted line items** stop later product edits rewriting order history.
+
+> Designed order placement to stay correct under failure.
+
+Delivery pricing runs on the server across all 64 districts. The store is live at
+[jackthejelli.com](https://jackthejelli.com).
+
+Code blocks sit on a pasted strip of darker paper, like this site's own pre-merge check:
+
+```bash
+npm run typecheck && npm run lint && npm run build
+```

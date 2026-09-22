@@ -17,6 +17,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { TextLink } from "@/components/ui/TextLink";
+import ProseSample from "./prose-sample.mdx";
 import { contrast, readColorTokens, type ColorToken } from "./tokens";
 
 export const metadata: Metadata = {
@@ -557,6 +558,20 @@ export default async function StyleguidePage() {
             </div>
           ))}
         </dl>
+      </section>
+
+      <section
+        aria-labelledby="prose"
+        className="mx-auto max-w-(--page-max) px-(--gutter) py-16 md:py-24"
+      >
+        <SectionHeading id="prose" title="Prose">
+          Case studies are MDX. Markdown renders in the journal&apos;s type
+          through src/mdx-components.tsx; strong text keeps its meaning but sets
+          italic.
+        </SectionHeading>
+        <div className="paper-light burn shadow-pasted max-w-3xl px-6 py-10 md:px-12 md:py-14">
+          <ProseSample />
+        </div>
       </section>
 
       <section
