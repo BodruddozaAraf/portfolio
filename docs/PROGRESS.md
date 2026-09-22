@@ -7,7 +7,7 @@
 - **Current phase:** Phase 0: Planning
 - **Current step:** 1.1 scaffold done (merged). Remote: https://github.com/BodruddozaAraf/portfolio
 - **Active branch:** `main` (no step branch open)
-- **Next action:** Araf confirms `PRODUCT.md` → start step 1.2 on branch `phase-1/design-tokens`:
+- **Next action:** start step 1.2 on branch `phase-1/design-tokens`:
   run `impeccable context`, follow impeccable `reference/new-work.md` to write `DESIGN.md`, then tokens.
 - **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
   PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)

@@ -14,6 +14,13 @@ npx skills experimental_install          # restores design-taste-frontend from s
 npx impeccable install -y --providers=claude --scope=project   # restores engine binary + hooks
 ```
 
+## Precedence (D35)
+**The Outlaw's Journal theme and the plan win over the skills.** Araf's rule (2026-09-23): if a
+skill conflicts with the design, drop that rule. The skills stay as quality guardrails
+(accessibility, performance, AI-tell detection, copy discipline), not as art direction.
+When a skill rule fights the theme, follow the theme and add a row to the overrides table below.
+The agent makes these calls; Araf delegated them.
+
 ## How to use them in this project (workflow)
 1. **Every UI session:** run `.claude/skills/impeccable/scripts/impeccable context` once (on
    Windows without `sh`, use `impeccable.cmd`). It loads `PRODUCT.md` and `DESIGN.md`.
