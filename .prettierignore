@@ -3,3 +3,6 @@ node_modules
 out
 package-lock.json
 *.md
+.claude
+.impeccable
+skills-lock.json

@@ -15,6 +15,7 @@ but built with **original art only** (see IP rules in `docs/01-vision.md`).
 2. `docs/README.md`: index of all docs.
 3. The doc(s) for the phase you are working on (see `docs/06-roadmap.md`).
 4. `docs/09-decisions-and-questions.md`: decisions already made; do NOT re-litigate them.
+5. For ANY UI work: `docs/10-design-skills.md`, then `PRODUCT.md` and `DESIGN.md` (repo root).
 
 ## Hard rules
 - **Content source of truth is `docs/02-content.md`** (derived from the resume). Never invent
@@ -28,6 +29,10 @@ but built with **original art only** (see IP rules in `docs/01-vision.md`).
   tick finished steps, note the current branch, blockers and next action.
 - If a decision changes, record it in `docs/09-decisions-and-questions.md` with a date.
 - Performance and accessibility budgets in `docs/04-architecture.md` are requirements, not goals.
+- **Design skills are mandatory for UI work**: `design-taste-frontend` and `impeccable`
+  (`.claude/skills/`). Follow the workflow in `docs/10-design-skills.md`, including the
+  pre-flight checklist and `impeccable detect src/` before merging a UI step.
+- Zero em-dashes or en-dashes in visible site copy.
 
 ## Tech stack (short)
 Next.js 16 (App Router) · TypeScript · Tailwind CSS v4 · React Three Fiber + drei · GSAP +

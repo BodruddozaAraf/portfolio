@@ -7,8 +7,8 @@
 - **Current phase:** Phase 0: Planning
 - **Current step:** 1.1 scaffold done (merged). Remote: https://github.com/BodruddozaAraf/portfolio
 - **Active branch:** `main` (no step branch open)
-- **Next action:** start step 1.2 on branch `phase-1/design-tokens`, applying the installed
-  design skills (see `docs/10-design-skills.md` once written).
+- **Next action:** Araf confirms `PRODUCT.md` → start step 1.2 on branch `phase-1/design-tokens`:
+  run `impeccable context`, follow impeccable `reference/new-work.md` to write `DESIGN.md`, then tokens.
 - **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
   PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16), real photo for the
@@ -35,7 +35,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 2: 2D Motion
 - [ ] 2.1 motion-infra · [ ] 2.2 loader · [ ] 2.3 about-wanted · [ ] 2.4 bounty-board
-- [ ] 2.5 map-trail · [ ] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 cursor-grain → `v0.2.0`
+- [ ] 2.5 map-trail · [ ] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
 
 ### Phase 3: 3D Camp
 - [ ] 3.1 r3f-setup · [ ] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
@@ -51,6 +51,15 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (e) · `chore/design-skills`
+- Installed (Araf's request) `design-taste-frontend` via `npx skills add … -a claude-code --copy`
+  and `impeccable` via `npx impeccable install -y --providers=claude --scope=project` (the
+  interactive install failed with "invalid zip data"; the non-interactive form worked).
+- Engine binary + `.claude/settings.local.json` (impeccable detector hooks) are gitignored/local.
+- Read both skills; wrote `docs/10-design-skills.md`, `PRODUCT.md` (impeccable product record),
+  decisions D25-D34 (no custom cursor, Phosphor icons, PD engravings for sketches, hero rules,
+  no proficiency bars, no dashes, no eyebrows, dials 8/8/3). Updated 03/05/06/08, CLAUDE.md.
 
 ### 2026-09-23 (d) · `phase-1/scaffold`
 - Scaffolded with `create-next-app@latest` (TS, Tailwind, ESLint, App Router, `src/`, `@/*`),
