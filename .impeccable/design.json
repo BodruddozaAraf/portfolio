@@ -1,0 +1,488 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-22T21:56:38.963978+00:00",
+  "title": "Design System: The Outlaw's Journal",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Aged Paper",
+        "canonical": "oklch(89.8% 0.040 86.1)",
+        "tonalRamp": [
+          "#110a00",
+          "#2e240c",
+          "#4b4129",
+          "#6b6047",
+          "#8d8167",
+          "#b0a489",
+          "#d5c8ac",
+          "#faedd1"
+        ]
+      },
+      "paper-light": {
+        "role": "neutral",
+        "displayName": "Fresh Sheet",
+        "canonical": "oklch(93.9% 0.028 86.6)",
+        "tonalRamp": [
+          "#100a01",
+          "#2b2415",
+          "#494131",
+          "#68604f",
+          "#8a826f",
+          "#ada491",
+          "#d1c8b5",
+          "#f7eeda"
+        ]
+      },
+      "paper-dark": {
+        "role": "neutral",
+        "displayName": "Foxed Edge",
+        "canonical": "oklch(81.1% 0.056 85.0)",
+        "tonalRamp": [
+          "#110a00",
+          "#312200",
+          "#50401c",
+          "#705f3b",
+          "#92805b",
+          "#b5a37d",
+          "#dac7a0",
+          "#feedc8"
+        ]
+      },
+      "ink": {
+        "role": "primary",
+        "displayName": "Iron-Gall Ink",
+        "canonical": "oklch(25.5% 0.021 66.6)",
+        "tonalRamp": [
+          "#110903",
+          "#2c231a",
+          "#4a4036",
+          "#6a5f55",
+          "#8b8075",
+          "#aea397",
+          "#d3c7bb",
+          "#f9ece0"
+        ]
+      },
+      "ink-soft": {
+        "role": "neutral",
+        "displayName": "Faded Ink",
+        "canonical": "oklch(42.0% 0.036 69.9)",
+        "tonalRamp": [
+          "#140800",
+          "#302211",
+          "#4e3f2d",
+          "#6f5e4b",
+          "#917f6c",
+          "#b4a28d",
+          "#d9c6b1",
+          "#ffebd5"
+        ]
+      },
+      "ink-faded": {
+        "role": "neutral",
+        "displayName": "Water-Stained Ink",
+        "canonical": "oklch(57.7% 0.051 78.4)",
+        "tonalRamp": [
+          "#120900",
+          "#322203",
+          "#513f21",
+          "#715e40",
+          "#937f60",
+          "#b7a281",
+          "#dcc6a4",
+          "#ffecce"
+        ]
+      },
+      "night": {
+        "role": "neutral",
+        "displayName": "Campfire Night",
+        "canonical": "oklch(16.9% 0.006 271.0)",
+        "tonalRamp": [
+          "#0a0b0e",
+          "#242528",
+          "#414246",
+          "#606165",
+          "#818286",
+          "#a3a5a9",
+          "#c7c9cd",
+          "#edeef3"
+        ]
+      },
+      "night-blue": {
+        "role": "neutral",
+        "displayName": "Night Sky",
+        "canonical": "oklch(25.1% 0.029 261.4)",
+        "tonalRamp": [
+          "#050b17",
+          "#1d2533",
+          "#394252",
+          "#586272",
+          "#798394",
+          "#9ba6b8",
+          "#bfcadd",
+          "#e6effe"
+        ]
+      },
+      "dusk": {
+        "role": "neutral",
+        "displayName": "Dusk Horizon",
+        "canonical": "oklch(30.6% 0.026 3.1)",
+        "tonalRamp": [
+          "#14070a",
+          "#302024",
+          "#4e3c40",
+          "#6f5b60",
+          "#917c81",
+          "#b49fa3",
+          "#d9c2c7",
+          "#ffe8ed"
+        ]
+      },
+      "ember": {
+        "role": "primary",
+        "displayName": "Campfire Ember",
+        "canonical": "oklch(70.7% 0.147 62.4)",
+        "tonalRamp": [
+          "#150700",
+          "#391e02",
+          "#613605",
+          "#8c510d",
+          "#b96d15",
+          "#e58d31",
+          "#feb879",
+          "#ffeada"
+        ]
+      },
+      "ember-glow": {
+        "role": "tertiary",
+        "displayName": "Ember Glow",
+        "canonical": "oklch(82.8% 0.136 69.6)",
+        "tonalRamp": [
+          "#140800",
+          "#361f01",
+          "#5d3902",
+          "#875506",
+          "#b3720c",
+          "#db9436",
+          "#ffb966",
+          "#ffebd5"
+        ]
+      },
+      "blood": {
+        "role": "secondary",
+        "displayName": "Wanted-Poster Red",
+        "canonical": "oklch(42.3% 0.150 26.6)",
+        "tonalRamp": [
+          "#1e0001",
+          "#4c0205",
+          "#7f050d",
+          "#a6342f",
+          "#cd5850",
+          "#f57c71",
+          "#ffb3aa",
+          "#fee9e6"
+        ]
+      },
+      "leather": {
+        "role": "secondary",
+        "displayName": "Saddle Leather",
+        "canonical": "oklch(38.3% 0.061 56.0)",
+        "tonalRamp": [
+          "#160700",
+          "#3b1c02",
+          "#5b3920",
+          "#7c583e",
+          "#9f795f",
+          "#c49c80",
+          "#e9c0a3",
+          "#feeadd"
+        ]
+      },
+      "brass": {
+        "role": "tertiary",
+        "displayName": "Buckle Brass",
+        "canonical": "oklch(66.4% 0.083 77.4)",
+        "tonalRamp": [
+          "#120900",
+          "#342100",
+          "#593b00",
+          "#7b5b24",
+          "#9e7c46",
+          "#c29f68",
+          "#e8c38b",
+          "#ffeccf"
+        ]
+      },
+      "sage": {
+        "role": "tertiary",
+        "displayName": "Prairie Sage",
+        "canonical": "oklch(56.1% 0.050 124.7)",
+        "tonalRamp": [
+          "#080e00",
+          "#20290c",
+          "#3c4729",
+          "#5b6647",
+          "#7c8867",
+          "#9eab89",
+          "#c2cfac",
+          "#e7f5d1"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Woodtype Display",
+        "purpose": "Hero name and poster titles, uppercase."
+      },
+      "headline": {
+        "displayName": "Chapter Headline",
+        "purpose": "h1 and h2, uppercase Rye."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "h3 and h4 in IM Fell English."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "Section intros, often italic."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All reading text, max 68ch."
+      },
+      "hand": {
+        "displayName": "Journal Hand",
+        "purpose": "Short journal entries, 22px and up."
+      },
+      "note": {
+        "displayName": "Margin Note",
+        "purpose": "Annotations, 18px and up."
+      },
+      "label": {
+        "displayName": "Typewriter",
+        "purpose": "Figures, telegrams, token names."
+      },
+      "button": {
+        "displayName": "Ticket Label",
+        "purpose": "Control labels, uppercase, +0.1em."
+      }
+    },
+    "shadows": [
+      {
+        "name": "pasted",
+        "value": "0 1px 1px color-mix(in srgb,var(--color-ink) 18%,transparent), 0 3px 6px -2px color-mix(in srgb,var(--color-ink) 22%,transparent)",
+        "purpose": "Glued flat to the page."
+      },
+      {
+        "name": "pinned",
+        "value": "0 2px 2px color-mix(in srgb,var(--color-ink) 16%,transparent), 0 12px 22px -10px color-mix(in srgb,var(--color-ink) 45%,transparent)",
+        "purpose": "A pinned sheet with lifting corners."
+      },
+      {
+        "name": "lifted",
+        "value": "0 4px 4px color-mix(in srgb,var(--color-ink) 12%,transparent), 0 22px 34px -14px color-mix(in srgb,var(--color-leather) 55%,transparent)",
+        "purpose": "Picked up, on hover."
+      },
+      {
+        "name": "night",
+        "value": "0 10px 30px -12px color-mix(in srgb,var(--color-night) 85%,transparent)",
+        "purpose": "Objects on the night surface."
+      },
+      {
+        "name": "burn",
+        "value": "inset 0 0 2.75rem color-mix(in srgb,var(--color-leather) 34%,transparent),inset 0 0 0.6rem color-mix(in srgb,var(--color-leather) 30%,transparent)",
+        "purpose": "Scorched sheet edges (inner layer)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-journal",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Default ease: weighty, settles slowly."
+      },
+      {
+        "name": "dur-hover",
+        "value": "200ms",
+        "purpose": "Hover lift and color."
+      },
+      {
+        "name": "dur-stamp",
+        "value": "180ms",
+        "purpose": "A stamp slamming down."
+      },
+      {
+        "name": "dur-pin",
+        "value": "500ms",
+        "purpose": "Pinning a poster: a keyframed swing that settles, no overshoot curve."
+      },
+      {
+        "name": "dur-reveal",
+        "value": "800ms",
+        "purpose": "Section reveal, 24px rise."
+      },
+      {
+        "name": "dur-page",
+        "value": "900ms",
+        "purpose": "Page turn."
+      },
+      {
+        "name": "dur-draw",
+        "value": "1800ms",
+        "purpose": "A sketch drawing itself."
+      },
+      {
+        "name": "stagger",
+        "value": "60ms",
+        "purpose": "Between revealed siblings."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid Button (paper)",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "Primary action on paper: an inked ticket that turns wanted-poster red on hover.",
+      "html": "<button class=\"ds-btn-solid\">Send word</button>",
+      "css": ".ds-btn-solid{display:inline-flex;align-items:center;gap:10px;position:relative;padding:14px 24px;border:1px solid transparent;border-radius:0;font-family:var(--font-body);font-size:1rem;line-height:1;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;transition:translate 200ms var(--ease-journal),background-color 200ms var(--ease-journal),color 200ms var(--ease-journal),border-color 200ms var(--ease-journal),box-shadow 200ms var(--ease-journal);background:var(--color-ink);color:var(--color-paper-light);} .ds-btn-solid::before{content:\"\";position:absolute;inset:4px;pointer-events:none;border:1px solid color-mix(in srgb,var(--color-paper-light) 40%,transparent);} .ds-btn-solid:hover{background:var(--color-blood);translate:0 -2px;box-shadow:var(--shadow-lifted);} .ds-btn-solid:active{translate:0 1px;} .ds-btn-solid:focus-visible{outline:2px solid var(--color-blood);outline-offset:3px;}"
+    },
+    {
+      "name": "Outline Button (paper)",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action on paper.",
+      "html": "<button class=\"ds-btn-outline\">Plain mode</button>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;gap:10px;position:relative;padding:14px 24px;border:1px solid transparent;border-radius:0;font-family:var(--font-body);font-size:1rem;line-height:1;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;transition:translate 200ms var(--ease-journal),background-color 200ms var(--ease-journal),color 200ms var(--ease-journal),border-color 200ms var(--ease-journal),box-shadow 200ms var(--ease-journal);background:transparent;color:var(--color-ink);border-color:var(--color-ink);} .ds-btn-outline::before{content:\"\";position:absolute;inset:4px;pointer-events:none;border:1px solid color-mix(in srgb,var(--color-ink) 25%,transparent);} .ds-btn-outline:hover{color:var(--color-blood);border-color:var(--color-blood);translate:0 -2px;} .ds-btn-outline:focus-visible{outline:2px solid var(--color-blood);outline-offset:3px;}"
+    },
+    {
+      "name": "Solid Button (night)",
+      "kind": "button",
+      "refersTo": "button-solid-night",
+      "description": "Primary action on the night camp surface, lit by ember.",
+      "html": "<div class=\"ds-night\"><button class=\"ds-btn-night\">Open the journal</button></div>",
+      "css": ".ds-night{background:var(--color-night);padding:24px;} .ds-btn-night{display:inline-flex;align-items:center;gap:10px;position:relative;padding:14px 24px;border:1px solid transparent;border-radius:0;font-family:var(--font-body);font-size:1rem;line-height:1;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer;transition:translate 200ms var(--ease-journal),background-color 200ms var(--ease-journal),color 200ms var(--ease-journal),border-color 200ms var(--ease-journal),box-shadow 200ms var(--ease-journal);background:var(--color-ember);color:var(--color-night);} .ds-btn-night::before{content:\"\";position:absolute;inset:4px;pointer-events:none;border:1px solid color-mix(in srgb,var(--color-night) 40%,transparent);} .ds-btn-night:hover{background:var(--color-ember-glow);translate:0 -2px;} .ds-btn-night:focus-visible{outline:2px solid var(--color-ember);outline-offset:3px;}"
+    },
+    {
+      "name": "Text Link",
+      "kind": "custom",
+      "refersTo": "text-link",
+      "description": "Inline link in running text: ink underline that turns to the surface accent.",
+      "html": "<p class=\"ds-p\">See the <a class=\"ds-link\" href=\"#\">EduBridge AI repository</a>.</p>",
+      "css": ".ds-p{font-family:var(--font-body);font-size:1.125rem;color:var(--color-ink);} .ds-link{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:0.22em;text-decoration-color:color-mix(in srgb,var(--color-ink) 45%,transparent);transition:color 200ms var(--ease-journal);} .ds-link:hover{color:var(--color-blood);text-decoration-color:var(--color-blood);} .ds-link:focus-visible{outline:2px solid var(--color-blood);outline-offset:3px;}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "text-field",
+      "description": "Label above, paper-light fill, ink bottom rule, blood caret and focus.",
+      "html": "<label class=\"ds-label\" for=\"ds-name\">Your name</label><input id=\"ds-name\" class=\"ds-input\" type=\"text\">",
+      "css": ".ds-label{display:block;font-family:var(--font-body);font-size:1rem;color:var(--color-ink);margin-bottom:8px;} .ds-input{width:100%;font-family:var(--font-body);font-size:1.125rem;color:var(--color-ink);background:color-mix(in srgb,var(--color-paper-light) 70%,transparent);border:0;border-bottom:1px solid var(--color-ink);border-radius:0;padding:8px 12px;caret-color:var(--color-blood);} .ds-input:focus-visible{outline:2px solid var(--color-blood);outline-offset:3px;}"
+    },
+    {
+      "name": "Ledger Row",
+      "kind": "custom",
+      "refersTo": "ledger-row",
+      "description": "The ruled row that replaces cards for lists of facts: hairline rules, typewriter figures.",
+      "html": "<ul class=\"ds-ledger\"><li><span class=\"ds-k\">64 districts</span><span>Server-side delivery pricing</span></li><li><span class=\"ds-k\">2 months</span><span>Sole engineer, empty repo to live store</span></li></ul>",
+      "css": ".ds-ledger{list-style:none;margin:0;padding:0;border-top:1px solid color-mix(in srgb,var(--color-ink) 15%,transparent);font-family:var(--font-body);color:var(--color-ink);} .ds-ledger li{display:grid;grid-template-columns:10rem 1fr;gap:20px;padding:16px 0;border-bottom:1px solid color-mix(in srgb,var(--color-ink) 15%,transparent);} .ds-k{font-family:var(--font-type);}"
+    },
+    {
+      "name": "Pinned Sheet",
+      "kind": "card",
+      "refersTo": "pinned-sheet",
+      "description": "A paper-light sheet with scorched edges and the pinned shadow, tilted under 0.6deg.",
+      "html": "<div class=\"ds-sheet\"><h3 class=\"ds-sheet-h\">THE LEATHER JOB</h3><p class=\"ds-sheet-p\">Sole engineer, two months, all 64 districts.</p></div>",
+      "css": ".ds-sheet{position:relative;max-width:28rem;padding:32px;background:var(--color-paper-light);color:var(--color-ink);rotate:-0.4deg;box-shadow:var(--shadow-pinned);} .ds-sheet::after{content:\"\";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 2.75rem color-mix(in srgb,var(--color-leather) 34%,transparent),inset 0 0 0.6rem color-mix(in srgb,var(--color-leather) 30%,transparent);} .ds-sheet-h{font-family:var(--font-display);font-size:2rem;letter-spacing:0.02em;margin:0;} .ds-sheet-p{font-family:var(--font-body);font-size:1.125rem;margin:12px 0 0;}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Journal Found by the Fire",
+    "overview": "Every surface is a physical object from one frontier camp: aged paper pages written in iron-gall ink, a pebbled leather cover, and the night around the fire. The page is never a flat fill; paper carries procedural foxing, cloudy tooth and fibre flecks, leather carries lit grain, and a fixed film grain sits over everything. Density is airy (one idea per spread), and structure comes from ruled ledger lines, pasted notes and printed tickets rather than cards and panels.\n\nThe site moves from night to paper exactly once, where the journal opens; everything after that is paper. Type does the talking in five voices: Rye woodtype for posters and chapter titles, IM Fell English for everything a recruiter must read, two hands for journal entries and margin notes, and a typewriter for figures and telegrams. Decorative voices never carry a fact alone.",
+    "keyCharacteristics": [
+      "Textured paper ground, square corners, warm offset shadows.",
+      "One night band, lit by ember; blood red is rare and means \"this matters\".",
+      "Five faces with fixed jobs; no bold weight exists in the body face.",
+      "Controls are printed tickets with an inner hairline rule.",
+      "Browser surfaces (selection, caret, focus, scrollbar) are themed per surface."
+    ],
+    "rules": [
+      {
+        "name": "The Surface Rule",
+        "body": "Every region is exactly one surface (paper, night or leather), set with its utility class. The surface decides text color, accent, selection, caret, focus ring and button colors through `--surface-*` variables; components never pick a tone themselves.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Red Rule",
+        "body": "Blood red marks what matters (a stamp, a Dead Eye mark, focus, a hover on a solid button). It never decorates.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Raw Hex Rule",
+        "body": "Components use tokens only. Tailwind's default palette is cleared, so a stray `slate-500` does not compile.",
+        "section": "colors"
+      },
+      {
+        "name": "The Italic Emphasis Rule",
+        "body": "IM Fell English has no bold. Emphasis in text is italic; hierarchy comes from size, face and color. Never set `font-bold` on body text (the browser fakes it).",
+        "section": "typography"
+      },
+      {
+        "name": "The Real Text Rule",
+        "body": "Hand and display faces are decoration. Every fact a recruiter needs also exists as real text in the body or label face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Five Faces Rule",
+        "body": "Five families site-wide, the performance budget. A code face (JetBrains Mono) is loaded only on routes that show code.",
+        "section": "typography"
+      },
+      {
+        "name": "The Burn Rule",
+        "body": "A standalone sheet darkens toward its edges (the `burn` utility: inset leather shadow), never a drawn border.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Tilt Rule",
+        "body": "Pasted and pinned items may rotate up to 0.6deg, from deterministic values so server and client render the same.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do put every region on exactly one surface utility and let `--surface-*` color its controls.",
+      "Do keep body text ink on paper (11.6:1) or paper-light on night (16:1).",
+      "Do use italic for emphasis in IM Fell, and Special Elite for figures and tabular data.",
+      "Do theme browser surfaces: selection is a blood wash on paper and ember on night, and the scrollbar is leather on a paper-dark track.",
+      "Do use `--ease-journal` (cubic-bezier(0.22, 1, 0.36, 1)) and the `--dur-*` tokens for motion.",
+      "Do regenerate textures with `node scripts/textures.mjs`; they are original and deterministic."
+    ],
+    "donts": [
+      "Don't use ember, brass or ink-faded for small text on paper; they fail contrast.",
+      "Don't fake a bold weight in IM Fell English.",
+      "Don't round corners on paper, posters or controls.",
+      "Don't use overshoot or bounce curves. A pinned poster's swing is authored as keyframes that settle, never an overshooting global ease.",
+      "Don't add a light/dark toggle; the one night-to-paper switch is the theme.",
+      "Don't put eyebrow labels above headings or number sections.",
+      "Don't use live SVG filter textures as page backgrounds; they are slow to rasterize. Ship the generated WebP tiles.",
+      "Don't use em or en dashes in visible copy, or more than one middle dot per line."
+    ]
+  }
+}

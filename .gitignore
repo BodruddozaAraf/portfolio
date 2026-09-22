@@ -38,3 +38,7 @@ Thumbs.db
 
 # raw design source files (keep exported assets only)
 *.blend1
+
+# impeccable review captures and hook cache (local only)
+.impeccable/review/
+.impeccable/hook.cache.json

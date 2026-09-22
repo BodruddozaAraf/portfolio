@@ -43,6 +43,7 @@ Plain mode is ALSO a toggle (persisted) that disables 3D, smooth scroll and effe
 /
 ├─ CLAUDE.md, README.md
 ├─ docs/                      # all planning docs (this folder)
+├─ scripts/textures.mjs       # generates public/textures/*.webp (D38)
 ├─ public/
 │  ├─ fonts/ (if not using next/font google)
 │  ├─ textures/  models/  audio/  images/
