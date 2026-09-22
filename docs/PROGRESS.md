@@ -5,9 +5,10 @@
 
 ## Now
 - **Current phase:** Phase 0: Planning
-- **Current step:** Phase 0 complete. Remote: https://github.com/BodruddozaAraf/portfolio
+- **Current step:** 1.1 scaffold done (merged). Remote: https://github.com/BodruddozaAraf/portfolio
 - **Active branch:** `main` (no step branch open)
-- **Next action:** start step 1.1 on branch `phase-1/scaffold`.
+- **Next action:** start step 1.2 on branch `phase-1/design-tokens`, applying the installed
+  design skills (see `docs/10-design-skills.md` once written).
 - **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
   PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16), real photo for the
@@ -21,7 +22,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 0.2 GitHub remote + push `main` + tag `v0.0.0-plan`
 
 ### Phase 1: Foundation
-- [ ] 1.1 scaffold
+- [x] 1.1 scaffold (Next.js 16.3.6, React 19.2, Tailwind v4, ESLint 9 + Prettier)
 - [ ] 1.2 design-tokens
 - [ ] 1.3 content-layer
 - [ ] 1.4 journal-primitives
@@ -50,6 +51,14 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (d) · `phase-1/scaffold`
+- Scaffolded with `create-next-app@latest` (TS, Tailwind, ESLint, App Router, `src/`, `@/*`),
+  copied into the repo. Next 16.3.6 / React 19.2.8.
+- Added Prettier (+ tailwind plugin, eslint-config-prettier), scripts `typecheck`
+  (`next typegen && tsc --noEmit`; needed for global `LayoutProps` types), `format`, `format:check`.
+- `AGENTS.md` is managed by Next.js (`next dev` rewrites its block); `CLAUDE.md` imports it.
+- Placeholder home page + metadata. typecheck, lint, build all pass.
 
 ### 2026-09-23 (c) · `chore/remove-legacy-site` → `main`
 - Araf authenticated `gh`. Repo `BodruddozaAraf/portfolio` already existed (old HTML/CSS/JS

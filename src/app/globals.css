@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+/* Design tokens arrive in step 1.2 (src/styles/tokens.css, see docs/03-design-system.md). */
+body {
+  background: #e9dcc0;
+  color: #2a2118;
+  font-family: Georgia, serif;
+}
