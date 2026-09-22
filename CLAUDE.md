@@ -35,8 +35,16 @@ ScrollTrigger · Lenis · Motion (Framer Motion) · MDX · Vercel hosting.
 Domain: **bodruddozaaraf.me** (Namecheap DNS → Vercel). Repo: `BodruddozaAraf/portfolio`.
 Package manager: **npm**. Node >= 20.9 (machine has v22).
 
-## Commands (filled in once Phase 1 scaffolds the app)
-- `npm run dev`: local dev server
+## Commands
+- `npm run dev`: local dev server (http://localhost:3000)
 - `npm run build`: production build
-- `npm run lint`: lint
+- `npm run lint`: ESLint (next core-web-vitals + typescript + prettier)
 - `npm run typecheck`: `tsc --noEmit`
+- `npm run format` / `npm run format:check`: Prettier (with Tailwind class sorting)
+- **Before every merge:** `npm run typecheck && npm run lint && npm run build`
+
+## Next.js version note
+Next.js 16.3 is newer than most training data. `AGENTS.md` (managed by Next.js, imported
+below) says to read the bundled docs in `node_modules/next/dist/docs/` before writing code.
+
+@AGENTS.md
