@@ -58,6 +58,8 @@ Plain mode is ALSO a toggle (persisted) that disables 3D, smooth scroll and effe
    │  ├─ profile.ts                 # identity, summary, links (from 02-content.md)
    │  ├─ experience.ts, projects.ts, research.ts, skills.ts, extras.ts
    │  ├─ schema.ts                  # zod schemas + inferred types
+   │  ├─ validate.ts, format.ts     # build-time invariants (D43), display helpers
+   │  ├─ index.ts                   # the only import point: `@/content`
    │  └─ case-studies/*.mdx
    ├─ components/
    │  ├─ journal/     # Page, Spread, HandwrittenText, SketchSVG, InkUnderline, Stamp

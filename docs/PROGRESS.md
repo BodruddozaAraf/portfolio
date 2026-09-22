@@ -5,14 +5,16 @@
 
 ## Now
 - **Current phase:** Phase 1: Foundation
-- **Current step:** 1.2 design-tokens done on `phase-1/design-tokens` (PR open, awaiting Araf's merge).
-- **Active branch:** `phase-1/design-tokens`
-- **Next action:** after the 1.2 PR merges, start step 1.3 on branch `phase-1/content-layer`:
-  typed `src/content/*` data + Zod schemas from `docs/02-content.md`, MDX setup.
+- **Current step:** 1.3 content-layer done on `phase-1/content-layer` (PR open, awaiting Araf's merge).
+- **Active branch:** `phase-1/content-layer`
+- **Next action:** after the 1.3 PR merges, start step 1.4 on branch `phase-1/journal-primitives`:
+  `Page`, `Spread`, `HandwrittenText`, `SketchSVG`, `Stamp`, `Pin`, `Poster`, `InkUnderline`
+  (Button/TextLink/Icon exist), showcased on `/styleguide`. Read content via `@/content` only.
 - **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
   PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
-- **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16), real photo for the
-  wanted poster later (A06).
+- **Pending from Araf (non-blocking):** unlink Netlify (D42: remove the `portfolioaraf` site's
+  repo link on Netlify and the Netlify GitHub App's access to `portfolio`); Jack The Jelli
+  screenshots (A16); real photo for the wanted poster later (A06); resume PDF (A15).
 - **Screenshots:** the in-app browser pane often times out on screenshots. Use headless capture:
   Playwright's `chrome-headless-shell.exe` (in `~/AppData/Local/ms-playwright/`) with
   `--screenshot --window-size=390,12000` for mobile (regular headless Chrome clamps narrow widths).
@@ -27,7 +29,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 ### Phase 1: Foundation
 - [x] 1.1 scaffold (Next.js 16.3.6, React 19.2, Tailwind v4, ESLint 9 + Prettier)
 - [x] 1.2 design-tokens (DESIGN.md, tokens, fonts, textures, surfaces, `/styleguide`)
-- [ ] 1.3 content-layer
+- [x] 1.3 content-layer (`src/content/*`, Zod + build-time invariants, MDX)
 - [ ] 1.4 journal-primitives (`Button`, `TextLink`, `Icon` already exist from 1.2; extend, don't duplicate)
 - [ ] 1.5 sections-static
 - [ ] 1.6 case-studies
@@ -54,6 +56,24 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (g) · `phase-1/content-layer`
+- Netlify (Araf's request, D42): disabled the Netlify connector for Claude sessions. The repo is
+  still linked to Netlify site `portfolioaraf` via the Netlify GitHub App (it built a deploy
+  preview for PR #3 and still deploys `main`); only Araf can unlink it in Netlify/GitHub settings.
+- Content layer: `schema.ts` (Zod 4), data files `profile`, `experience` (+ education),
+  `projects`, `research`, `skills`, `extras` (extracurricular, map timeline, microcopy),
+  `format.ts` (month/range formatting with spaced hyphens, `**key term**` helpers),
+  `validate.ts` (no dashes, no phone-like numbers, balanced markers, one middle dot, unique ids,
+  skill and link cross-refs), `index.ts` (parse + validate on load, `skillUsage` map for
+  "Used in", `getProject`). Root layout imports `@/content`, so every build validates (D43).
+  Verified: a planted em dash, phone number and bad skill id each failed `next build`.
+- Jack The Jelli bounty reuses the experience bullets verbatim. Optional facts (`client`,
+  `metric`, EduBridge's date) are left empty rather than guessed.
+- MDX: `@next/mdx` in `next.config.ts`, `src/mdx-components.tsx` (strong renders italic);
+  `/styleguide` has a Prose section rendering `prose-sample.mdx` (D44).
+- typecheck, lint, format, build, `impeccable detect` all clean; checked 1440px and 390px.
+- **Next:** merge PR, then 1.4 journal-primitives.
 
 ### 2026-09-23 (f) · `phase-1/design-tokens`
 - Ran impeccable `context` + `new-work`. World is brief-pinned (03, D32, D35), so no concept roll;
