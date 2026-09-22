@@ -4,6 +4,9 @@ Phases are sequential. Steps inside a phase are mostly sequential; the order bel
 recommended order. **Each step = one branch = one PR** (see `07-git-workflow.md`).
 Branch name is given for every step. Tick steps in `PROGRESS.md`, not here.
 
+**Every UI step:** follow `10-design-skills.md` (taste pre-flight §14 + `impeccable detect src/`
+before merge).
+
 Principle: **after Phase 1 the site is deployable and useful.** Every later phase adds wow
 on top of a working site; never break the working site.
 
@@ -21,7 +24,7 @@ Goal: a fast, correct, good-looking *static* journal site with all content. No 3
 | Step | Branch | Deliverable | Done when |
 |---|---|---|---|
 | 1.1 | `phase-1/scaffold` | Next.js 16 + TS strict + Tailwind v4 + ESLint/Prettier; scripts (`dev`, `build`, `lint`, `typecheck`); `CLAUDE.md` commands updated | `npm run build` passes; blank page renders |
-| 1.2 | `phase-1/design-tokens` | `tokens.css`, Tailwind `@theme`, fonts via `next/font`, paper texture + grain + vignette, base typography | A `/_styleguide` dev page shows all tokens, fonts, sample components |
+| 1.2 | `phase-1/design-tokens` | Run impeccable `new-work` to write **`DESIGN.md`** from `03` + `10`; then `tokens.css`, Tailwind `@theme`, fonts via `next/font`, Phosphor icons, paper texture + grain + vignette, base typography, themed browser surfaces (selection, focus, scrollbar) | `DESIGN.md` committed; a `/styleguide` dev page shows all tokens, fonts, sample components; `impeccable detect src/` clean |
 | 1.3 | `phase-1/content-layer` | `src/content/*` typed data + Zod schemas from `02-content.md`; MDX set up | Typecheck passes; data unit-validated at build |
 | 1.4 | `phase-1/journal-primitives` | `Page`, `Spread`, `HandwrittenText`, `SketchSVG` (static), `Stamp`, `Pin`, `Poster`, `InkUnderline`, `Button`, `Link` | Showcased on the styleguide page |
 | 1.5 | `phase-1/sections-static` | All sections 1–10 built statically (hero uses static art placeholder), responsive | Every fact from 02 appears; mobile has no horizontal scroll |
@@ -43,7 +46,7 @@ Goal: the journal comes alive. Smooth scroll, drawing sketches, stamps, the map 
 | 2.5 | `phase-2/map-trail` | Map illustration, scroll-drawn trail, pin drops, horizontal pin on desktop | Spec 05 §6 met |
 | 2.6 | `phase-2/satchel-camp-telegram` | Satchel inventory interactions, camp stories, telegram typing + transmit animation | Spec 05 §7–9 met |
 | 2.7 | `phase-2/page-transitions` | Route transitions (page turn / ink wipe) between home and case studies | Back nav restores scroll |
-| 2.8 | `phase-2/cursor-grain` | Custom cursor, global film grain | Off on touch + reduced-motion |
+| 2.8 | `phase-2/grain` | Global film grain on a fixed `pointer-events-none` layer (no custom cursor, D26) | Off in reduced-motion; no scroll jank on mobile |
 | — | merge | tag `v0.2.0` | |
 
 ## Phase 3: 3D Camp hero 🔥

@@ -31,5 +31,10 @@ Thumbs.db
 .vscode/*
 !.vscode/extensions.json
 
+# design skills: local hook settings and the impeccable engine binary (re-downloaded on demand)
+.claude/settings.local.json
+.claude/skills/impeccable/scripts/bin/
+.impeccable/config.local.json
+
 # raw design source files (keep exported assets only)
 *.blend1

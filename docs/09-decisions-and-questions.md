@@ -31,6 +31,17 @@ new row that supersedes the old one.
 | D23 | 2026-09-23 | Nothing beyond the resume to feature | Q14 |
 | D24 | 2026-09-23 | Reuse existing GitHub repo `portfolio`: old site's files deleted in a normal commit (history kept at `6122b3f`, no force-push). Old Netlify site `portfolioaraf.netlify.app` is obsolete; Araf to remove it on Netlify | Araf: "delete the contents… I don't need them anymore" |
 
+| D25 | 2026-09-23 | Design skills installed and mandatory for UI work: `design-taste-frontend` (Leonxlnx/taste-skill) and `impeccable` (pbakaus). Workflow in `docs/10-design-skills.md`; product record in `PRODUCT.md`; `DESIGN.md` written in step 1.2 | Araf's request |
+| D26 | 2026-09-23 | **No custom cursor** (supersedes 03 §6 cursor spec). Dead Eye keeps red X marks as an effect | Taste skill 9.A: custom cursors are an AI tell and hurt accessibility/performance |
+| D27 | 2026-09-23 | Icons: Phosphor Icons only, one weight | Taste 3.C, 9.E |
+| D28 | 2026-09-23 | Sketch art from public-domain 19th-century engravings, traced to SVG strokes (supersedes "generated SVG line art") | Taste 4.8: avoid invented decorative SVGs; PD engravings fit the era |
+| D29 | 2026-09-23 | Hero: max 4 text elements, no scroll cue, no location strip | Taste 4.7, 9.F |
+| D30 | 2026-09-23 | Satchel: no proficiency bars | Taste 9.F |
+| D31 | 2026-09-23 | Zero em/en dashes in visible copy; `·` max one per line | Taste 9.G |
+| D32 | 2026-09-23 | No dark-mode variant: one deliberate night → paper theme switch; heritage serif + paper palette are justified overrides | Brief is explicitly vintage; taste 4.11 allows one theme switch |
+| D33 | 2026-09-23 | No eyebrow labels or section numbers; chapter numbering only on the loader title card | impeccable craft floor (hard ban), taste 9.F |
+| D34 | 2026-09-23 | Taste dials: VARIANCE 8, MOTION 8, DENSITY 3. impeccable mode: Experience. Build path: code-first | See `10-design-skills.md` |
+
 ## Open questions for Araf
 None currently open. Add new ones here as `Q15`, `Q16`, … with a default.
 

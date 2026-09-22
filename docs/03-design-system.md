@@ -1,5 +1,8 @@
 # 03 — Design System
 
+> From step 1.2 on, **`DESIGN.md` (repo root, impeccable format) is the visual authority**;
+> this file is the original rationale. Skill rules and overrides: `10-design-skills.md`.
+
 All tokens are defined once as CSS custom properties in `src/styles/tokens.css` and exposed
 to Tailwind v4 via `@theme`. Never hard-code hex values in components.
 
@@ -36,7 +39,11 @@ to Tailwind v4 via `@theme`. Never hard-code hex values in components.
 `--night`. `--ink-faded` only for text ≥ 18px. Verify every new pair ≥ 4.5:1 (AA).
 
 **Theme note:** the site does not have a light/dark toggle. It moves *narratively* from night
-(hero) to paper (journal). Plain mode uses paper + ink only.
+(hero) to paper (journal) exactly once, a deliberate "theme switch on scroll" (D32). Plain
+mode uses paper + ink only.
+
+**Copy typography rules:** zero em-dashes/en-dashes in visible copy (use hyphens, commas,
+colons); `·` at most once per line; no eyebrow labels above headings; no section numbers.
 
 ## 2. Typography
 All fonts are free (Google Fonts / OFL), loaded with `next/font` and self-hosted, `display: swap`.
@@ -66,7 +73,8 @@ needs (title, dates, stack, metrics) must also appear in the body or mono font.
 - **Film grain:** a very subtle global grain overlay (canvas or CSS), off in reduced-motion.
 
 ## 4. Iconography
-Hand-drawn style line icons (custom SVGs) for nav and UI. For tech-stack logos use simple
+**Phosphor Icons** (`@phosphor-icons/react`), one family, one weight, tinted with the
+ink/ember tokens (D27). No hand-drawn icons, no emoji or Unicode glyphs as icons. For tech-stack logos use simple
 monochrome ink versions (Simple Icons, CC0), tinted `--ink`, never full-color brand logos
 on the paper.
 
@@ -92,11 +100,9 @@ on the paper.
 camera moves, no Dead Eye time slow. Sketches appear fully drawn. Fades ≤ 200 ms only.
 3D hero replaced by a static rendered image.
 
-## 6. Custom cursor
-- Default: small ink dot with a trailing graphite ring.
-- Over links: ring expands into a revolver-sight crosshair ✛.
-- Dead Eye mode: red "X" marks where you click.
-- Disabled on touch devices and in reduced-motion.
+## 6. Cursor
+**No custom cursor** (D26, taste skill 9.A). The native cursor stays. Dead Eye mode
+draws red "X" marks where you click, as a visual effect only.
 
 ## 7. Sound (off by default)
 - Toggle in the corner (icon: a harmonica or a speaker drawn in ink). Choice remembered in

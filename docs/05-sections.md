@@ -9,7 +9,8 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
 
 ## 0. Loader: "Chapter I"
 - **Purpose:** hide 3D asset loading and set the mood in ≤ 3 s.
-- **Content:** Chapter card "CHAPTER I · DHAKA" plus a rotating loading tip (from 02).
+- **Content:** Title card "Chapter I: Dhaka" plus a rotating loading tip (from 02). The loader
+  is the only place chapter numbering appears (no numbered labels on sections, D33).
 - **Layout:** full-screen `--night`, centered title, tip at the bottom in italic serif.
 - **Animation:** a small graphite sketch (a campfire) draws itself; its progress tracks real
   asset loading (`useProgress` from drei). Fades into the hero.
@@ -21,8 +22,10 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
 
 ## 1. Hero: "The Camp"
 - **Purpose:** jaw-drop moment + instant clarity on who and what.
-- **Content:** NAME (Rye, huge), "Full-Stack · AI/ML Engineer", "Dhaka · Available Oct 2026",
-  two CTAs: **"Open the journal"** (scrolls) and **"Plain mode"**. Small scroll cue.
+- **Content (max 4 text elements, D29):** NAME (Rye, huge); role line "Full-Stack and AI/ML
+  Engineer"; one sentence (≤ 20 words) with availability, e.g. "Graduating October 2026 and
+  available full time."; two CTAs: **"Open the journal"** and **"Plain mode"**. No scroll cue,
+  no location strip (Dhaka lives in About).
 - **3D scene (R3F):** night hillside at dusk. Campfire centered in the foreground (fire
   shader + point light flicker + sparks particles), bedroll, lantern, a tethered horse as a
   dark silhouette (low-poly), pine silhouettes, layered mountains, starry sky gradient,
@@ -100,8 +103,8 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
 - **Layout:** an open leather satchel; items spill onto a cloth. Each category is a pouch
   or tin; skills are items (ink-drawn logos + labels). Also "Spoken tongues: English, Bangla".
 - **Interaction:** hover a category and its items lift; click opens an inventory panel in
-  the RDR2 item-card style (original design): name, "Proficiency" as a filled bar in a
-  hand-drawn frame, and "Used in:" linking to bounties that use it.
+  the RDR2 item-card style (original design): name, a one-line note, and "Used in:" linking
+  to bounties that use it. No proficiency bars (D30).
 - **Done when:** every skill listed; "Used in" mapping correct (derived from project data).
 
 ## 8. Camp Stories (Extracurricular)
@@ -112,8 +115,9 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
 - **Done when:** facts present; small and charming, not a big section.
 
 ## 9. Telegram Office: "Send Word" (Contact)
-- **Content:** telegram form (Name, Email, Message), plus direct links: email, GitHub,
-  LinkedIn, resume download. NO phone.
+- **Content:** telegram form (Name, Email, Message; labels above inputs, never
+  placeholder-as-label), plus direct links: email, GitHub, LinkedIn, resume download. NO phone.
+  The contact CTA label is **"Send word"** everywhere on the site (one label per intent).
 - **Interaction:** typing shows typewriter-style chars; submit plays telegraph clicks, and
   the message "transmits" (letters convert to dots and dashes along a wire), then the page
   shows "DELIVERED" stamp.

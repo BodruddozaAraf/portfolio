@@ -12,6 +12,9 @@
 | [07-git-workflow.md](07-git-workflow.md) | Branching, commits, PRs, tags, rollback | Before any git operation |
 | [08-assets.md](08-assets.md) | Asset list, sources, licenses, formats | When adding fonts, textures, models, audio |
 | [09-decisions-and-questions.md](09-decisions-and-questions.md) | Decision log + open questions for Araf | Before making any non-trivial choice |
+| [10-design-skills.md](10-design-skills.md) | How the taste + impeccable skills are used, dials, overrides | Before any UI work |
+| [../PRODUCT.md](../PRODUCT.md) | impeccable product record (users, purpose, constraints) | Loaded by `impeccable context` |
+| ../DESIGN.md (from step 1.2) | impeccable visual world: the visual authority once written | Any UI work |
 
 ## How the docs fit together
 - `01` says **why** and **what it should feel like**.
