@@ -14,7 +14,8 @@
 | [09-decisions-and-questions.md](09-decisions-and-questions.md) | Decision log + open questions for Araf | Before making any non-trivial choice |
 | [10-design-skills.md](10-design-skills.md) | How the taste + impeccable skills are used, dials, overrides | Before any UI work |
 | [../PRODUCT.md](../PRODUCT.md) | impeccable product record (users, purpose, constraints) | Loaded by `impeccable context` |
-| ../DESIGN.md (from step 1.2) | impeccable visual world: the visual authority once written | Any UI work |
+| [../DESIGN.md](../DESIGN.md) | impeccable visual world (tokens + rules): **the visual authority** | Any UI work |
+| `/styleguide` (dev route) | Live render of every token, face, material and control | Before building UI |
 
 ## How the docs fit together
 - `01` says **why** and **what it should feel like**.

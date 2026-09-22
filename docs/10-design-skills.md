@@ -56,9 +56,12 @@ Plain mode serving the recruiter "Read" need.
 Both skills say the brief wins when it is explicit. These overrides are deliberate:
 | Skill rule | Our position | Justification |
 |---|---|---|
-| Serif discouraged as default (taste 4.1) | Serif/woodtype display (Rye, Sancreek) and an old-print body serif | Brief is explicitly heritage/vintage (1899 frontier journal). Fraunces and Instrument Serif stay banned |
+| Serif discouraged as default (taste 4.1) | Serif/woodtype display (Rye) and an old-print body serif (IM Fell English, D36) | Brief is explicitly heritage/vintage (1899 frontier journal). Fraunces and Instrument Serif stay banned |
 | Beige/brass/espresso palette banned as default (taste 4.2) | Aged paper + ink + ember palette | The object IS an aged paper journal; the palette is the material, not a "premium" costume. Single accent rule still applies (ember on night, blood-red stamps sparingly) |
 | Dark mode mandatory (taste 6.C) | No light/dark toggle; one deliberate night → paper switch | Brand requires paper pages; taste 4.11 allows one deliberate "theme switch on scroll" per page. Night camp hero → journal paper happens exactly once |
+| impeccable concept roll (`concept-seed`) for a new world (new-work §3) | Skipped | The world is brief-pinned by `03` and D32/D35; new-work itself says a pinned direction beats the roll. The direction contract lives in `.impeccable/surfaces/` |
+| impeccable finish reviewer / documenter run as subagents | Run in-thread from `reference/degraded/` unless Araf asks for subagents | Session rule: subagents only on explicit request. Disclose the substitution in the PR |
+| Bounce/overshoot easing flagged by the detector | Agree: no overshoot token (D40) | Pin "settle" is authored as keyframes in step 2.4 |
 | Hand-rolled decorative SVG discouraged (taste 4.8) | Sketch art comes from **public-domain 19th-century engravings**, traced to SVG strokes for draw-on animation | Real source images instead of invented doodles (see 08-assets) |
 
 ## Rules adopted from the skills (these change the earlier plan)

@@ -36,7 +36,9 @@ to Tailwind v4 via `@theme`. Never hard-code hex values in components.
 | `--sage` | `#6E7A5A` | Map terrain, success states |
 
 **Contrast rules:** body text is always `--ink` on `--paper` (~12:1) or `--paper-light` on
-`--night`. `--ink-faded` only for text ≥ 18px. Verify every new pair ≥ 4.5:1 (AA).
+`--night`. `--ink-faded` (3.2:1) only for text ≥ 24px or decoration; `--ember`, `--brass` and
+`--sage` never carry small text on paper. Verify every new pair ≥ 4.5:1 (AA). The `/styleguide`
+page computes every pairing from `tokens.css`.
 
 **Theme note:** the site does not have a light/dark toggle. It moves *narratively* from night
 (hero) to paper (journal) exactly once, a deliberate "theme switch on scroll" (D32). Plain
@@ -51,9 +53,8 @@ All fonts are free (Google Fonts / OFL), loaded with `next/font` and self-hosted
 | Role | Font | Fallback | Notes |
 |---|---|---|---|
 | Display: posters, chapter titles | **Rye** | Georgia, serif | Western woodtype. Uppercase, tracking +0.02em. Headlines only. |
-| Display alt: bounty headers, stamps | **Sancreek** | Georgia, serif | Use sparingly for variety. |
 | Handwriting: journal entries, annotations | **Homemade Apple** (alt: **Caveat** for smaller sizes) | cursive | Never below 18px. Keep lines short. |
-| Body: case studies, plain mode | **IM Fell English** or **Libre Baskerville** | Georgia, serif | Readable old-print serif. Final pick in Phase 1. |
+| Body: case studies, plain mode | **IM Fell English** (D36) | Georgia, serif | Regular + italic only: emphasis is italic, never bold. Body 17 to 19px. |
 | Mono: code, stats, telegram | **Special Elite** (typewriter) for flavor; **JetBrains Mono** for real code | monospace | |
 
 **Type scale** (fluid with `clamp()`): 14 / 16 / 18 / 22 / 28 / 36 / 48 / 64 / 96 px.
@@ -88,7 +89,7 @@ on the paper.
 | Page / section reveal | 600–900 ms, translateY 24px → 0 + opacity, staggered 60 ms |
 | Sketch draw-on | 1.2–2.4 s, `stroke-dashoffset`, linear-ish with slight ease |
 | Stamp (wanted "REWARD", "DELIVERED") | scale 1.6 → 1, rotate −8°, 180 ms, then 2px shake |
-| Pin a poster | drop from −40px, rotate settle with slight overshoot, 500 ms |
+| Pin a poster | drop from −40px, keyframed swing that settles (no overshoot curve, D40), 500 ms |
 | Page turn | 3D rotateY with page curl shader (3D) or CSS 3D fallback, 900 ms |
 | Camera moves (3D) | scroll-scrubbed via GSAP ScrollTrigger, never time-based while scrolling |
 | Hover | lift 2–4px + warm shadow, 200 ms |

@@ -4,15 +4,18 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 0: Planning
-- **Current step:** 1.1 scaffold done (merged). Remote: https://github.com/BodruddozaAraf/portfolio
-- **Active branch:** `main` (no step branch open)
-- **Next action:** start step 1.2 on branch `phase-1/design-tokens`:
-  run `impeccable context`, follow impeccable `reference/new-work.md` to write `DESIGN.md`, then tokens.
+- **Current phase:** Phase 1: Foundation
+- **Current step:** 1.2 design-tokens done on `phase-1/design-tokens` (PR open, awaiting Araf's merge).
+- **Active branch:** `phase-1/design-tokens`
+- **Next action:** after the 1.2 PR merges, start step 1.3 on branch `phase-1/content-layer`:
+  typed `src/content/*` data + Zod schemas from `docs/02-content.md`, MDX setup.
 - **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
   PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16), real photo for the
   wanted poster later (A06).
+- **Screenshots:** the in-app browser pane often times out on screenshots. Use headless capture:
+  Playwright's `chrome-headless-shell.exe` (in `~/AppData/Local/ms-playwright/`) with
+  `--screenshot --window-size=390,12000` for mobile (regular headless Chrome clamps narrow widths).
 
 ## Checklist
 Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
@@ -23,9 +26,9 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 1: Foundation
 - [x] 1.1 scaffold (Next.js 16.3.6, React 19.2, Tailwind v4, ESLint 9 + Prettier)
-- [ ] 1.2 design-tokens
+- [x] 1.2 design-tokens (DESIGN.md, tokens, fonts, textures, surfaces, `/styleguide`)
 - [ ] 1.3 content-layer
-- [ ] 1.4 journal-primitives
+- [ ] 1.4 journal-primitives (`Button`, `TextLink`, `Icon` already exist from 1.2; extend, don't duplicate)
 - [ ] 1.5 sections-static
 - [ ] 1.6 case-studies
 - [ ] 1.7 plain-mode
@@ -51,6 +54,25 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (f) · `phase-1/design-tokens`
+- Ran impeccable `context` + `new-work`. World is brief-pinned (03, D32, D35), so no concept roll;
+  direction contract in `.impeccable/surfaces/src-app-styleguide-page-tsx.md`. Code-led (no image
+  generation). Araf picked **IM Fell English** body + Homemade Apple/Caveat hands (D36).
+- `src/styles/tokens.css`: `@theme static` with the 03 palette, 9-step fluid type scale, warm
+  shadows, `--ease-journal`, motion/layout vars; Tailwind default palette, radii, shadows cleared.
+- `src/app/fonts.ts`: 5 families via `next/font` (Sancreek dropped, D37). `globals.css`: surface
+  utilities `paper`/`paper-light`/`paper-dark`/`leather`/`night` + `burn`, each setting
+  `--surface-*` vars that drive selection, caret, focus rings, scrollbar and button colors (D41).
+- Textures: original procedural WebP tiles from `scripts/textures.mjs` (paper 115 KB, leather
+  114 KB, grain 35 KB) with embedded provenance (D38). Live SVG-filter textures were too slow.
+- Components: `Grain` (fixed static layer), `Icon` (Phosphor, regular), `Button` (printed ticket,
+  solid/outline, surface-aware), `TextLink`. `/styleguide` (noindex, D39) reads tokens.css at build.
+- impeccable: detector clean (dropped the overshoot ease, D40). Finish review and documenter ran
+  in-thread (`reference/degraded/`, no subagents without Araf's ask): fix round (burn edges,
+  swatch outlines, mobile motion ledger), verdict: all 3 resolved. Wrote `DESIGN.md` +
+  `.impeccable/design.json`. typecheck, lint, format, build all pass.
+- **Next:** merge PR, then 1.3 content-layer.
 
 ### 2026-09-23 (e) · `chore/design-skills`
 - Installed (Araf's request) `design-taste-frontend` via `npx skills add … -a claude-code --copy`
