@@ -4,28 +4,39 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 1: Foundation
-- **Current step:** 1.6 case-studies done on `phase-1/case-studies` (PR open, awaiting Araf's merge).
-- **Active branch:** `phase-1/case-studies`
-- **Next action:** after the 1.6 PR merges, start step 1.7 on branch `phase-1/plain-mode`:
-  `/plain` (all content, text-first, printable, < 1 s) + a persisted Plain mode toggle (Zustand,
-  localStorage in try/catch). The TopBar, hero and colophon already link to `/plain`.
-- **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
-  PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
-- **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16); real photo for the
-  wanted poster and About (A06); resume PDF (A15, `/resume.pdf` is linked but missing); more PD
-  engravings for A05 (satchel items, football, lantern, horse) when Araf wants them sourced.
-- **Full-page screenshots:** the hero is `min-h-[100dvh]`, so a tall headless window fills with
-  night. Use Playwright with a real viewport: install `playwright-core` in a scratch folder
-  (`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`), launch with `executablePath` pointing at
-  `~/AppData/Local/ms-playwright/chromium_headless_shell-1234/.../chrome-headless-shell.exe`,
-  viewport 1440x900 and 390x844, `fullPage: true`.
-- **Tracing sketches:** `node scripts/trace-sketch.mjs <source.jpg> <name> --crop w:h:x:y --blur 0
-  --threshold 72 --turd 30 --tolerance 1.0 --width 680 --preview out.svg` (campfire settings).
-  Keep source images out of the repo; log every source in `08-assets.md`.
-- **Screenshots:** the in-app browser pane often times out on screenshots. Use headless capture:
-  Playwright's `chrome-headless-shell.exe` (in `~/AppData/Local/ms-playwright/`) with
-  `--screenshot --window-size=390,12000` for mobile (regular headless Chrome clamps narrow widths).
+- **Current phase:** Phase 1 complete (tag `v0.1.0`), live on Vercel. Next: Phase 2 (2D motion).
+- **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
+  "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
+- **Active branch:** none. Start Phase 2 step 2.1 on `phase-2/motion-infra`.
+- **Next action:** step 2.1 motion-infra (GSAP + ScrollTrigger + Lenis, `useReducedMotion`,
+  motion tokens, section reveal helper). Read `docs/05-sections.md` and `docs/03` section 5 first.
+  Plain mode (`usePreferences().plainMode`, `html[data-plain]`) and reduced motion must both turn
+  smooth scroll and effects off (D52).
+- **Waiting on Araf (the agent's permissions block DNS/domain changes):**
+  1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
+     `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
+  2. Namecheap > Advanced DNS: delete the four GitHub Pages A records (185.199.108-111.153) and
+     the `www` CNAME, add Vercel's records (historically `A @ 76.76.21.21` and
+     `CNAME www cname.vercel-dns.com`; use what Vercel shows).
+  3. GitHub `BodruddozaAraf.github.io`: delete the `CNAME` file (or turn off Pages).
+  4. A phone-free resume PDF at `public/resume.pdf` (D53); resume links appear automatically.
+  5. Jack The Jelli screenshots (A16), a real photo for the portrait (A06), more PD engravings
+     for A05 if wanted.
+- **Known debt:** home Lighthouse performance 77 on mobile (budget 85, D55): step 5.1.
+- **Blockers:** none for Phase 2. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash
+  add it to PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
+- **Tooling notes for agents:**
+  - The in-app browser pane often times out on screenshots and clicks. Capture with Playwright:
+    `npm i playwright-core` in a scratch folder (`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`) and launch
+    with `executablePath` =
+    `~/AppData/Local/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-win64/chrome-headless-shell.exe`,
+    viewports 1440x900 and 390x844, `fullPage: true` (a tall window breaks the 100dvh hero).
+  - Lighthouse: `npx lighthouse` from a scratch folder with
+    `CHROME_PATH="C:/Program Files/Google/Chrome/Application/chrome.exe"`, against `next start`.
+  - Vercel connector: calls fail with an explicit `teamId`; call without it.
+  - Brand rasters: `scripts/brand/render.mjs` (needs `PLAYWRIGHT_CHROMIUM` + `NODE_PATH` to a
+    playwright-core install); textures: `node scripts/textures.mjs`; sketches:
+    `scripts/trace-sketch.mjs` then `scripts/export-sketch-svg.mjs`.
 
 ## Checklist
 Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
@@ -44,7 +55,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.7 plain-mode (`/plain`, persisted switch, print styles)
 - [x] 1.8 seo-meta (Lighthouse SEO 100, a11y 100, BP 100; perf 77 owed to 5.1)
 - [x] 1.9 contact-form (Zod-validated telegram, Gmail + mailto, `npm test`)
-- [ ] 1.10 deploy + bodruddozaaraf.me DNS → `v0.1.0`
+- [x] 1.10 deploy (live on Vercel, `v0.1.0`); custom domain DNS waiting on Araf (D57)
 
 ### Phase 2: 2D Motion
 - [ ] 2.1 motion-infra · [ ] 2.2 loader · [ ] 2.3 about-wanted · [ ] 2.4 bounty-board
@@ -64,6 +75,14 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (n) · `phase-1/deploy`
+- Merged PR #10 (1.9). Created Vercel project `portfolio` and deployed `main` (`c33f8ca`) to
+  production: READY in about 35 s, public at https://portfolio-mauve-six-27.vercel.app. Live
+  Lighthouse: A11y/BP/SEO 100 on / and /plain; perf 77 (/) and 95 (/plain).
+- Adding the custom domain was blocked by the agent's permission system (DNS/domain changes), so
+  the domain steps, and removing `CNAME` from the old github.io repo, are listed for Araf (D57).
+- Phase 1 complete: tag `v0.1.0`.
 
 ### 2026-09-23 (m) · `phase-1/contact-form`
 - Merged PR #9 (1.8). Telegram form (`src/components/contact/TelegramForm.tsx`) in the Telegram
