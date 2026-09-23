@@ -93,6 +93,7 @@
   --dur-stamp: 180ms;
   --dur-pin: 500ms;
   --dur-reveal: 800ms;
+  --dur-morph: 500ms;
   --dur-page: 900ms;
   --dur-draw: 1800ms;
   --stagger: 60ms;

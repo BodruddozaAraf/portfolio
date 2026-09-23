@@ -201,6 +201,27 @@
     }
   }
 
+  /* Named view transitions (React <ViewTransition>): a bounty poster morphs between the board and
+     its case study. None under reduced motion or in Plain mode. */
+  ::view-transition-group(.poster-morph) {
+    animation-duration: var(--dur-morph);
+    animation-timing-function: var(--ease-journal);
+  }
+  /* a soft blur mid-flight hides the two posters' text crossing */
+  ::view-transition-image-pair(.poster-morph) {
+    animation: poster-morph-blur var(--dur-morph) var(--ease-journal);
+  }
+  @keyframes poster-morph-blur {
+    40% {
+      filter: blur(2px);
+    }
+  }
+  :root[data-plain="true"]::view-transition-group(*),
+  :root[data-plain="true"]::view-transition-old(*),
+  :root[data-plain="true"]::view-transition-new(*) {
+    animation: none !important;
+  }
+
   /* Plain mode (the switch on /plain): the journal without effects. Script-driven motion (Lenis,
      GSAP, later 3D) reads the same store through useMotionLevel. */
   [data-plain="true"] .grain-layer {
@@ -251,6 +272,11 @@
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
+    }
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      animation: none !important;
     }
     *,
     ::before,
