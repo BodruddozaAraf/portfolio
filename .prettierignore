@@ -10,3 +10,4 @@ public/textures/*.json
 public/engravings/*.json
 public/sketches/*.json
 public/hero/*.json
+public/work/**/*.json

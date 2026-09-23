@@ -4,7 +4,7 @@ import { CaseStudy } from "@/components/case-study/CaseStudy";
 import { Engraving } from "@/components/journal/Engraving";
 import { projects, research } from "@/content";
 import { researchBodies } from "@/content/case-studies";
-import { openGraphBase } from "@/lib/site";
+import { openGraphBase, shareCard } from "@/lib/site";
 
 // /research/[slug]: the thesis account. One slug today (image-completion); figures and sample
 // outputs are future work (D17), so the engraving stands in for them, credited.
@@ -23,6 +23,18 @@ export const metadata: Metadata = {
     url: `/research/${research.slug}`,
     type: "article",
     title: `${research.headline}: image completion thesis`,
+    images: shareCard(
+      `research-${research.slug}`,
+      "A poster for The Torn Page, the image completion thesis, stamped Defended, pinned to a wooden board",
+    ),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${research.headline}: image completion thesis`,
+    images: shareCard(
+      `research-${research.slug}`,
+      "A poster for The Torn Page, the image completion thesis, stamped Defended, pinned to a wooden board",
+    ),
   },
   description: `${research.title}. ${research.type}, defended ${research.defended}, ${research.institution}. 27.60 dB PSNR, 0.861 SSIM.`,
 };

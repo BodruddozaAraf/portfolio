@@ -13,8 +13,9 @@ import { TopBar } from "@/components/nav/TopBar";
 import { Colophon } from "@/components/sections/Colophon";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import type { Link as ContentLink, Stat } from "@/content";
+import type { Link as ContentLink, Project, Stat } from "@/content";
 import { TURN_BACK, TURN_FORWARD } from "@/lib/page-turn";
+import { Screens } from "./Screens";
 
 // The case-study page (docs/05-sections.md section 4): the poster pinned to the board, then the
 // account on paper, then the stack, the links and the next bounty. The board's poster morphs into
@@ -34,6 +35,8 @@ type CaseStudyProps = {
   stamp?: string;
   back: { href: string; label: string };
   next?: { href: string; title: string; name: string };
+  /** Screenshots of the live work, shown after the account. */
+  screenshots?: Project["screenshots"];
   children: ReactNode;
 };
 
@@ -50,6 +53,7 @@ export function CaseStudy({
   stamp = "Claimed",
   back,
   next,
+  screenshots,
   children,
 }: CaseStudyProps) {
   return (
@@ -124,6 +128,14 @@ export function CaseStudy({
 
       <main id="content" className="shell chapter">
         <article className="max-w-(--measure) lg:max-w-4xl">{children}</article>
+
+        {screenshots?.length ? (
+          <Screens
+            title="The store, as it stands"
+            shots={screenshots}
+            seed={seed}
+          />
+        ) : null}
 
         <section
           aria-labelledby="stack-title"

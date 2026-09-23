@@ -35,7 +35,7 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | A13 | Audio: fire crackle, wind, page flip, pin tack, stamp, telegraph, heartbeat, harmonica sting | OGG + MP3, mono, ≤ 200 KB each | 4 | todo |
 | A14 | Favicon / monogram "B.A." stamp | SVG + PNG set | 1 | done: `src/app/favicon.ico`, `icon.png`, `apple-icon.png` (from `scripts/brand/icon.html`) |
 | A15 | Resume PDF | PDF | 1 | done: `public/resume.pdf` (123 KB, Araf's resume as is, phone included by Araf's decision, D66) |
-| A16 | Jack The Jelli store screenshots | AVIF | 1 | ❗ Araf to provide (D18) |
+| A16 | Jack The Jelli store screenshots | WebP (next/image serves AVIF) | 4 | done: `public/work/jack-the-jelli/*.webp` (storefront, collection, product, product on a phone; 33 to 46 KB each), captured from jackthejelli.com on 2026-09-23 (D75, D78) |
 
 ## Pipeline
 - Images: export AVIF + WebP; use `next/image`.
@@ -48,6 +48,8 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | Asset ID | File path | Source URL | Author | License |
 |---|---|---|---|---|
 | A01, A02, grain, stamp wear | `public/textures/*.webp` | `scripts/textures.mjs` | Original (this repo) | Own work |
+| A16 | `public/work/jack-the-jelli/*` | https://jackthejelli.com (screenshots of Araf's client work) | Jack The Jelli (store), built by Araf | Shown with the client's permission (D18) |
+| Share cards | `public/og/*.jpg` | `src/app/og-card`, `scripts/brand/og.mjs` | Original (this repo) | Own work |
 | A07 | `public/hero/*` | `scripts/hero/render.mjs` (the 3D camp, all procedural) | Original (this repo) | Own work |
 | A04 | `public/maps/trail.webp` | `scripts/map/map.html` + `scripts/map/render.mjs` | Original (this repo) | Own work |
 | A17, A05 campfire | `public/engravings/camping-out-adirondacks.webp`, `src/content/sketches/campfire.ts` | https://commons.wikimedia.org/wiki/File:Camping_out_in_the_Adirondack_Mountains_SAAM-1967.66.4_1.jpg (Smithsonian American Art Museum 1967.66.4) | Winslow Homer (after), *Harper's Weekly*, 7 Nov 1874 | CC0 (public domain) |
