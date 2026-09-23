@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { setCamp, useCamp } from "@/lib/camp";
 import type { Tier } from "@/lib/device-tier";
 import { capture } from "./capture";
+import { spine } from "./dolly";
 import { CampScene } from "./CampScene";
 import { camp } from "./materials";
 import { CAMERA, FIRE } from "./world";
@@ -93,10 +94,15 @@ function FirstFrames() {
     if (frames.current !== 3) return;
     setCamp({ status: "ready", progress: 1 });
     if (capture) {
-      // where the fire's heart lands, as fractions of the canvas, for the static hero's CSS glow
-      const p = fireHeart.clone().project(state.camera);
+      // where the fire's heart and the journal land, as fractions of the canvas, for the static
+      // hero's CSS glow and its scroll zoom
+      const at = (v: Vector3) => {
+        const p = v.clone().project(state.camera);
+        return { x: (p.x + 1) / 2, y: (1 - p.y) / 2 };
+      };
       (window as Window & { __campCapture?: object }).__campCapture = {
-        fire: { x: (p.x + 1) / 2, y: (1 - p.y) / 2 },
+        fire: at(fireHeart),
+        journal: at(spine),
       };
     }
   });

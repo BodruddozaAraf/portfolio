@@ -8,16 +8,16 @@
   step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-3/props-horse` (3.4). Next: `phase-3/scroll-camera` (3.5).
-- **Next action:** 3.5 scroll-camera: pin the hero about 150vh on 3D tiers, dolly the camera down
-  to the journal (`JOURNAL` in `world.ts`), open its hinged cover, crossfade into About. The 3D
-  camp is live by default now (`campLive`, D70). Re-export the static hero with
-  `scripts/hero/render.mjs` whenever the scene changes.
+- **Active branch:** `phase-3/scroll-camera` (3.5). Next: `phase-3/postprocessing` (3.6).
+- **Next action:** 3.6 postprocessing: bloom, vignette, grain, color grade on the high tier only,
+  inside the 350 KB chunk budget. Re-export the static hero with `scripts/hero/render.mjs`
+  whenever the scene changes (it needs `?capture` and a running server).
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
   Lighthouse mobile perf 72 to 73, A11y/BP/SEO 100. After 3.1: initial 279.8 KB, 3D chunk 235.5 KB
   (budget 350), models 0 MB. After 3.2: initial 279.8 KB, 3D chunk 240.5 KB, models 0 MB. After 3.3: 279.8 KB, 242.7 KB,
   0 MB. After 3.4: 279.7 KB, 245.1 KB, 0 MB models; static hero 21 KB (phone) or 34 KB (desktop)
-  of AVIF; Lighthouse mobile perf 71 to 72, A11y/BP/SEO 100, CLS 0.
+  of AVIF; Lighthouse mobile perf 71 to 72, A11y/BP/SEO 100, CLS 0. After 3.5: 279.7 KB,
+  245.8 KB.
 - **Waiting on Araf:**
   1. Vercel > `portfolio` > Settings > Domains: make `bodruddozaaraf.me` (apex) the primary domain
      and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
@@ -75,7 +75,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 3: 3D Camp
 - [x] 3.1 r3f-setup · [x] 3.2 camp-environment · [x] 3.3 campfire · [x] 3.4 props-horse
-- [ ] 3.5 scroll-camera · [ ] 3.6 postprocessing · [ ] 3.7 research-reconstruct → `v0.3.0`
+- [x] 3.5 scroll-camera · [ ] 3.6 postprocessing · [ ] 3.7 research-reconstruct → `v0.3.0`
 
 ### Phase 4: Signature features
 - [ ] 4.1 weapon-wheel · [ ] 4.2 dead-eye · [ ] 4.3 sound · [ ] 4.4 og-images → `v0.4.0`
@@ -87,6 +87,17 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (ac) · `phase-3/scroll-camera`
+- Scroll camera (D71): the hero sticks in a CSS-sized track (full motion, 48rem and up, scroll
+  timelines, not Plain mode); the 3D camera dollies from the establishing shot to the journal,
+  its cover opens, the view settles on the pages and the paper of About fades up. The static
+  picture does the same with a CSS zoom of its two layers. Copy steps back early.
+- Verified (Playwright, `next start`): track 2250 on desktop, 3415 on a portrait tablet, none on
+  reduced motion, Plain mode and phones; frames captured at 0 to 115% for 3D and static; reverse
+  scroll lands on the same frame; "Open the journal" glides through and focuses About at 0;
+  `#bounties` deep link at 0; Back restores 4922 exactly; 60 fps at 2x while scrolling; 3.4
+  matrix passes. No console errors.
 
 ### 2026-09-23 (ab) · `phase-3/props-horse`
 - Journal (hinged cover), bedroll, lantern (second light), post, and a horse from extruded side

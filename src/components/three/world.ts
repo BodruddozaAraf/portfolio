@@ -10,6 +10,8 @@ export const FIRE: Vec3 = [0, 0, 0];
 
 /** The camp around the fire (step 3.4). The journal lies on the camera's side of the fire. */
 export const JOURNAL: Vec3 = [-0.95, 0, 1.15];
+/** The journal's turn about the vertical, in radians. */
+export const JOURNAL_TURN = -0.42;
 export const BEDROLL: Vec3 = [-1.45, 0, -1.0];
 export const LANTERN: Vec3 = [1.25, 0, 0.95];
 export const HORSE: Vec3 = [3.2, 0, -6.4];

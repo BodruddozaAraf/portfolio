@@ -139,6 +139,10 @@ const fragment = /* glsl */ `
   #endif
   void main() {
     vec3 albedo = uColor;
+    #ifdef RULED
+      // faint ruled lines across the page
+      albedo *= 1.0 - 0.16 * smoothstep(0.86, 1.0, fract(vUv.y * 26.0));
+    #endif
     #ifdef PATCHY
       // dry grass and bare earth in patches, with a fine grain of tufts
       vec2 q = vWorld.xz;
