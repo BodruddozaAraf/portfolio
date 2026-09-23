@@ -4,13 +4,12 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 4 (signature features) in progress. Araf: sound is deferred (D75);
-  capture Jack The Jelli screenshots from jackthejelli.com (or placeholders) for A16 and 4.4.
+- **Current phase:** Phase 4 complete (tag `v0.4.0`). Next: Phase 5 (polish and launch), after
+  Araf's check-in. Sound is in "Later" (D75).
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-4/og-images` (4.4). Next: the Phase 4 Vercel check.
-- **Next action:** check Vercel (previews and the production deploy READY), smoke-test the live
-  site (wheel, Dead Eye, share tags, Jack The Jelli screenshots), tag `v0.4.0`, check in.
+- **Active branch:** none. Next: `phase-5/perf` (5.1), once Araf has reviewed Phase 4.
+- **Next action:** wait for Araf's review of Phase 4 (check-in sent), then Phase 5 step 5.1.
 - **Araf (2026-09-23, D74):** load speed and size are not strict; performance budgets are
   guidance now. The loading screen must be animated from the first paint, never a blank wait.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
@@ -80,7 +79,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 3.5 scroll-camera · [x] 3.6 postprocessing · [x] 3.7 research-reconstruct → `v0.3.0` (tagged)
 
 ### Phase 4: Signature features
-- [x] 4.1 weapon-wheel · [x] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [x] 4.4 og-images → `v0.4.0`
+- [x] 4.1 weapon-wheel · [x] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [x] 4.4 og-images → `v0.4.0` (tagged)
 
 ### Phase 5: Polish and launch
 - [ ] 5.1 perf · [ ] 5.2 a11y · [ ] 5.3 cross-browser · [ ] 5.4 tests/CI · [ ] 5.5 launch → `v1.0.0`
@@ -89,6 +88,12 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (ak) · Phase 4 complete
+- Phase 4 Vercel check: previews of PRs #32 to #34 and their production deploys READY;
+  production of `c76fdab` READY on bodruddozaaraf.me. Live smoke test (desktop RTX, 390px phone):
+  the weapon wheel and Dead Eye suites pass in full, each case study's share tags point at its
+  card, the Jack The Jelli photos load at 1440 and 390, no console errors. Then `v0.4.0` tagged.
 
 ### 2026-09-23 (aj) · `phase-4/og-images`
 - Jack The Jelli screenshots captured from the live store (storefront, collection, product,
