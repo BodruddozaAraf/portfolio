@@ -1,4 +1,5 @@
-import type { ComponentProps, ElementType, ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
+import type { HtmlTag } from "@/lib/html-tag";
 
 // One journal page: aged paper with scorched edges and a shadow where it curves into the spine.
 // `spine` says which edge is bound; "left-then-right" is the left page of a spread, bound on the
@@ -7,7 +8,7 @@ import type { ComponentProps, ElementType, ReactNode } from "react";
 type Spine = "left" | "right" | "left-then-right" | "none";
 
 type PageProps = {
-  as?: ElementType;
+  as?: HtmlTag;
   spine?: Spine;
   children: ReactNode;
   className?: string;

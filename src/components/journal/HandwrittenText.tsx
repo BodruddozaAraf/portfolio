@@ -1,5 +1,6 @@
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { seededRange } from "@/lib/seed";
+import type { HtmlTag } from "@/lib/html-tag";
 
 // Handwriting is decoration (DESIGN.md, The Real Text Rule): it is real, selectable text, and any
 // fact it carries must also appear in the body face nearby.
@@ -9,7 +10,7 @@ import { seededRange } from "@/lib/seed";
 
 type HandwrittenTextProps = {
   variant?: "entry" | "note";
-  as?: ElementType;
+  as?: HtmlTag;
   lines?: string[];
   children?: ReactNode;
   /** Seed for a slight hand-held tilt (max 0.6deg); omit for none. */

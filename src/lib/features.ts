@@ -8,3 +8,7 @@ const shipped = new Set<NonNullable<LoadingTip["requires"]>>([]);
 export function isLive(tip: LoadingTip) {
   return !tip.requires || shipped.has(tip.requires);
 }
+
+// The 3D camp replaces the static hero art once the scene is better than the picture it covers
+// (Phase 3). Until then it runs only with a `?tier=` override, for building and testing.
+export const campLive = false;
