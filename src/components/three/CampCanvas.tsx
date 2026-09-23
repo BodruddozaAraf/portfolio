@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { setCamp, useCamp } from "@/lib/camp";
 import type { Tier } from "@/lib/device-tier";
 import { CampScene } from "./CampScene";
+import { CAMERA } from "./world";
 
 // The 3D camp's own chunk (loaded by CampStage, never in the first JavaScript). It owns the WebGL
 // canvas: pixel ratio per tier, the first-frames handshake that tells the page the camp is ready,
@@ -38,7 +39,12 @@ export function CampCanvas({ tier, active }: CampCanvasProps) {
         stencil: false,
         powerPreference: "high-performance",
       }}
-      camera={{ fov: 40, near: 0.1, far: 400, position: [0, 1.6, 9] }}
+      camera={{
+        fov: CAMERA.fov,
+        near: 0.1,
+        far: 400,
+        position: CAMERA.position,
+      }}
       onCreated={({ gl }) => {
         gl.domElement.dataset.scene = "camp-scene";
         gl.domElement.addEventListener("webglcontextlost", () =>
