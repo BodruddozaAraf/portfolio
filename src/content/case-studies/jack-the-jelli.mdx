@@ -1,0 +1,54 @@
+## The Job
+
+Jack The Jelli is a leather goods brand in Dhaka. The job was the whole store: storefront, cart,
+cash-on-delivery checkout, order tracking, customer accounts and an admin back-office, in a single
+**Next.js 16, TypeScript and MongoDB** codebase.
+
+Araf took it **from an empty repository to a live store taking nationwide orders in two months**,
+as the only engineer on it.
+
+## How it was done
+
+### Orders that stay correct under failure
+
+Order placement was designed to stay correct when things go wrong:
+
+<Ledger
+  columns={["What could go wrong", "What stops it"]}
+  rows={[
+    [
+      "The same order arrives twice",
+      "**Idempotency keys** block duplicate orders.",
+    ],
+    [
+      "A cancellation puts stock back more than once",
+      "**Guarded atomic decrements** restore stock exactly once on cancellation.",
+    ],
+    [
+      "A product is edited after it was ordered",
+      "**Snapshotted line items** stop later product edits rewriting order history.",
+    ],
+  ]}
+/>
+
+### A public checkout, hardened
+
+The checkout is public and unauthenticated. It runs on **rate-limited server actions**, and
+delivery is priced **on the server, across all 64 districts**. Guests can order without an
+account, and their orders attach to one on email verification.
+
+### Nothing paid for before it was needed
+
+Launch infrastructure cost came to **effectively zero**: Araf persuaded the founders to defer the
+payment gateway, AI search and third-party APIs until after scale.
+
+## The Take
+
+<Figures
+  items={[
+    { value: "2 months", label: "empty repository to a live store" },
+    { value: "1 engineer", label: "the whole platform, alone" },
+    { value: "64 districts", label: "priced on the server" },
+    { value: "effectively zero", label: "launch infrastructure cost" },
+  ]}
+/>
