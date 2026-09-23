@@ -5,16 +5,21 @@
 
 ## Now
 - **Current phase:** Phase 1: Foundation
-- **Current step:** 1.4 journal-primitives done on `phase-1/journal-primitives` (PR open, awaiting Araf's merge).
-- **Active branch:** `phase-1/journal-primitives`
-- **Next action:** after the 1.4 PR merges, start step 1.5 on branch `phase-1/sections-static`:
-  sections 1 to 10 built statically from `@/content` with the journal primitives, responsive,
-  every fact from 02 present. Hero uses a static placeholder (Engraving plate is an option, D45).
-  Consider sourcing more PD engravings for A05 (football, satchel, lantern, horse) first.
+- **Current step:** 1.5 sections-static done on `phase-1/sections-static` (PR open, awaiting Araf's merge).
+- **Active branch:** `phase-1/sections-static`
+- **Next action:** after the 1.5 PR merges, start step 1.6 on branch `phase-1/case-studies`:
+  `/bounties/[slug]` x4 and `/research/image-completion` in MDX (metadata from `projects.ts`,
+  D44; template in 05 section 4). The home already links to these routes.
 - **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
   PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16); real photo for the
-  wanted poster later (A06); resume PDF (A15).
+  wanted poster and About (A06); resume PDF (A15, `/resume.pdf` is linked but missing); more PD
+  engravings for A05 (satchel items, football, lantern, horse) when Araf wants them sourced.
+- **Full-page screenshots:** the hero is `min-h-[100dvh]`, so a tall headless window fills with
+  night. Use Playwright with a real viewport: install `playwright-core` in a scratch folder
+  (`PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1`), launch with `executablePath` pointing at
+  `~/AppData/Local/ms-playwright/chromium_headless_shell-1234/.../chrome-headless-shell.exe`,
+  viewport 1440x900 and 390x844, `fullPage: true`.
 - **Tracing sketches:** `node scripts/trace-sketch.mjs <source.jpg> <name> --crop w:h:x:y --blur 0
   --threshold 72 --turd 30 --tolerance 1.0 --width 680 --preview out.svg` (campfire settings).
   Keep source images out of the repo; log every source in `08-assets.md`.
@@ -34,7 +39,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.2 design-tokens (DESIGN.md, tokens, fonts, textures, surfaces, `/styleguide`)
 - [x] 1.3 content-layer (`src/content/*`, Zod + build-time invariants, MDX)
 - [x] 1.4 journal-primitives (Page, Spread, HandwrittenText, SketchSVG, Engraving, Poster, Pin, Stamp, InkUnderline, KeyText)
-- [ ] 1.5 sections-static
+- [x] 1.5 sections-static (all ten sections, every 02 fact on the home page)
 - [ ] 1.6 case-studies
 - [ ] 1.7 plain-mode
 - [ ] 1.8 seo-meta
@@ -59,6 +64,24 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (i) · `phase-1/sections-static`
+- Merged PR #5. Home page `/` built from `@/content` with the journal primitives, all server
+  components: TopBar (monogram, Plain mode, Send word), Hero (night, fire glow, campfire sketch
+  as silhouette, 4 text elements), About (spread: entry + photo placeholder + margin facts +
+  lawmen note), Wanted (poster on a wooden post, stat tickets), Bounty Board (wood, 4 seeded
+  posters linking to `/bounties/[slug]`, "the job, in full" disclosure), Research (pipeline,
+  metrics ledger, Homer plate, link to `/research/image-completion`), Trail So Far (pins +
+  dotted trail, then the full record: job and degree), Satchel (leather, category tags with
+  derived "Used in"), Camp Stories, Telegram Office (mailto CTA + direct links), Colophon.
+- New: `wood` surface + `wood.webp` (A03), `shell` and `chapter` layout utilities,
+  `profile.strengths` (validated skill ids) for the poster's known associates.
+- Two inspection rounds with real-viewport Playwright captures (1440, 390). Fixed: hero name
+  clipped on phones, false "All art original" colophon (D48), Jack poster repeating its name,
+  medal text overflow, stretched satchel tags, telegram card misaligned, Wanted merging with the
+  board (D49). Fact check: 44 of 44 key resume facts present (D47). No horizontal scroll at 390.
+- Detector clean, provenance on 6 rasters, typecheck/lint/format/build pass.
+- **Next:** merge PR, then 1.6 case-studies.
 
 ### 2026-09-23 (h) · `phase-1/journal-primitives`
 - Verified Netlify is fully gone: PR #4 ran no Netlify checks, no Netlify statuses on `main`,

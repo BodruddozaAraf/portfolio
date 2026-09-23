@@ -52,6 +52,9 @@ new row that supersedes the old one.
 | D44 | 2026-09-23 | Case-study metadata lives in `src/content/projects.ts`; MDX files hold only the body. `@next/mdx` with `src/mdx-components.tsx` (strong renders italic, D36) | One source of truth per fact |
 | D45 | 2026-09-23 | Public-domain engravings are used two ways (Araf: the raw images are good as they are): **raw plates** via `Engraving` (grayscale, paper tone lifted, multiplied onto the page, captioned) and **traced sketches** via `SketchSVG` for draw-on. Tracing pipeline: `scripts/trace-sketch.mjs` (ffmpeg + `potrace`, a dev-only GPL-2.0 tool that never ships). First source: Winslow Homer, *Camping Out in the Adirondack Mountains* (1874, SAAM, CC0) | Araf approved sourcing and the download in step 1.4 |
 | D46 | 2026-09-23 | Tilt allowances: pasted items and handwriting up to 0.6deg, pinned posters up to 1.5deg, stamps up to 8deg; all seeded. Stamps never cover facts (DESIGN.md, The Legible Stamp Rule) | A 0.6deg poster board reads as a grid, not a board |
+| D47 | 2026-09-23 | Home page carries every resume fact (checked mechanically in step 1.5): project bullets sit in a native `<details>` ("the job, in full") on each bounty poster, so the board stays airy and find-in-page still reaches them. Case studies (1.6) and Plain mode (1.7) repeat them in full | Done-when for 1.5 without a dense board |
+| D48 | 2026-09-23 | Colophon line changed from "All art original" to "Original art, plus public-domain engravings, credited below" | Truth: the site now shows a credited PD engraving (D45) |
+| D49 | 2026-09-23 | Wanted poster hangs on a single wooden post over paper (not a wood section) so it never merges with the Bounty Board; home surface order recorded in DESIGN.md (The Home Order Rule). Hero name steps down to h1 size below 640px so "BODRUDDOZA" fits a 390px screen | Step 1.5 inspection |
 
 ## Open questions for Araf
 None currently open. Add new ones here as `Q15`, `Q16`, … with a default.
