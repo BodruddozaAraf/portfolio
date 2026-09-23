@@ -11,6 +11,8 @@ type PosterProps = {
   /** Seed for the hang angle; use something stable like the bounty slug. */
   seed: string;
   pins?: 1 | 2;
+  /** Hook for a section's motion (data-moment), see src/hooks/useScrollMoment.ts. */
+  moment?: string;
   children: ReactNode;
   className?: string;
 };
@@ -19,12 +21,14 @@ export function Poster({
   as: Tag = "article",
   seed,
   pins = 1,
+  moment,
   children,
   className = "",
 }: PosterProps) {
   const rotate = seededRange(seed, 1.5);
   return (
     <Tag
+      data-moment={moment}
       className={`paper-light burn shadow-pinned px-6 pt-11 pb-8 md:px-8 ${className}`}
       style={{ rotate: `${rotate}deg` }}
     >

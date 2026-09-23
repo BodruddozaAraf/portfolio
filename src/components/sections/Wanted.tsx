@@ -1,11 +1,13 @@
 import { Poster } from "@/components/journal/Poster";
 import { Stamp } from "@/components/journal/Stamp";
 import { HandwrittenText } from "@/components/journal/HandwrittenText";
+import { WantedMoment } from "@/components/motion/WantedMoment";
 import { microcopy, profile, skillName } from "@/content";
 import { seededRange } from "@/lib/seed";
 
 // 3. Wanted. The poster nailed to a wooden post, the figures around it as stamped tickets. The poster's
-// "known associates" are profile.strengths; every figure is also plain text.
+// "known associates" are profile.strengths; every figure is also plain text. WantedMoment nails it
+// up: the poster flutters in, the pin is hammered home, REWARD is stamped, the figures count up.
 
 export function Wanted() {
   return (
@@ -14,7 +16,7 @@ export function Wanted() {
       aria-labelledby="wanted-title"
       className="overflow-x-clip"
     >
-      <div className="chapter shell relative grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)_minmax(0,1fr)] lg:gap-10">
+      <WantedMoment className="chapter shell relative grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,28rem)_minmax(0,1fr)] lg:gap-10">
         {/* the post the poster is nailed to */}
         <span
           aria-hidden
@@ -28,6 +30,7 @@ export function Wanted() {
 
         <Poster
           seed="wanted"
+          moment="poster"
           className="text-ink order-1 mx-auto w-full max-w-md text-center lg:order-2"
         >
           <h2
@@ -56,7 +59,7 @@ export function Wanted() {
               {profile.strengths.map((id) => skillName.get(id)).join(", ")}
             </p>
           </div>
-          <div className="mt-7">
+          <div data-moment="stamp" className="mt-7">
             <Stamp seed="reward">{microcopy.wanted.reward}</Stamp>
           </div>
           <p className="font-type text-small mt-6">
@@ -69,18 +72,35 @@ export function Wanted() {
             <Ticket key={stat.value} value={stat.value} label={stat.label} />
           ))}
         </ul>
-      </div>
+      </WantedMoment>
     </section>
   );
 }
 
+// Figures of 10 and up count up when the poster goes up; the text is the final value until then.
 function Ticket({ value, label }: { value: string; label: string }) {
+  const [, number, rest] = value.match(/^(\d+(?:\.\d+)?)(.*)$/) ?? [];
+  const counts = number !== undefined && Number(number) >= 10;
   return (
     <li
+      data-moment="ticket"
       className="paper-dark text-ink shadow-pinned w-full max-w-64 px-5 py-4"
       style={{ rotate: `${seededRange(value, 1.5)}deg` }}
     >
-      <p className="font-type text-h4 leading-none">{value}</p>
+      <p className="font-type text-h4 leading-none tabular-nums">
+        {counts ? (
+          <>
+            {/* the counting digits are for the eye; assistive tech gets the figure itself */}
+            <span aria-hidden data-count={number}>
+              {number}
+            </span>
+            <span className="sr-only">{number}</span>
+            {rest}
+          </>
+        ) : (
+          value
+        )}
+      </p>
       <p className="text-small mt-2">{label}</p>
     </li>
   );
