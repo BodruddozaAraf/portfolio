@@ -322,9 +322,14 @@
         "purpose": "Section reveal, 24px rise."
       },
       {
+        "name": "dur-morph",
+        "value": "500ms",
+        "purpose": "A bounty poster morphing between the board and its case study (D61)."
+      },
+      {
         "name": "dur-page",
-        "value": "900ms",
-        "purpose": "Page turn."
+        "value": "700ms",
+        "purpose": "Page turn between the journal and a case study (a wipe, D64)."
       },
       {
         "name": "dur-draw",

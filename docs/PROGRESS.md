@@ -4,11 +4,11 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 2 (2D motion). Steps 2.1 to 2.7 merged.
+- **Current phase:** Phase 2 complete (tag `v0.2.0`). Next: Phase 3 (3D camp).
 - **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Next: `phase-2/grain`.
-- **Next action:** step 2.8 grain (global film grain on a fixed pointer-events-none layer, animated; off in reduced motion; no scroll jank on mobile), then the Phase 2 Vercel check and tag `v0.2.0`.
+- **Active branch:** none. Next: `phase-3/r3f-setup`.
+- **Next action:** Phase 3 step 3.1 r3f-setup (R3F canvas, lazy load, device tier detection, fallback image flow, perf monitor; read `docs/06-roadmap.md` Phase 3 and `docs/05-sections.md` section 1). Phase 2 ended with Lighthouse home perf 72 to 73 and initial JS 279 KB (both over budget, owed to 5.1).
 - **Waiting on Araf (the agent's permissions block DNS/domain changes):**
   1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
      `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
@@ -20,7 +20,7 @@
   5. Jack The Jelli screenshots (A16), a real photo for the portrait (A06), more PD engravings
      for A05 if wanted.
 - **Known debt (step 5.1):** home Lighthouse mobile performance 74 to 77 depending on the run
-  (budget 85, D55); home initial JS 278.4 KB gzip (budget 180 KB, D58, D63).
+  (budget 85, D55); home initial JS 279.2 KB gzip (budget 180 KB, D58, D63).
 - **Blockers:** none for Phase 2. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash
   add it to PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Tooling notes for agents:**
@@ -59,7 +59,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 2: 2D Motion
 - [x] 2.1 motion-infra · [x] 2.2 loader · [x] 2.3 about-wanted · [x] 2.4 bounty-board
-- [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [x] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
+- [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [x] 2.7 page-transitions · [x] 2.8 grain → `v0.2.0` (tagged)
 
 ### Phase 3: 3D Camp
 - [ ] 3.1 r3f-setup · [ ] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
@@ -75,6 +75,17 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (v) · `phase-2/grain` · Phase 2 complete
+- Grain flickers at 8 frames a second by transform (timer, paused when hidden), still under
+  reduced motion, hidden in Plain mode (D65). SplitText `aria: "none"` fixed the About `<p>`
+  aria-label that dropped home a11y to 97.
+- Phase 2 regression run (Playwright, `next start`): loader, About, Wanted, board morph and back,
+  trail ride and focus, satchel cards, camp medals, telegram, page turns, deep links, back
+  restore, grain, reduced motion and Plain mode: all pass, no console errors. Lighthouse mobile:
+  home perf 72 to 73, A11y/BP/SEO 100; `/plain` 85/100/100/100; a bounty 79/100/100/100.
+- Home initial JS 279.2 KB gzip. Vercel is checked once for the phase after this merge, then
+  `v0.2.0` is tagged.
 
 ### 2026-09-23 (u) · `phase-2/page-transitions`
 - `PageTurn` wraps the home page and every case study; typed links turn the page forward or back

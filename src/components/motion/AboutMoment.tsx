@@ -27,7 +27,9 @@ export function AboutMoment({ children }: { children: ReactNode }) {
       return;
     }
 
-    const split = m.SplitText.create(entry, { type: "lines" });
+    // aria "none": the lines stay real text inside the paragraph (the default puts an aria-label
+    // on the <p>, which a paragraph may not carry)
+    const split = m.SplitText.create(entry, { type: "lines", aria: "none" });
     tl.fromTo(
       split.lines,
       { clipPath: "inset(-40% 100% -40% 0%)" },
