@@ -8,13 +8,13 @@
   step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-3/r3f-setup` (3.1). Next: `phase-3/camp-environment` (3.2).
-- **Next action:** 3.2 camp-environment: sky and stars, layered hills, pines, fog, lighting, all
-  procedural (no downloads without Araf's OK). The camp runs only with `?tier=high|mid` until
-  `campLive` (`src/lib/features.ts`) is switched on (D67).
+- **Active branch:** `phase-3/camp-environment` (3.2). Next: `phase-3/campfire` (3.3).
+- **Next action:** 3.3 campfire: fire shader, flickering light (drive `camp.uFireStrength` in
+  `src/components/three/materials.ts`), sparks, cursor flare. The camp runs only with
+  `?tier=high|mid` until `campLive` (`src/lib/features.ts`) is switched on (D67).
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
   Lighthouse mobile perf 72 to 73, A11y/BP/SEO 100. After 3.1: initial 279.8 KB, 3D chunk 235.5 KB
-  (budget 350), models 0 MB.
+  (budget 350), models 0 MB. After 3.2: initial 279.8 KB, 3D chunk 240.5 KB, models 0 MB.
 - **Waiting on Araf:**
   1. Vercel > `portfolio` > Settings > Domains: make `bodruddozaaraf.me` (apex) the primary domain
      and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
@@ -71,7 +71,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [x] 2.7 page-transitions · [x] 2.8 grain → `v0.2.0` (tagged)
 
 ### Phase 3: 3D Camp
-- [x] 3.1 r3f-setup · [ ] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
+- [x] 3.1 r3f-setup · [x] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
 - [ ] 3.5 scroll-camera · [ ] 3.6 postprocessing · [ ] 3.7 research-reconstruct → `v0.3.0`
 
 ### Phase 4: Signature features
@@ -84,6 +84,16 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (z) · `phase-3/camp-environment`
+- Procedural camp land (D68): hillside, four hazed ridges, two conifer kinds instanced in stands,
+  sky dome with dusk glow and twinkling stars, drifting valley mist, one shared light and haze
+  model, camera framing by view offset plus a 2deg pointer turn. Nothing downloaded.
+- Verified (Playwright, `next start`): 60 fps at 2x pixel ratio on high and mid (RTX 3060), also
+  under 4x CPU throttling; SwiftShader forced to high (4 to 5 fps) steps down and unmounts the
+  canvas, leaving the static hero; 3.1 checks all pass again (off by default, on phones, reduced
+  motion, Plain mode; loader lifts at 3.0s); framing checked at 1440x900, 1920x1080 and a
+  1024x1366 tablet. No console errors. 3D chunk 240.5 KB gzip.
 
 ### 2026-09-23 (y) · `phase-3/r3f-setup`
 - Araf: run Phase 3 end to end (3.1 to 3.7), verify each step with Playwright, merge without

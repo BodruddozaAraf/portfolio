@@ -1,0 +1,87 @@
+"use client";
+
+import { useFrame } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import { PerspectiveCamera, Spherical, Vector3 } from "three";
+import { CAMERA, FIRE } from "./world";
+
+// The camera: the establishing shot, framed so the fire sits to the right of the hero copy and
+// low in the frame at any aspect (a view offset slides the picture without changing the
+// perspective), and a slight turn toward a fine pointer (about 2 degrees, eased).
+
+const PARALLAX_YAW = (2 * Math.PI) / 180;
+const PARALLAX_PITCH = (1 * Math.PI) / 180;
+
+/**
+ * Where the fire should land on screen, in normalized device coordinates, for this aspect, given
+ * where the plain camera puts it (`natural`): wide screens move it right of the copy; portrait
+ * screens (tablets) keep it nearer the middle and lower, under the copy.
+ */
+function fireSpot(aspect: number, natural: { x: number; y: number }) {
+  const t = Math.min(1, Math.max(0, (aspect - 0.7) / (1.6 - 0.7)));
+  return { x: 0.16 + t * 0.28, y: natural.y - (1 - t) * 0.18 };
+}
+
+const target = new Vector3(...CAMERA.target);
+const fire = new Vector3(...FIRE);
+const base = new Spherical().setFromVector3(
+  new Vector3(...CAMERA.position).sub(target),
+);
+
+/** Frames the fire for this canvas size: where it projects plainly, then a view offset to move it. */
+function frame(camera: PerspectiveCamera, width: number, height: number) {
+  camera.fov = CAMERA.fov;
+  camera.aspect = width / height;
+  camera.clearViewOffset();
+  camera.position.set(...CAMERA.position);
+  camera.lookAt(target);
+  camera.updateMatrixWorld();
+  camera.updateProjectionMatrix();
+  const at = fire.clone().project(camera);
+  const want = fireSpot(camera.aspect, at);
+  camera.setViewOffset(
+    width,
+    height,
+    ((at.x - want.x) * width) / 2,
+    ((want.y - at.y) * height) / 2,
+    width,
+    height,
+  );
+}
+
+export function CameraRig() {
+  const pointer = useRef({ x: 0, y: 0 });
+  const eased = useRef({ x: 0, y: 0 });
+  const framed = useRef("");
+
+  useEffect(() => {
+    const fine = matchMedia("(pointer: fine)");
+    const onMove = (e: PointerEvent) => {
+      if (!fine.matches) return;
+      pointer.current.x = (e.clientX / innerWidth) * 2 - 1;
+      pointer.current.y = (e.clientY / innerHeight) * 2 - 1;
+    };
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onMove);
+  }, []);
+
+  useFrame((state, delta) => {
+    const camera = state.camera as PerspectiveCamera;
+    const { width, height } = state.size;
+    const key = `${width}x${height}`;
+    if (framed.current !== key) {
+      frame(camera, width, height);
+      framed.current = key;
+    }
+    const k = 1 - Math.exp(-delta * 2.5);
+    eased.current.x += (pointer.current.x - eased.current.x) * k;
+    eased.current.y += (pointer.current.y - eased.current.y) * k;
+    const s = base.clone();
+    s.theta -= eased.current.x * PARALLAX_YAW;
+    s.phi += eased.current.y * PARALLAX_PITCH;
+    camera.position.setFromSpherical(s).add(target);
+    camera.lookAt(target);
+  });
+
+  return null;
+}
