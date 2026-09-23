@@ -23,7 +23,8 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # 24 ships npm 11, which wrote package-lock.json; npm 10 (Node 22) rejects it
+          node-version: 24
           cache: npm
 
       - run: npm ci
