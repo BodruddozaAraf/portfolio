@@ -22,7 +22,7 @@ import { EASE } from "@/lib/motion";
 const SKETCH = "/sketches/campfire-draw.svg";
 /** The longest the card may stay; the CSS fallback in globals.css matches it. */
 export const LOADER_MAX_MS = 9000;
-/** The sketch's own animation: its pen stroke and wash finish by then. */
+/** The sketch's own animation, counted from the card's first paint: stroke and wash are done. */
 const SKETCH_MS = 2900;
 const LIFT_S = 0.6;
 
@@ -98,7 +98,11 @@ export function Loader({ title, tips }: LoaderProps) {
     const finish = () => {
       if (finishing) return;
       finishing = true;
-      const wait = Math.max(0, SKETCH_MS - performance.now());
+      // the sketch started drawing when the card first painted, not when navigation began
+      const paint =
+        performance.getEntriesByName("first-contentful-paint")[0]?.startTime ??
+        performance.now();
+      const wait = Math.max(0, paint + SKETCH_MS - performance.now());
       timers.push(window.setTimeout(() => lift(), wait));
     };
 

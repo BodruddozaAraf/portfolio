@@ -4,14 +4,12 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 3 (3D camp) in progress. Araf: run 3.1 to 3.7 in order, merge each
-  step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
+- **Current phase:** Phase 3 complete (tag `v0.3.0`). Next: Phase 4 (signature features), after
+  Araf's check-in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `fix/loader-first-paint`. Next: Phase 3 Vercel check.
-- **Next action:** check the Phase 3 production deploy on Vercel (READY), smoke-test the live site
-  (3D camp, scroll camera, torn page, loader, static hero on a phone), tag `v0.3.0`, check in with
-  Araf.
+- **Active branch:** none. Next: `phase-4/weapon-wheel` (4.1), once Araf has reviewed Phase 3.
+- **Next action:** wait for Araf's review of Phase 3 (check-in sent), then Phase 4 step 4.1.
 - **Araf (2026-09-23, D74):** load speed and size are not strict; performance budgets are
   guidance now. The loading screen must be animated from the first paint, never a blank wait.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
@@ -90,6 +88,15 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (ag) · `fix/loader-sketch-timing` · Phase 3 complete
+- Phase 3 Vercel check: previews of PRs #22 to #29 and every production deploy READY; production
+  of `737bcba` READY on bodruddozaaraf.me. Live smoke test (desktop RTX and 390px phone): loader
+  from the first paint, 3D camp ready, hero track 2250px, torn page armed, phone static picture
+  with no track, no console errors.
+- Found live: on a cold load the card painted at 3.9s and lifted 1.4s later with its sketch still
+  drawing (the wait counted from navigation start). Now it counts from first paint; checked with
+  a late paint (2.1s): lifts at 7.1s, drawing done. Then `v0.3.0` tagged.
 
 ### 2026-09-23 (af) · `fix/loader-first-paint`
 - Araf: ignore load speed and size, but the site needs a good animated loading screen, never a
