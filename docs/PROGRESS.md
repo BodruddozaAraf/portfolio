@@ -4,12 +4,13 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 3 complete (tag `v0.3.0`). Next: Phase 4 (signature features), after
-  Araf's check-in.
+- **Current phase:** Phase 4 (signature features) in progress. Araf: sound is deferred (D75);
+  capture Jack The Jelli screenshots from jackthejelli.com (or placeholders) for A16 and 4.4.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Next: `phase-4/weapon-wheel` (4.1), once Araf has reviewed Phase 3.
-- **Next action:** wait for Araf's review of Phase 3 (check-in sent), then Phase 4 step 4.1.
+- **Active branch:** `phase-4/weapon-wheel` (4.1). Next: `phase-4/dead-eye` (4.2).
+- **Next action:** 4.2 Dead Eye (press E, or the eye in the footer; share `slowTime` at 25%),
+  then 4.4 share images with the Jack The Jelli screenshots, then the Vercel check and `v0.4.0`.
 - **Araf (2026-09-23, D74):** load speed and size are not strict; performance budgets are
   guidance now. The loading screen must be animated from the first paint, never a blank wait.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
@@ -79,7 +80,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 3.5 scroll-camera · [x] 3.6 postprocessing · [x] 3.7 research-reconstruct → `v0.3.0` (tagged)
 
 ### Phase 4: Signature features
-- [ ] 4.1 weapon-wheel · [ ] 4.2 dead-eye · [ ] 4.3 sound · [ ] 4.4 og-images → `v0.4.0`
+- [x] 4.1 weapon-wheel · [ ] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [ ] 4.4 og-images → `v0.4.0`
 
 ### Phase 5: Polish and launch
 - [ ] 5.1 perf · [ ] 5.2 a11y · [ ] 5.3 cross-browser · [ ] 5.4 tests/CI · [ ] 5.5 launch → `v1.0.0`
@@ -88,6 +89,18 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (ah) · `phase-4/weapon-wheel`
+- Araf: sound goes to "Later"; take Jack The Jelli screenshots from jackthejelli.com or use
+  placeholders (D75). Phase 4 started.
+- Weapon wheel (D76): eight-wedge modal on a crosshair button or a 250ms Tab hold; mouse
+  direction, arrows, Tab, click or tap to choose; Enter, click or Tab release to glide there;
+  time slows to 20% through the new shared `src/lib/time.ts`.
+- Verified (Playwright): button opens with focus inside and CSS animations at 0.2; arrows plus
+  Enter land on Bounty Board with focus; Esc returns focus to the button; a quick Tab only moves
+  focus; Tab hold plus pointing plus release lands on Research; a phone tap lands on Telegram;
+  reduced motion opens without slowing time. axe: no violations in the open wheel. Lighthouse
+  mobile 71 / 100 / 100 / 100. Initial JS 284.0 KB.
 
 ### 2026-09-23 (ag) · `fix/loader-sketch-timing` · Phase 3 complete
 - Phase 3 Vercel check: previews of PRs #22 to #29 and every production deploy READY; production

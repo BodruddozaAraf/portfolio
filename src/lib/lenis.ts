@@ -24,6 +24,23 @@ function subscribe(listener: () => void) {
   return () => listeners.delete(listener);
 }
 
+/**
+ * Takes the reader to a section the way a same-page link does: a glide with smooth scroll on
+ * (Lenis), a jump without it, then focus on the section so keyboard and screen reader users
+ * land there too.
+ */
+export function glideTo(target: HTMLElement) {
+  const focus = () => {
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+  };
+  if (current) current.scrollTo(target, { onComplete: focus });
+  else {
+    target.scrollIntoView();
+    focus();
+  }
+}
+
 export function useLenis() {
   return useSyncExternalStore(
     subscribe,

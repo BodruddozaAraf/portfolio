@@ -48,6 +48,8 @@ export function SmoothScroll() {
           const link = (event.target as Element | null)?.closest?.("a[href]");
           if (!(link instanceof HTMLAnchorElement) || link.target === "_blank")
             return;
+          // the weapon wheel moves the reader itself (glideTo) once it has closed
+          if (link.closest("[data-wheel]")) return;
           const url = new URL(link.href);
           if (
             !url.hash ||

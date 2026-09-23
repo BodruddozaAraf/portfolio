@@ -537,6 +537,79 @@
     }
   }
 
+  /* The weapon wheel (src/components/nav/WeaponWheel.tsx): wedges of saddle leather edged in
+     brass on a dark hub; the chosen wedge takes the fire's color, its label the night's. The
+     wheel turns into place as it opens (full motion only). */
+  .wheel-rim {
+    fill: color-mix(in srgb, var(--color-leather) 30%, var(--color-night));
+    stroke: color-mix(in srgb, var(--color-brass) 55%, transparent);
+    stroke-width: 0.6;
+  }
+  .wheel-wedge {
+    fill: color-mix(in srgb, var(--color-leather) 70%, var(--color-night));
+    stroke: color-mix(in srgb, var(--color-brass) 45%, transparent);
+    stroke-width: 0.4;
+    cursor: pointer;
+    transition: fill var(--dur-hover) var(--ease-journal);
+  }
+  .wheel-wedge[data-selected] {
+    fill: var(--color-ember);
+  }
+  .wheel-hub {
+    fill: var(--color-night);
+    stroke: var(--color-brass);
+    stroke-width: 0.6;
+  }
+  /* the hub's text scales with the wheel; on a small wheel only the title fits (the line is in
+     every wedge's accessible name as well) */
+  .wheel-disc {
+    container-type: inline-size;
+  }
+  .wheel-title {
+    font-size: max(0.8rem, 4.2cqw);
+    line-height: 1.05;
+  }
+  .wheel-line {
+    font-size: max(0.75rem, 2.7cqw);
+    line-height: 1.3;
+  }
+  @container (max-width: 26rem) {
+    .wheel-line {
+      display: none;
+    }
+  }
+  .wheel-label {
+    color: var(--color-paper-light);
+    white-space: nowrap;
+    transition: color var(--dur-hover) var(--ease-journal);
+  }
+  .wheel-label[data-selected] {
+    color: var(--color-night);
+  }
+  .wheel-label:focus-visible {
+    outline: 2px solid var(--color-paper-light);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :root:not([data-plain="true"]) .wheel {
+      animation: wheel-in 0.2s var(--ease-journal) both;
+    }
+    :root:not([data-plain="true"]) .wheel-disc {
+      animation: wheel-turn 0.38s var(--ease-journal) both;
+    }
+  }
+  @keyframes wheel-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes wheel-turn {
+    from {
+      transform: rotate(-30deg) scale(0.94);
+      opacity: 0;
+    }
+  }
+
   /* Research's torn page (src/components/motion/ReconstructMoment.tsx): the canvas lies exactly
      over the plate, and the pipeline stage doing the rebuilding is inked in. */
   .reconstruct-canvas {

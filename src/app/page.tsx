@@ -1,6 +1,7 @@
 import { Loader } from "@/components/fx/Loader";
 import { PageTurn } from "@/components/fx/PageTurn";
 import { TopBar } from "@/components/nav/TopBar";
+import { WeaponWheel } from "@/components/nav/WeaponWheel";
 import { PersonJsonLd } from "@/components/seo/PersonJsonLd";
 import { About } from "@/components/sections/About";
 import { BountyBoard } from "@/components/sections/BountyBoard";
@@ -43,6 +44,10 @@ export default function Home() {
         <Telegram />
       </main>
       <Colophon />
+      <WeaponWheel
+        label={microcopy.wheel.label}
+        chapters={microcopy.wheel.chapters}
+      />
     </PageTurn>
   );
 }

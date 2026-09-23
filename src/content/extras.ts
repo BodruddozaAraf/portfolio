@@ -94,6 +94,59 @@ export const microcopy: Microcopy = {
     subject: "Telegram from {name} via bodruddozaaraf.me",
   },
   notFound: "You've wandered off the map, partner.",
+  wheel: {
+    label: "Chapters",
+    chapters: [
+      {
+        id: "about",
+        wedge: "About",
+        title: "Journal Entry",
+        line: "Who he is and where he stands, in his own hand.",
+      },
+      {
+        id: "wanted",
+        wedge: "Wanted",
+        title: "Wanted",
+        line: "The skills, and the figures that back them.",
+      },
+      {
+        id: "bounties",
+        wedge: "Bounties",
+        title: "Bounty Board",
+        line: "Four jobs on the board, every one of them claimed.",
+      },
+      {
+        id: "research",
+        wedge: "Research",
+        title: "The Torn Page",
+        line: "The thesis: seeing what the fire took.",
+      },
+      {
+        id: "trail",
+        wedge: "Map",
+        title: "Trail So Far",
+        line: "Where he has been, stop by stop.",
+      },
+      {
+        id: "satchel",
+        wedge: "Satchel",
+        title: "Tools of the Trade",
+        line: "What rides in the satchel, and where each piece was used.",
+      },
+      {
+        id: "camp",
+        wedge: "Camp",
+        title: "Camp Stories",
+        line: "Football, off the clock.",
+      },
+      {
+        id: "send-word",
+        wedge: "Telegram",
+        title: "Telegram Office",
+        line: "Send word from your own mail.",
+      },
+    ],
+  },
   colophon: [
     "Built by hand in Dhaka.",
     "Inspired by a certain outlaw's journal. Original art, plus public-domain engravings, credited below.",

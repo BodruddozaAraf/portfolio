@@ -102,6 +102,8 @@
   --gutter: 1rem;
   --page-max: 80rem;
 
+  --z-wheel-button: 40;
+  --z-wheel: 50;
   --z-loader: 55;
   --z-grain: 60;
 }

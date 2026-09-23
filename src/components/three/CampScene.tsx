@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import type { Group } from "three";
 import type { Tier } from "@/lib/device-tier";
+import { timeScale } from "@/lib/time";
 import { CameraRig } from "./CameraRig";
 import { CAPTURE_TIME, capture } from "./capture";
 import { dolly, ease } from "./dolly";
@@ -28,7 +29,7 @@ export function CampScene({ tier }: { tier: Exclude<Tier, "low"> }) {
   useFrame((state, delta) => {
     camp.uTime.value = capture
       ? CAPTURE_TIME
-      : camp.uTime.value + Math.min(delta, 0.1);
+      : camp.uTime.value + Math.min(delta, 0.1) * timeScale();
     camp.uPixelRatio.value = state.viewport.dpr;
     // the journal opens as the camera arrives over it (CameraRig reads the progress first)
     if (cover.current)
