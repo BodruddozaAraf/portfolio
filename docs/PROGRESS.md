@@ -8,13 +8,14 @@
   step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-3/camp-environment` (3.2). Next: `phase-3/campfire` (3.3).
-- **Next action:** 3.3 campfire: fire shader, flickering light (drive `camp.uFireStrength` in
-  `src/components/three/materials.ts`), sparks, cursor flare. The camp runs only with
-  `?tier=high|mid` until `campLive` (`src/lib/features.ts`) is switched on (D67).
+- **Active branch:** `phase-3/campfire` (3.3). Next: `phase-3/props-horse` (3.4).
+- **Next action:** 3.4 props-horse: journal, bedroll, lantern, horse silhouette with an idle
+  animation (procedural unless Araf approves a download), then export the static fallback render
+  (A07) from the scene and switch `campLive` on (`src/lib/features.ts`, D67).
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
   Lighthouse mobile perf 72 to 73, A11y/BP/SEO 100. After 3.1: initial 279.8 KB, 3D chunk 235.5 KB
-  (budget 350), models 0 MB. After 3.2: initial 279.8 KB, 3D chunk 240.5 KB, models 0 MB.
+  (budget 350), models 0 MB. After 3.2: initial 279.8 KB, 3D chunk 240.5 KB, models 0 MB. After 3.3: 279.8 KB, 242.7 KB,
+  0 MB.
 - **Waiting on Araf:**
   1. Vercel > `portfolio` > Settings > Domains: make `bodruddozaaraf.me` (apex) the primary domain
      and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
@@ -71,7 +72,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [x] 2.7 page-transitions · [x] 2.8 grain → `v0.2.0` (tagged)
 
 ### Phase 3: 3D Camp
-- [x] 3.1 r3f-setup · [x] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
+- [x] 3.1 r3f-setup · [x] 3.2 camp-environment · [x] 3.3 campfire · [ ] 3.4 props-horse
 - [ ] 3.5 scroll-camera · [ ] 3.6 postprocessing · [ ] 3.7 research-reconstruct → `v0.3.0`
 
 ### Phase 4: Signature features
@@ -84,6 +85,12 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (aa) · `phase-3/campfire`
+- Campfire (D69): stones, crossed logs with glowing ends, four noise-shader flame cards, a halo,
+  140 GPU sparks, flicker on the shared fire light, and a flare when a fine pointer comes near.
+- Verified (Playwright, `next start`): 60 fps at 2x on high and mid (and at 4x CPU throttle);
+  flare 0 far, 1 near, 0.04 after 3.5s; 3.1 checks pass. 3D chunk 242.7 KB. No console errors.
 
 ### 2026-09-23 (z) · `phase-3/camp-environment`
 - Procedural camp land (D68): hillside, four hazed ridges, two conifer kinds instanced in stands,

@@ -23,6 +23,8 @@ export const camp = {
   },
   /** 0 = out, about 1 = a healthy fire; the flicker rides on this */
   uFireStrength: { value: 1 },
+  /** 0..1: how hard the fire is flaring (a pointer close to it) */
+  uFlare: { value: 0 },
   uMoonDir: { value: new Vector3(-0.45, 0.75, -0.5).normalize() },
   uMoonColor: { value: new Color(palette["night-blue"]).multiplyScalar(1.9) },
   uAmbient: { value: new Color(palette["night-blue"]).multiplyScalar(0.55) },
@@ -75,8 +77,8 @@ export const lightPars = /* glsl */ `
     vec3 toFire = uFirePos - wp;
     float d = length(toFire);
     float facing = dot(n, toFire / max(d, 1e-4)) * 0.6 + 0.4; // wrapped, so silhouettes glow at the rim
-    float fall = uFireStrength / (1.0 + d * d * 0.55);
-    return uFireColor * max(facing, 0.0) * fall * 2.2;
+    float fall = uFireStrength / (1.0 + d * d * 0.32);
+    return uFireColor * max(facing, 0.0) * fall * 2.8;
   }
 
   vec3 shade(vec3 albedo, vec3 wp, vec3 n) {
@@ -132,6 +134,11 @@ const fragment = /* glsl */ `
     // uLowMist: valley mist pooled at the foot of a ridge (uv.y is 0 at its foot)
     float mist = uHaze + uLowMist * pow(1.0 - vUv.y, 2.0);
     vec3 color = haze(shade(albedo, vWorld, n), vWorld, mist);
+    #ifdef EMBER
+      // wood in the fire glows like coals
+      float coal = smoothstep(0.42, 0.04, distance(vWorld, vec3(uFirePos.x, 0.12, uFirePos.z)));
+      color += uFireColor * coal * coal * uFireStrength * 1.8;
+    #endif
     gl_FragColor = vec4(color, 1.0);
     #include <colorspace_fragment>
   }
