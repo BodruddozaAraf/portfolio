@@ -44,7 +44,7 @@ Package manager: **npm**. Node >= 20.9 (machine has v22).
 - `npm run dev`: local dev server (http://localhost:3000)
 - `npm run build`: production build
 - `npm run lint`: ESLint (next core-web-vitals + typescript + prettier) + the MDX copy check
-- `npm test`: unit checks (telegram compose links)
+- `npm test`: unit checks (telegram compose links, motion tokens mirror tokens.css)
 - `npm run typecheck`: `tsc --noEmit`
 - `npm run format` / `npm run format:check`: Prettier (with Tailwind class sorting)
 - **Before every merge:** `npm run typecheck && npm run lint && npm test && npm run build`

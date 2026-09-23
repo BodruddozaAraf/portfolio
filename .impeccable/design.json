@@ -486,7 +486,7 @@
       "Do keep body text ink on paper (11.6:1) or paper-light on night (16:1).",
       "Do use italic for emphasis in IM Fell, and Special Elite for figures and tabular data.",
       "Do theme browser surfaces: selection is a blood wash on paper and ember on night, and the scrollbar is leather on a paper-dark track.",
-      "Do use `--ease-journal` (cubic-bezier(0.22, 1, 0.36, 1)) and the `--dur-*` tokens for motion.",
+      "Do use `--ease-journal` (cubic-bezier(0.22, 1, 0.36, 1)) and the `--dur-*` tokens for motion; in GSAP, the `\"journal\"` ease and `dur` from `src/lib/motion.ts`.",
       "Do regenerate textures with `node scripts/textures.mjs`; they are original and deterministic."
     ],
     "donts": [
