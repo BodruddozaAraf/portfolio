@@ -89,6 +89,19 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
 
+### 2026-09-23 (al) · `feat/phone-journal`
+- Araf (reviewing on an iPhone 11 Pro Max): the journal opening did not show on phones; make it
+  work there too. Capable phones now run the 3D camp at the mid tier, the scroll track runs on
+  phones (120svh), browsers without scroll timelines get a script-driven fallback, and the camera
+  fits the open spread on tall screens (D79).
+- Verified (Playwright, 414x896 touch): 3D path (`?tier=mid`, headless has no Apple GPU) plays
+  establishing shot, swoop, cover opening, whole spread, paper, About; picture path zooms to the
+  journal then paper; the fallback rules, lifted out of their `@supports` and driven by hand, do
+  the same. `tierFor` tests: iPhone, Adreno 650/740, Mali-G78/G710, Xclipse, Immortalis get 3D;
+  Adreno 610, Mali-G52, PowerVR, 2 GB phones get the picture. Desktop dolly, tablet, reduced
+  motion, Plain mode, deep link, Back restore (4922), wheel and Dead Eye unchanged. Lighthouse
+  mobile 73 / 100 / 100 / 100, CLS 0.002. Needs a look on Araf's own iPhone.
+
 ### 2026-09-23 (ak) · Phase 4 complete
 - Phase 4 Vercel check: previews of PRs #32 to #34 and their production deploys READY;
   production of `c76fdab` READY on bodruddozaaraf.me. Live smoke test (desktop RTX, 390px phone):

@@ -2,6 +2,7 @@ import { ArrowDown } from "@phosphor-icons/react/ssr";
 import type { CSSProperties } from "react";
 import { preload } from "react-dom";
 import { CampStage } from "@/components/three/CampStage";
+import { HeroTrack } from "./HeroTrack";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { profile } from "@/content";
@@ -12,9 +13,9 @@ import art from "./hero-art.json";
 // one sentence, two CTAs. The art is the camp itself, exported from the 3D scene
 // (scripts/hero/render.mjs, A07) as a far and a near layer per orientation, each placed so the
 // fire lands on the same point of the section at any size; a CSS glow and a few embers burn on
-// it. On wider screens with full motion the scroll carries the view down to the journal (the 3D
-// camera, or here a CSS zoom of the two layers at different rates) and the paper of the next
-// chapter fades in over it; on phones the far layer just drifts. All CSS, decided before paint. This is the finished picture for
+// it. With full motion the scroll carries the view down to the journal (the 3D camera, or here
+// a zoom of the two layers at different rates) and the paper of the next chapter fades in over
+// it, on phones too (D79). The layout is CSS, decided before paint. This is the finished picture for
 // every visitor; on WebGL tiers the 3D camp (CampStage) fades in over it, behind the copy, which
 // never changes.
 
@@ -53,6 +54,7 @@ export function Hero() {
     // the track: with full motion on wider screens, CSS makes it taller than the screen and the
     // hero sticks inside it while the scroll carries the camera down to the journal (step 3.5)
     <div className="hero-track" data-hero-track>
+      <HeroTrack />
       <section
         aria-label="Introduction"
         className="night isolate flex min-h-[100dvh] items-center overflow-hidden"

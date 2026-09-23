@@ -10,7 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "test": "node --experimental-strip-types --no-warnings scripts/test-telegram.mjs && node --experimental-strip-types --no-warnings scripts/test-motion-tokens.mjs && node --experimental-strip-types --no-warnings scripts/test-palette.mjs"
+    "test": "node --experimental-strip-types --no-warnings scripts/test-telegram.mjs && node --experimental-strip-types --no-warnings scripts/test-motion-tokens.mjs && node --experimental-strip-types --no-warnings scripts/test-palette.mjs && node --experimental-strip-types --no-warnings scripts/test-device-tier.mjs"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
