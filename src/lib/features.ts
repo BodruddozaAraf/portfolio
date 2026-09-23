@@ -9,6 +9,6 @@ export function isLive(tip: LoadingTip) {
   return !tip.requires || shipped.has(tip.requires);
 }
 
-// The 3D camp replaces the static hero art once the scene is better than the picture it covers
-// (Phase 3). Until then it runs only with a `?tier=` override, for building and testing.
-export const campLive = false;
+// The 3D camp over the static hero art (Phase 3, live since step 3.4). Set to false to keep every
+// visitor on the static picture; a `?tier=` override still runs the camp for testing.
+export const campLive = true;

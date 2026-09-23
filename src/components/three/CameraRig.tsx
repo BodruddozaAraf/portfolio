@@ -20,7 +20,8 @@ const PARALLAX_PITCH = (1 * Math.PI) / 180;
  */
 function fireSpot(aspect: number, natural: { x: number; y: number }) {
   const t = Math.min(1, Math.max(0, (aspect - 0.7) / (1.6 - 0.7)));
-  return { x: 0.16 + t * 0.28, y: natural.y - (1 - t) * 0.18 };
+  // on a phone the copy fills the middle of the screen: the fire goes below it
+  return { x: 0.16 + t * 0.28, y: natural.y + (-0.72 - natural.y) * (1 - t) };
 }
 
 const target = new Vector3(...CAMERA.target);
@@ -31,8 +32,10 @@ const base = new Spherical().setFromVector3(
 
 /** Frames the fire for this canvas size: where it projects plainly, then a view offset to move it. */
 function frame(camera: PerspectiveCamera, width: number, height: number) {
-  camera.fov = CAMERA.fov;
   camera.aspect = width / height;
+  // tall screens widen the lens, so the camp still fits across them
+  const tall = Math.min(1, Math.max(0, (1 - camera.aspect) / (1 - 0.46)));
+  camera.fov = CAMERA.fov + tall * 22;
   camera.clearViewOffset();
   camera.position.set(...CAMERA.position);
   camera.lookAt(target);

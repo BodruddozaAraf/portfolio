@@ -49,7 +49,13 @@ function ridgeGeometry(i: number) {
   return g;
 }
 
-export function Terrain() {
+export function Terrain({
+  ground: showGround = true,
+  ridges: showRidges = true,
+}: {
+  ground?: boolean;
+  ridges?: boolean;
+}) {
   const ground = useMemo(
     () => ({
       geometry: groundGeometry(),
@@ -75,8 +81,10 @@ export function Terrain() {
   );
   return (
     <group>
-      <mesh geometry={ground.geometry} material={ground.material} />
-      {ridges.map((r, i) => (
+      {showGround ? (
+        <mesh geometry={ground.geometry} material={ground.material} />
+      ) : null}
+      {(showRidges ? ridges : []).map((r, i) => (
         <mesh key={i} geometry={r.geometry} material={r.material} />
       ))}
     </group>

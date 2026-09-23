@@ -2,7 +2,8 @@
 // docs/PROGRESS.md "Full-page screenshots" for the executable path and playwright-core):
 //   PLAYWRIGHT_CHROMIUM=<path> NODE_PATH=<dir with playwright-core> node scripts/brand/render.mjs
 // Writes src/app/opengraph-image.jpg, twitter-image.jpg, icon.png, apple-icon.png and favicon.ico
-// (from a 512px icon master in the temp folder), plus public/sketches/campfire-mask.webp.
+// (from a 512px icon master in the temp folder). The hero art now comes from the 3D camp
+// (scripts/hero/render.mjs), so the old campfire silhouette mask is no longer rendered.
 // Afterwards re-embed provenance: .claude/skills/impeccable/scripts/impeccable embed-prompt <file>
 // --prompt "<origin>" for each raster (see the origins in docs/08-assets.md).
 import { execFileSync } from "node:child_process";
@@ -39,9 +40,6 @@ async function shot(file, width, height, out, transparent = false) {
 
 await shot("og.html", 1200, 630, path.join(app, "opengraph-image.jpg"));
 await shot("og.html", 1200, 630, path.join(app, "twitter-image.jpg"));
-// the hero silhouette: a raster mask is far cheaper to paint than the 190-path SVG
-const maskPng = path.join(tmpdir(), "outlaw-campfire-mask.png");
-await shot("sketch-mask.html", 900, 419, maskPng, true);
 const master = path.join(tmpdir(), "outlaw-icon-512.png");
 await shot("icon.html", 512, 512, master, true);
 await browser.close();
@@ -85,15 +83,4 @@ sizes.forEach((size, i) => {
   offset += pngs[i].length;
 });
 writeFileSync(path.join(app, "favicon.ico"), Buffer.concat([header, ...pngs]));
-ff(
-  "-i",
-  maskPng,
-  "-c:v",
-  "libwebp",
-  "-quality",
-  "55",
-  "-pix_fmt",
-  "yuva420p",
-  path.join(here, "../../public/sketches/campfire-mask.webp"),
-);
-console.log("brand rasters written to src/app and public/sketches");
+console.log("brand rasters written to src/app");

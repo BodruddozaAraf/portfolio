@@ -8,14 +8,16 @@
   step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-3/campfire` (3.3). Next: `phase-3/props-horse` (3.4).
-- **Next action:** 3.4 props-horse: journal, bedroll, lantern, horse silhouette with an idle
-  animation (procedural unless Araf approves a download), then export the static fallback render
-  (A07) from the scene and switch `campLive` on (`src/lib/features.ts`, D67).
+- **Active branch:** `phase-3/props-horse` (3.4). Next: `phase-3/scroll-camera` (3.5).
+- **Next action:** 3.5 scroll-camera: pin the hero about 150vh on 3D tiers, dolly the camera down
+  to the journal (`JOURNAL` in `world.ts`), open its hinged cover, crossfade into About. The 3D
+  camp is live by default now (`campLive`, D70). Re-export the static hero with
+  `scripts/hero/render.mjs` whenever the scene changes.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
   Lighthouse mobile perf 72 to 73, A11y/BP/SEO 100. After 3.1: initial 279.8 KB, 3D chunk 235.5 KB
   (budget 350), models 0 MB. After 3.2: initial 279.8 KB, 3D chunk 240.5 KB, models 0 MB. After 3.3: 279.8 KB, 242.7 KB,
-  0 MB.
+  0 MB. After 3.4: 279.7 KB, 245.1 KB, 0 MB models; static hero 21 KB (phone) or 34 KB (desktop)
+  of AVIF; Lighthouse mobile perf 71 to 72, A11y/BP/SEO 100, CLS 0.
 - **Waiting on Araf:**
   1. Vercel > `portfolio` > Settings > Domains: make `bodruddozaaraf.me` (apex) the primary domain
      and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
@@ -72,7 +74,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [x] 2.7 page-transitions · [x] 2.8 grain → `v0.2.0` (tagged)
 
 ### Phase 3: 3D Camp
-- [x] 3.1 r3f-setup · [x] 3.2 camp-environment · [x] 3.3 campfire · [ ] 3.4 props-horse
+- [x] 3.1 r3f-setup · [x] 3.2 camp-environment · [x] 3.3 campfire · [x] 3.4 props-horse
 - [ ] 3.5 scroll-camera · [ ] 3.6 postprocessing · [ ] 3.7 research-reconstruct → `v0.3.0`
 
 ### Phase 4: Signature features
@@ -85,6 +87,19 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (ab) · `phase-3/props-horse`
+- Journal (hinged cover), bedroll, lantern (second light), post, and a horse from extruded side
+  profiles that breathes, swishes and grazes, its rope following the halter (D70). Portrait
+  screens widen the lens and drop the fire below the copy.
+- Static hero (A07) exported from the scene: far and near layers per orientation, pinned to the
+  fire's point, CSS glow, embers and scroll drift for full motion. Old mask removed. `campLive`
+  switched on: the 3D camp is the default hero on mid and high tiers.
+- Verified (Playwright, `next start`): RTX desktop gets 3D (60 fps at 2x, also 4x CPU throttle),
+  CSS glow and embers hidden under it; reduced motion, Plain mode, phone, phone reduced and
+  SwiftShader get the static picture; each loads only its orientation's two AVIFs; loader 3.0s on
+  first visits. Lighthouse mobile 71 to 72 / 100 / 100 / 100 (baseline 72 to 73). No console
+  errors. Detector clean; provenance sidecars on the new rasters.
 
 ### 2026-09-23 (aa) · `phase-3/campfire`
 - Campfire (D69): stones, crossed logs with glowing ends, four noise-shader flame cards, a halo,
