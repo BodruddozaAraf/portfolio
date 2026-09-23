@@ -3,6 +3,7 @@
 import { useFrame } from "@react-three/fiber";
 import type { Tier } from "@/lib/device-tier";
 import { CameraRig } from "./CameraRig";
+import { Campfire } from "./Campfire";
 import { camp } from "./materials";
 import { Mist } from "./Mist";
 import { Pines } from "./Pines";
@@ -27,6 +28,7 @@ export function CampScene({ tier }: { tier: Exclude<Tier, "low"> }) {
       <Terrain />
       <Pines count={detail.pines} />
       <Mist layers={detail.mist} />
+      <Campfire sparks={detail.sparks} />
     </>
   );
 }

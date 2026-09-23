@@ -57,8 +57,8 @@ export const RIDGES = [
 /** Per-tier budgets for the things that cost the most. */
 export const DETAIL: Record<
   Exclude<Tier, "low">,
-  { stars: number; pines: number; mist: number }
+  { stars: number; pines: number; mist: number; sparks: number }
 > = {
-  high: { stars: 1800, pines: 260, mist: 3 },
-  mid: { stars: 900, pines: 140, mist: 2 },
+  high: { stars: 1800, pines: 260, mist: 3, sparks: 140 },
+  mid: { stars: 900, pines: 140, mist: 2, sparks: 70 },
 };

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { setCamp, useCamp } from "@/lib/camp";
 import type { Tier } from "@/lib/device-tier";
 import { CampScene } from "./CampScene";
+import { camp } from "./materials";
 import { CAMERA } from "./world";
 
 // The 3D camp's own chunk (loaded by CampStage, never in the first JavaScript). It owns the WebGL
@@ -88,7 +89,10 @@ function FirstFrames() {
   return null;
 }
 
-/** With `?stats` in the URL, the frame rate of each second lands on window.__campFps (testing). */
+/**
+ * With `?stats` in the URL, the frame rate of each second lands on window.__campFps and the fire's
+ * flare on window.__campFlare (testing).
+ */
 function FpsProbe() {
   const [on] = useState(
     () =>
@@ -103,10 +107,14 @@ function FpsProbe() {
     if (!a.since) a.since = now;
     a.frames += 1;
     if (now - a.since >= 1000) {
-      const w = window as Window & { __campFps?: number[] };
+      const w = window as Window & {
+        __campFps?: number[];
+        __campFlare?: number;
+      };
       (w.__campFps ??= []).push(
         Math.round((a.frames * 1000) / (now - a.since)),
       );
+      w.__campFlare = Math.round(camp.uFlare.value * 100) / 100;
       a.frames = 0;
       a.since = now;
     }

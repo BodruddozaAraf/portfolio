@@ -3,6 +3,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 import { PerspectiveCamera, Spherical, Vector3 } from "three";
+import { pointer, watchPointer } from "./pointer";
 import { CAMERA, FIRE } from "./world";
 
 // The camera: the establishing shot, framed so the fire sits to the right of the hero copy and
@@ -50,20 +51,10 @@ function frame(camera: PerspectiveCamera, width: number, height: number) {
 }
 
 export function CameraRig() {
-  const pointer = useRef({ x: 0, y: 0 });
   const eased = useRef({ x: 0, y: 0 });
   const framed = useRef("");
 
-  useEffect(() => {
-    const fine = matchMedia("(pointer: fine)");
-    const onMove = (e: PointerEvent) => {
-      if (!fine.matches) return;
-      pointer.current.x = (e.clientX / innerWidth) * 2 - 1;
-      pointer.current.y = (e.clientY / innerHeight) * 2 - 1;
-    };
-    window.addEventListener("pointermove", onMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onMove);
-  }, []);
+  useEffect(watchPointer, []);
 
   useFrame((state, delta) => {
     const camera = state.camera as PerspectiveCamera;
@@ -74,8 +65,8 @@ export function CameraRig() {
       framed.current = key;
     }
     const k = 1 - Math.exp(-delta * 2.5);
-    eased.current.x += (pointer.current.x - eased.current.x) * k;
-    eased.current.y += (pointer.current.y - eased.current.y) * k;
+    eased.current.x += (pointer.x - eased.current.x) * k;
+    eased.current.y += (pointer.y - eased.current.y) * k;
     const s = base.clone();
     s.theta -= eased.current.x * PARALLAX_YAW;
     s.phi += eased.current.y * PARALLAX_PITCH;
