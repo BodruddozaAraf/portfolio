@@ -4,13 +4,11 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 2 (2D motion). Steps 2.1 and 2.2 merged.
+- **Current phase:** Phase 2 (2D motion). Steps 2.1 to 2.3 merged.
 - **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Start step 2.3 on `phase-2/about-wanted`.
-- **Next action:** step 2.3 about-wanted (spec `docs/05-sections.md` sections 2 and 3). Build on
-  the motion layer (D58, DESIGN.md "Motion"): ask `useMotionLevel()` first, GSAP from
-  `@/lib/gsap`, `dur`/`"journal"` from `@/lib/motion`.
+- **Active branch:** none. Next: `phase-2/bounty-board`.
+- **Next action:** step 2.4 bounty-board (spec `docs/05-sections.md` section 4: hover lift off the pin, zoom into the case study, ink tooltips on stack tags). Moments use `useScrollMoment` (D60).
 - **Waiting on Araf (the agent's permissions block DNS/domain changes):**
   1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
      `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
@@ -58,7 +56,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.10 deploy (live on Vercel, `v0.1.0`); custom domain DNS waiting on Araf (D57)
 
 ### Phase 2: 2D Motion
-- [x] 2.1 motion-infra · [x] 2.2 loader · [ ] 2.3 about-wanted · [ ] 2.4 bounty-board
+- [x] 2.1 motion-infra · [x] 2.2 loader · [x] 2.3 about-wanted · [ ] 2.4 bounty-board
 - [ ] 2.5 map-trail · [ ] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
 
 ### Phase 3: 3D Camp
@@ -75,6 +73,16 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (q) · `phase-2/about-wanted`
+- `src/hooks/useScrollMoment.ts` (a section's once-only timeline), SplitText registered in
+  `src/lib/gsap.ts`. `AboutMoment`: handwriting written in line by line, notes settle in.
+  `WantedMoment`: flutter, pin hammer, REWARD slam, tickets and count-ups, hover lean (D60).
+  `Poster` takes `moment`, `Pin` carries `data-pin`.
+- Verified (Playwright, `next start`): 14 split lines wiped in and reverted after; counts run
+  38 to 64 and 16.45 to 27.60 and end exact; the lean turns the poster toward the cursor; reduced
+  motion fades only, figures unchanged; a reload with Wanted in view shows it finished; phone
+  390 px has no horizontal scroll; no console errors.
 
 ### 2026-09-23 (p) · `phase-2/loader`
 - Araf: finish Phase 2, then check in.
