@@ -12,6 +12,7 @@ import { Horse } from "./Horse";
 import { camp } from "./materials";
 import { Mist } from "./Mist";
 import { Pines } from "./Pines";
+import { PostFX } from "./PostFX";
 import { Props } from "./Props";
 import { Sky } from "./Sky";
 import { Terrain } from "./Terrain";
@@ -50,6 +51,8 @@ export function CampScene({ tier }: { tier: Exclude<Tier, "low"> }) {
           <Horse />
         </>
       ) : null}
+      {/* high tier only; never in capture mode (the near layer keeps its transparency) */}
+      {tier === "high" && !capture ? <PostFX /> : null}
     </>
   );
 }
