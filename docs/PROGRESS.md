@@ -8,11 +8,12 @@
   step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-3/research-reconstruct` (3.7). Next: `fix/loader-first-paint`.
-- **Next action:** Araf (mid-phase): loading speed and size are not strict; there must be a good
-  animated loading screen while the site loads, never a blank wait. Rework the loader so it
-  animates from the first paint (before scripts) and holds until the page and camp are ready.
-  Then the Phase 3 Vercel check, live smoke test, `v0.3.0`, check in with Araf.
+- **Active branch:** `fix/loader-first-paint`. Next: Phase 3 Vercel check.
+- **Next action:** check the Phase 3 production deploy on Vercel (READY), smoke-test the live site
+  (3D camp, scroll camera, torn page, loader, static hero on a phone), tag `v0.3.0`, check in with
+  Araf.
+- **Araf (2026-09-23, D74):** load speed and size are not strict; performance budgets are
+  guidance now. The loading screen must be animated from the first paint, never a blank wait.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
   Lighthouse mobile perf 72 to 73, A11y/BP/SEO 100. After 3.1: initial 279.8 KB, 3D chunk 235.5 KB
   (budget 350), models 0 MB. After 3.2: initial 279.8 KB, 3D chunk 240.5 KB, models 0 MB. After 3.3: 279.8 KB, 242.7 KB,
@@ -27,8 +28,8 @@
      word and the code switches to `www` instead.)
   2. Jack The Jelli screenshots (A16), a real photo for the portrait (A06), more PD engravings
      for A05 if wanted.
-- **Known debt (step 5.1):** home Lighthouse mobile performance 74 to 77 depending on the run
-  (budget 85, D55); home initial JS 279.2 KB gzip (budget 180 KB, D58, D63).
+- **Performance (guidance since D74):** home Lighthouse mobile performance 71 to 73 (target 85),
+  home initial JS 280 KB gzip (target 180 KB). Step 5.1 may still improve them; not blocking.
 - **Blockers:** none for Phase 2. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash
   add it to PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Tooling notes for agents:**
@@ -89,6 +90,16 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (af) · `fix/loader-first-paint`
+- Araf: ignore load speed and size, but the site needs a good animated loading screen, never a
+  blank wait (D74). The loader now animates from the first paint without scripts (self-drawing
+  SVG sketch with a pen sweep, glow, embers, a crawling fuse), then follows real readiness and
+  lifts when the page and camp are ready, capped at 9 s. Budgets in CLAUDE.md and 04 are now
+  guidance (accessibility still required).
+- Verified (Playwright, `next start`): card at about 150 ms, drawing visible at 0.4, 1.2, 2.2 s,
+  lift at 3.55 s on desktop (camp ready) and phone; throttled runs keep it animated and lift at
+  the cap; without JS no loader and the page shows. No console errors.
 
 ### 2026-09-23 (ae) · `phase-3/research-reconstruct`
 - Torn page (D73): the Homer plate burnt through at its campfire, rebuilt on scroll as tokens,

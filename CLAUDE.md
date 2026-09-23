@@ -29,7 +29,9 @@ but built with **original art only** (see IP rules in `docs/01-vision.md`).
 - **Update `docs/PROGRESS.md`** at the end of every work session and in every PR:
   tick finished steps, note the current branch, blockers and next action.
 - If a decision changes, record it in `docs/09-decisions-and-questions.md` with a date.
-- Performance and accessibility budgets in `docs/04-architecture.md` are requirements, not goals.
+- Accessibility budgets in `docs/04-architecture.md` are requirements. Performance budgets are
+  guidance since D74 (Araf: load speed and size are not strict), but the loading screen must be
+  animated from the first paint: never a blank wait.
 - **Design skills are mandatory for UI work**: `design-taste-frontend` and `impeccable`
   (`.claude/skills/`). Follow the workflow in `docs/10-design-skills.md`, including the
   pre-flight checklist and `impeccable detect src/` before merging a UI step.

@@ -8,17 +8,22 @@ final unless changed in `09-decisions-and-questions.md`. Each section lists: **p
 ---
 
 ## 0. Loader: "Chapter I"
-- **Purpose:** hide 3D asset loading and set the mood in ≤ 3 s.
+- **Purpose:** cover the loading with something alive and set the mood; never a blank wait
+  (Araf, D74).
 - **Content:** Title card "Chapter I: Dhaka" plus a rotating loading tip (from 02). The loader
   is the only place chapter numbering appears (no numbered labels on sections, D33).
 - **Layout:** full-screen `--night`, centered title, tip at the bottom in italic serif.
-- **Animation:** a small graphite sketch (a campfire) draws itself; its progress tracks real
-  asset loading (`useProgress` from drei). Fades into the hero.
-- **Rules:** show only on the first visit per session (`sessionStorage`). Max 3.5 s even
-  if assets are still loading (hero shows fallback image, canvas crossfades in later).
-  Skippable with click/Enter.
+- **Animation:** from the first paint, before any script: the campfire sketch draws itself (an
+  SVG carrying its own CSS animation), a glow breathes, embers rise, a fuse burns under the
+  title. Once scripts arrive the fuse follows real loading (fonts, the page and its hero art, the
+  3D camp). Fades into the hero.
+- **Rules:** show only on the first visit per session (`sessionStorage`). It lifts when the
+  page (and the camp, for 3D tiers) is ready and the sketch has finished, at the earliest about
+  3 s; at most 9 s (`LOADER_MAX_MS`, D74; was 3.5 s) even if assets are still loading (the hero
+  shows its static picture, the canvas crossfades in later). Skippable with any input.
 - **Fallback:** reduced-motion shows no loader.
-- **Done when:** first visit shows loader ≤ 3.5 s; revisit in the same session skips it.
+- **Done when:** first visit shows an animated loader from the first paint, gone by 9 s at most;
+  revisit in the same session skips it.
 
 ## 1. Hero: "The Camp"
 - **Purpose:** jaw-drop moment + instant clarity on who and what.
