@@ -14,6 +14,11 @@ export function setLenis(lenis: Lenis | null) {
   listeners.forEach((l) => l());
 }
 
+/** The instance right now, for event handlers that should not re-render on change. */
+export function getLenis() {
+  return current;
+}
+
 function subscribe(listener: () => void) {
   listeners.add(listener);
   return () => listeners.delete(listener);

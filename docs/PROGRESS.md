@@ -4,11 +4,11 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 2 (2D motion). Steps 2.1 to 2.4 merged.
+- **Current phase:** Phase 2 (2D motion). Steps 2.1 to 2.5 merged.
 - **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Next: `phase-2/map-trail`.
-- **Next action:** step 2.5 map-trail (spec `docs/05-sections.md` section 6: map illustration, scroll-drawn trail, pin drops, horizontal pin on desktop). Moments use `useScrollMoment` (D60).
+- **Active branch:** none. Next: `phase-2/satchel-camp-telegram`.
+- **Next action:** step 2.6 satchel-camp-telegram (spec `docs/05-sections.md` sections 7 to 9: satchel items lift, inventory card with "Used in"; camp stories; telegram typing and transmit animation, DELIVERED stamp).
 - **Waiting on Araf (the agent's permissions block DNS/domain changes):**
   1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
      `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
@@ -59,7 +59,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 2: 2D Motion
 - [x] 2.1 motion-infra · [x] 2.2 loader · [x] 2.3 about-wanted · [x] 2.4 bounty-board
-- [ ] 2.5 map-trail · [ ] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
+- [x] 2.5 map-trail · [ ] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
 
 ### Phase 3: 3D Camp
 - [ ] 3.1 r3f-setup · [ ] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
@@ -75,6 +75,17 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (s) · `phase-2/map-trail`
+- A04 done: `scripts/map/map.html` + `render.mjs` draw an original survey map (contours, river,
+  marsh, Dhaka town, compass) to `public/maps/trail.webp` (87 KB, multiplied onto the paper).
+- Trail rebuilt: stops on a meandering SVG dotted trail over the map (static when rendered);
+  `TrailMoment` pins the sheet and pans the wide map on desktop, draws the trail and drops pins
+  with the scroll, draws the vertical trail on phones, and follows keyboard focus (D62).
+- Verified (Playwright, `next start`): pan from 0 to -1456 px across the pin, trail clip grows
+  to the last stop, cards drop in order; focusing the last stop brings it fully into view; reduced
+  motion shows the static map; phone draws the trail and drops pins; no horizontal scroll; no
+  console errors.
 
 ### 2026-09-23 (r) · `phase-2/bounty-board`
 - Araf: check Vercel once per phase, not after every step (step PRs merge without waiting).
