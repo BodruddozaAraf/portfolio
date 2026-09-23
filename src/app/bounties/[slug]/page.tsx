@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { CaseStudy } from "@/components/case-study/CaseStudy";
 import { getProject, projects } from "@/content";
 import { bountyBodies, type BountySlug } from "@/content/case-studies";
+import { openGraphBase } from "@/lib/site";
 
 // /bounties/[slug]: one case study per bounty. Facts come from projects.ts, prose from the MDX
 // body (D44). Only the four known slugs are built; anything else is a 404.
@@ -19,8 +20,15 @@ export async function generateMetadata(
   const project = getProject((await props.params).slug);
   if (!project) return {};
   return {
-    title: `${project.name}: ${project.tagline} · Bodruddoza Araf`,
+    title: `${project.name}: ${project.tagline}`,
     description: `${project.bountyTitle}. ${project.name}, ${project.tagline}. Built with ${project.stackLine}.`,
+    alternates: { canonical: `/bounties/${project.slug}` },
+    openGraph: {
+      ...openGraphBase,
+      url: `/bounties/${project.slug}`,
+      type: "article",
+      title: `${project.name}: ${project.tagline}`,
+    },
   };
 }
 

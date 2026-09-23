@@ -4,6 +4,7 @@ import { CaseStudy } from "@/components/case-study/CaseStudy";
 import { Engraving } from "@/components/journal/Engraving";
 import { projects, research } from "@/content";
 import { researchBodies } from "@/content/case-studies";
+import { openGraphBase } from "@/lib/site";
 
 // /research/[slug]: the thesis account. One slug today (image-completion); figures and sample
 // outputs are future work (D17), so the engraving stands in for them, credited.
@@ -15,7 +16,14 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: `${research.headline}: image completion thesis · Bodruddoza Araf`,
+  title: `${research.headline}: image completion thesis`,
+  alternates: { canonical: `/research/${research.slug}` },
+  openGraph: {
+    ...openGraphBase,
+    url: `/research/${research.slug}`,
+    type: "article",
+    title: `${research.headline}: image completion thesis`,
+  },
   description: `${research.title}. ${research.type}, defended ${research.defended}, ${research.institution}. 27.60 dB PSNR, 0.861 SSIM.`,
 };
 

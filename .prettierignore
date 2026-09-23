@@ -8,3 +8,4 @@ package-lock.json
 skills-lock.json
 public/textures/*.json
 public/engravings/*.json
+public/sketches/*.json

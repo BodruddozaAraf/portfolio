@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Source for the app icons (A14, the B.A. monogram stamp). Rendered by scripts/brand/render.mjs. -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rye&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 512px;
+        height: 512px;
+        background: transparent;
+      }
+      .seal {
+        position: absolute;
+        inset: 16px;
+        border-radius: 50%;
+        background: #5c3a21 url(../../public/textures/leather.webp);
+        background-size: 320px;
+        display: grid;
+        place-items: center;
+        box-shadow:
+          inset 0 0 0 14px #5c3a21,
+          inset 0 0 0 20px #f3ead6,
+          inset 0 0 0 30px #5c3a21,
+          inset 0 0 0 34px #f3ead6;
+      }
+      .seal span {
+        font-family: Rye, serif;
+        font-size: 190px;
+        line-height: 1;
+        color: #f3ead6;
+        letter-spacing: -0.02em;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="seal"><span>B.A.</span></div>
+  </body>
+</html>

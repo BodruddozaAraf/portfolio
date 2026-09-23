@@ -31,7 +31,7 @@ import ProseSample from "./prose-sample.mdx";
 import { contrast, readColorTokens, type ColorToken } from "./tokens";
 
 export const metadata: Metadata = {
-  title: "Styleguide · The Outlaw's Journal",
+  title: "Styleguide",
   robots: { index: false, follow: false },
 };
 
