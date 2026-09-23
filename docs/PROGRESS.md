@@ -41,7 +41,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.4 journal-primitives (Page, Spread, HandwrittenText, SketchSVG, Engraving, Poster, Pin, Stamp, InkUnderline, KeyText)
 - [x] 1.5 sections-static (all ten sections, every 02 fact on the home page)
 - [x] 1.6 case-studies (4 bounties + thesis, MDX bodies, copy check in lint)
-- [ ] 1.7 plain-mode
+- [x] 1.7 plain-mode (`/plain`, persisted switch, print styles)
 - [ ] 1.8 seo-meta
 - [ ] 1.9 contact-form (client-side Gmail/mailto)
 - [ ] 1.10 deploy + bodruddozaaraf.me DNS → `v0.1.0`
@@ -64,6 +64,17 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (k) · `phase-1/plain-mode`
+- Merged PR #7. Araf asked for the rest of Phase 1 (1.7 to 1.10) end to end, PRs merged by the
+  agent, then a hand-off prompt for a new chat.
+- `/plain`: every fact in resume order, one column, static, prints ink-on-white with link URLs.
+  Switch "Keep the whole journal plain" (`PlainModeSwitch`, `src/lib/preferences.ts`, Zustand
+  persist with a safe storage). `next/script` beforeInteractive sets `html[data-plain]`; CSS
+  drops grain, tilts and motion (D52). Verified toggle, persistence, pre-paint apply, no console
+  errors in dev and production.
+- Resume PDF withheld (D53): the resume has the phone number. Links appear once a phone-free
+  `public/resume.pdf` exists.
 
 ### 2026-09-23 (j) · `phase-1/case-studies`
 - Merged PR #6. Built `/bounties/[slug]` x4 and `/research/image-completion` (SSG,

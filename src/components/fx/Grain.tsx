@@ -4,7 +4,7 @@ export function Grain() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-(--z-grain) bg-[url('/textures/grain.webp')] bg-size-[160px_160px] opacity-20"
+      className="grain-layer pointer-events-none fixed inset-0 z-(--z-grain) bg-[url('/textures/grain.webp')] bg-size-[160px_160px] opacity-20"
     />
   );
 }

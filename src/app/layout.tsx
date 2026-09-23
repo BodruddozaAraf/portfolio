@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Grain } from "@/components/fx/Grain";
 import { profile } from "@/content";
+import { PREFERENCES_KEY } from "@/lib/preferences-key";
 import { fontVariables } from "./fonts";
 import "./globals.css";
 
@@ -13,10 +15,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${fontVariables} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${fontVariables} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <body className="paper flex min-h-full flex-col">
         {children}
         <Grain />
+        {/* Apply the stored Plain mode choice before hydration, so effects never flash */}
+        <Script id="plain-mode" strategy="beforeInteractive">
+          {`try{var p=JSON.parse(localStorage.getItem(${JSON.stringify(PREFERENCES_KEY)})||"{}");document.documentElement.dataset.plain=p.state&&p.state.plainMode?"true":"false"}catch(e){}`}
+        </Script>
       </body>
     </html>
   );
