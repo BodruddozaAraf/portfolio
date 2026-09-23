@@ -42,7 +42,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.5 sections-static (all ten sections, every 02 fact on the home page)
 - [x] 1.6 case-studies (4 bounties + thesis, MDX bodies, copy check in lint)
 - [x] 1.7 plain-mode (`/plain`, persisted switch, print styles)
-- [ ] 1.8 seo-meta
+- [x] 1.8 seo-meta (Lighthouse SEO 100, a11y 100, BP 100; perf 77 owed to 5.1)
 - [ ] 1.9 contact-form (client-side Gmail/mailto)
 - [ ] 1.10 deploy + bodruddozaaraf.me DNS → `v0.1.0`
 
@@ -64,6 +64,14 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (l) · `phase-1/seo-meta`
+- Merged PR #8 (1.7). Metadata base, title template, canonicals, shared OG base, JSON-LD Person,
+  sitemap, robots, themed 404, favicon set and OG/Twitter image (D54), rendered by
+  `scripts/brand/render.mjs` (run with `PLAYWRIGHT_CHROMIUM` and a `NODE_PATH` that has
+  `playwright-core`). Lighthouse (production build): SEO/A11y/BP 100 on /, /plain, bounties,
+  research. Home perf 77 simulated: hero sketch moved to a raster CSS mask, HTML 161 KB to 74 KB
+  gzip (D55). Remaining perf work belongs to step 5.1.
 
 ### 2026-09-23 (k) · `phase-1/plain-mode`
 - Merged PR #7. Araf asked for the rest of Phase 1 (1.7 to 1.10) end to end, PRs merged by the

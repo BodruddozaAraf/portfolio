@@ -1,4 +1,5 @@
 import { TopBar } from "@/components/nav/TopBar";
+import { PersonJsonLd } from "@/components/seo/PersonJsonLd";
 import { About } from "@/components/sections/About";
 import { BountyBoard } from "@/components/sections/BountyBoard";
 import { CampStories } from "@/components/sections/CampStories";
@@ -20,6 +21,7 @@ export default function Home() {
       >
         Skip to the journal
       </a>
+      <PersonJsonLd />
       <TopBar />
       <main id="content" className="flex-1">
         <Hero />

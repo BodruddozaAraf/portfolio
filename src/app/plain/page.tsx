@@ -19,7 +19,7 @@ import { resumeAvailable } from "@/lib/public-files";
 // column, printable, no effects. The same facts as the journal, in resume order.
 
 export const metadata: Metadata = {
-  title: `${profile.name}, plain`,
+  title: "Plain mode",
   description: profile.summary,
   alternates: { canonical: "/plain" },
 };
