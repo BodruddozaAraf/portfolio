@@ -171,6 +171,53 @@
     text-decoration-thickness: 1px;
   }
 
+  /* Plain mode (the switch on /plain): the journal without effects. Later phases also check the
+     store to skip smooth scroll and 3D. */
+  [data-plain="true"] .grain-layer {
+    display: none;
+  }
+  [data-plain="true"] [style*="rotate"] {
+    rotate: none !important;
+  }
+  [data-plain="true"] *,
+  [data-plain="true"] ::before,
+  [data-plain="true"] ::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Print: ink on white, no surfaces or chrome, and every link shows where it goes. */
+  @media print {
+    html,
+    body,
+    .paper,
+    .paper-light,
+    .paper-dark,
+    .leather,
+    .wood,
+    .night {
+      background: white !important;
+      color: black !important;
+    }
+    .grain-layer,
+    .print-hidden {
+      display: none !important;
+    }
+    a[href^="http"]::after {
+      content: " (" attr(href) ")";
+      font-size: 0.85em;
+      word-break: break-all;
+    }
+    h2,
+    h3 {
+      break-after: avoid;
+    }
+    li,
+    article {
+      break-inside: avoid;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;

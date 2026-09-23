@@ -7,6 +7,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { microcopy, profile } from "@/content";
+import { resumeAvailable } from "@/lib/public-files";
 import { ChapterTitle } from "./ChapterTitle";
 
 // 9. Telegram Office. Phase 1 ships the no-JS path first: a plain mailto that always works, and
@@ -23,7 +24,9 @@ export function Telegram() {
       text: "linkedin.com/in/bodruddoza-araf",
       icon: LinkedinLogo,
     },
-    { ...resume, text: "Resume (PDF)", icon: FilePdf },
+    ...(resumeAvailable
+      ? [{ ...resume, text: "Resume (PDF)", icon: FilePdf }]
+      : []),
   ];
   const subject = microcopy.telegram.subject.replace("{name}", "a visitor");
   return (
