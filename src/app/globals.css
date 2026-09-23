@@ -178,14 +178,15 @@
   }
 
   /* The Chapter I loader (src/components/fx/Loader.tsx) shows only when the boot script asks for
-     it, with the tip it picked. If scripts never run, it fades out on its own at 4s. */
+     it, with the tip it picked. CSS alone guarantees the 3.5s cap: from 3s it fades out on its
+     own, however late the scripts arrive (on a slow first load they hydrate after that). */
   .loader,
   .loader-tip {
     display: none;
   }
   [data-loader="show"] .loader {
     display: grid;
-    animation: loader-fallback 0.5s var(--ease-journal) 4s forwards;
+    animation: loader-fallback 0.5s var(--ease-journal) 3s forwards;
   }
   [data-tip="0"] .loader-tip[data-tip="0"],
   [data-tip="1"] .loader-tip[data-tip="1"],
