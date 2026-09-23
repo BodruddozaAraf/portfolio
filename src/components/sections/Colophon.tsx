@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DeadEyeButton } from "@/components/fx/DeadEyeButton";
 import { microcopy, profile } from "@/content";
 
 // 10. Colophon. Who made it, with what, and whose art it borrows (always credited, D45).
@@ -32,7 +33,10 @@ export function Colophon() {
               Plain mode
             </Link>
           </p>
-          <p className="font-type mt-4">&copy; 2026 {profile.name}</p>
+          <div className="mt-4 flex items-center justify-between gap-4">
+            <p className="font-type">&copy; 2026 {profile.name}</p>
+            <DeadEyeButton />
+          </div>
         </div>
       </div>
     </footer>

@@ -610,6 +610,92 @@
     }
   }
 
+  /* Dead Eye (src/components/fx/DeadEye.tsx): the page seen through a steadied eye. One layer
+     over everything that clicks pass through: sepia, drained color, a red cast and dark
+     corners, over the canvas too (backdrop-filter). The meter drains over the six seconds and
+     the red X marks sit on the page where each link was chosen. */
+  .dead-eye {
+    z-index: var(--z-wheel);
+    pointer-events: none;
+    backdrop-filter: sepia(0.85) saturate(0.45) contrast(1.22) brightness(0.82);
+    background:
+      radial-gradient(
+        closest-side,
+        transparent 40%,
+        color-mix(in srgb, var(--color-night) 80%, transparent) 120%
+      ),
+      color-mix(in srgb, var(--color-blood) 22%, transparent);
+    animation: dead-eye-in 0.35s var(--ease-journal) both;
+  }
+  .dead-eye-meter {
+    position: absolute;
+    left: 50%;
+    bottom: 1.5rem;
+    translate: -50% 0;
+    display: grid;
+    justify-items: center;
+    gap: 0.45rem;
+    padding: 0.6rem 1rem 0.75rem;
+    background: color-mix(in srgb, var(--color-night) 88%, transparent);
+    color: var(--color-paper-light);
+    font-size: var(--text-small);
+    letter-spacing: var(--tracking-caps);
+    text-transform: uppercase;
+  }
+  .dead-eye-bar {
+    width: 10rem;
+    height: 3px;
+    background: color-mix(in srgb, var(--color-paper-light) 25%, transparent);
+  }
+  .dead-eye-bar > div {
+    height: 100%;
+    background: var(--color-blood);
+    transform-origin: left;
+    animation-name: dead-eye-drain;
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+  }
+  .dead-eye-marks {
+    position: absolute;
+    inset: 0 auto auto 0;
+    z-index: var(--z-wheel);
+    pointer-events: none;
+  }
+  .dead-eye-mark {
+    position: absolute;
+    width: 2.75rem;
+    height: 2.75rem;
+    translate: -50% -50%;
+    fill: none;
+    stroke: var(--color-blood);
+    stroke-width: 4;
+    stroke-linecap: round;
+    filter: drop-shadow(
+      0 0 3px color-mix(in srgb, var(--color-paper-light) 60%, transparent)
+    );
+    animation: dead-eye-mark 0.18s var(--ease-journal) both;
+  }
+  .dead-eye-mark[data-fading] {
+    opacity: 0;
+    transition: opacity 0.5s var(--ease-journal);
+  }
+  @keyframes dead-eye-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes dead-eye-drain {
+    to {
+      transform: scaleX(0);
+    }
+  }
+  @keyframes dead-eye-mark {
+    from {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
   /* Research's torn page (src/components/motion/ReconstructMoment.tsx): the canvas lies exactly
      over the plate, and the pipeline stage doing the rebuilding is inked in. */
   .reconstruct-canvas {
