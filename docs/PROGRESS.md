@@ -76,7 +76,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 3: 3D Camp
 - [x] 3.1 r3f-setup · [x] 3.2 camp-environment · [x] 3.3 campfire · [x] 3.4 props-horse
-- [x] 3.5 scroll-camera · [ ] 3.6 postprocessing · [x] 3.7 research-reconstruct → `v0.3.0`
+- [x] 3.5 scroll-camera · [x] 3.6 postprocessing · [x] 3.7 research-reconstruct → `v0.3.0` (tagged)
 
 ### Phase 4: Signature features
 - [ ] 4.1 weapon-wheel · [ ] 4.2 dead-eye · [ ] 4.3 sound · [ ] 4.4 og-images → `v0.4.0`
