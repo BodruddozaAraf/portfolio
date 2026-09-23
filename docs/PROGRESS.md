@@ -76,6 +76,14 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
 
+### 2026-09-23 (w) · `fix/loader-cap` · Phase 2 Vercel check
+- Phase 2 Vercel check: previews of PRs #13 to #18 passed; production deploy of `5ee80b2` READY.
+  Live smoke test: loader, smooth scroll, Wanted counts, trail ride, board Back restore (3272),
+  `/#send-word` deep link, reduced motion: all as local, no console errors.
+- Found live: on a cold load the page hydrated at about 5s, so the loader lifted late (its CSS
+  fallback started at 4s). The fallback now fades from 3s, so the 3.5s cap holds without scripts
+  (D59 updated). Then `v0.2.0` tagged.
+
 ### 2026-09-23 (v) · `phase-2/grain` · Phase 2 complete
 - Grain flickers at 8 frames a second by transform (timer, paused when hidden), still under
   reduced motion, hidden in Plain mode (D65). SplitText `aria: "none"` fixed the About `<p>`

@@ -10,8 +10,9 @@ import { useLenis } from "@/lib/lenis";
 // The server always renders the card; CSS shows it only when the boot script set
 // html[data-loader="show"] (first page of a session, on "/", not in Plain mode or under reduced
 // motion). It lifts once the sketch is drawn and the fonts and page have loaded, and never later
-// than 3.5s after navigation. Any click, key, wheel or touch lifts it at once. If scripts fail,
-// a CSS fallback fades it out at 4s. It is decorative, so assistive tech skips it.
+// than 3.5s after navigation. Any click, key, wheel or touch lifts it at once. CSS fades it out
+// from 3s regardless, so the cap holds even when scripts arrive late or fail. It is decorative,
+// so assistive tech skips it.
 
 const SKETCH = "/sketches/campfire.svg";
 const MAX_MS = 3500;
