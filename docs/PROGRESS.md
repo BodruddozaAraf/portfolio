@@ -4,14 +4,13 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 2 (2D motion). Step 2.1 motion-infra merged.
+- **Current phase:** Phase 2 (2D motion). Steps 2.1 and 2.2 merged.
 - **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Start step 2.2 on `phase-2/loader`.
-- **Next action:** step 2.2 loader ("Chapter I" title card, self-drawing campfire sketch, tips;
-  spec `docs/05-sections.md` section 0). Build on the motion layer from 2.1 (D58, DESIGN.md
-  "Motion"): ask `useMotionLevel()` first, import GSAP from `@/lib/gsap`, use `dur`/`"journal"`
-  from `@/lib/motion`, stop the scroll with `useLenis()?.stop()`. Reduced motion shows no loader.
+- **Active branch:** none. Start step 2.3 on `phase-2/about-wanted`.
+- **Next action:** step 2.3 about-wanted (spec `docs/05-sections.md` sections 2 and 3). Build on
+  the motion layer (D58, DESIGN.md "Motion"): ask `useMotionLevel()` first, GSAP from
+  `@/lib/gsap`, `dur`/`"journal"` from `@/lib/motion`.
 - **Waiting on Araf (the agent's permissions block DNS/domain changes):**
   1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
      `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
@@ -59,7 +58,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.10 deploy (live on Vercel, `v0.1.0`); custom domain DNS waiting on Araf (D57)
 
 ### Phase 2: 2D Motion
-- [x] 2.1 motion-infra · [ ] 2.2 loader · [ ] 2.3 about-wanted · [ ] 2.4 bounty-board
+- [x] 2.1 motion-infra · [x] 2.2 loader · [ ] 2.3 about-wanted · [ ] 2.4 bounty-board
 - [ ] 2.5 map-trail · [ ] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
 
 ### Phase 3: 3D Camp
@@ -76,6 +75,19 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (p) · `phase-2/loader`
+- Araf: finish Phase 2, then check in.
+- "Chapter I: Dhaka" loader (`src/components/fx/Loader.tsx`, D59): server-rendered card, shown by
+  the new pre-paint boot script (`src/lib/boot-script.ts`) on the first page of a session, only on
+  `/`, never in Plain mode or under reduced motion. The campfire sketch draws in graphite from
+  `public/sketches/campfire.svg`; the card lifts at about 2.7s, capped at 3.5s; any input skips.
+  The boot script also fixes Plain mode applying after first paint (the old `beforeInteractive`
+  tag ran late). `microcopy.loaderTitle`; `src/lib/features.ts` hides tips for unbuilt features.
+- Verified (Playwright, `next start`): first visit shows it (tip chosen), lifts at 2.6 to 2.7s
+  on desktop and phone, reload skips, Enter skips, off with reduced motion, Plain mode, no JS,
+  and when a case study is the first page. No console errors in production or dev. Lighthouse
+  mobile perf 73 to 74 (unchanged), A11y/BP/SEO 100.
 
 ### 2026-09-23 (o) · `phase-2/motion-infra`
 - Araf: run Phase 2 step by step (branch, build, verify, PR, merge, PROGRESS), checking in after

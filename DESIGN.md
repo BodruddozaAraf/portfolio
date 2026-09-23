@@ -335,6 +335,9 @@ Durations come from `src/lib/motion.ts`, a mirror of the `--dur-*` tokens that `
 `Reveal` (`src/components/fx/Reveal.tsx`) is the supporting-content entrance: a 24px rise over
 800ms, with an optional 60ms stagger for things that read as a list.
 
+The **Chapter I loader** (`src/components/fx/Loader.tsx`) is the one place the site makes a
+visitor wait: first page of a session only, 3.5s at most, skipped by any input.
+
 **The Still Fallback Rule.** The server render is the finished page. Motion may only set content
 back from its final state on the client, and only where the visitor cannot see it yet (below the
 fold at hydration). A failed script or a mid-page reload never leaves text hidden.

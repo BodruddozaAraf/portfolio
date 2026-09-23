@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Grain } from "@/components/fx/Grain";
 import { SmoothScroll } from "@/components/fx/SmoothScroll";
-import { profile } from "@/content";
-import { PREFERENCES_KEY } from "@/lib/preferences-key";
+import { microcopy, profile } from "@/content";
+import { bootScript } from "@/lib/boot-script";
+import { isLive } from "@/lib/features";
 import { SITE_URL } from "@/lib/site";
 import { fontVariables } from "./fonts";
 import "./globals.css";
@@ -41,13 +41,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       suppressHydrationWarning
     >
       <body className="paper flex min-h-full flex-col">
+        {/* Before anything paints: Plain mode, and whether the loader shows (boot-script.ts) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: bootScript(microcopy.loadingTips.filter(isLive).length),
+          }}
+        />
         {children}
         <Grain />
         <SmoothScroll />
-        {/* Apply the stored Plain mode choice before hydration, so effects never flash */}
-        <Script id="plain-mode" strategy="beforeInteractive">
-          {`try{var p=JSON.parse(localStorage.getItem(${JSON.stringify(PREFERENCES_KEY)})||"{}");document.documentElement.dataset.plain=p.state&&p.state.plainMode?"true":"false"}catch(e){}`}
-        </Script>
       </body>
     </html>
   );

@@ -177,6 +177,30 @@
     text-decoration-thickness: 1px;
   }
 
+  /* The Chapter I loader (src/components/fx/Loader.tsx) shows only when the boot script asks for
+     it, with the tip it picked. If scripts never run, it fades out on its own at 4s. */
+  .loader,
+  .loader-tip {
+    display: none;
+  }
+  [data-loader="show"] .loader {
+    display: grid;
+    animation: loader-fallback 0.5s var(--ease-journal) 4s forwards;
+  }
+  [data-tip="0"] .loader-tip[data-tip="0"],
+  [data-tip="1"] .loader-tip[data-tip="1"],
+  [data-tip="2"] .loader-tip[data-tip="2"],
+  [data-tip="3"] .loader-tip[data-tip="3"],
+  [data-tip="4"] .loader-tip[data-tip="4"] {
+    display: block;
+  }
+  @keyframes loader-fallback {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
   /* Plain mode (the switch on /plain): the journal without effects. Script-driven motion (Lenis,
      GSAP, later 3D) reads the same store through useMotionLevel. */
   [data-plain="true"] .grain-layer {

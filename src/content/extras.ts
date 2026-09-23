@@ -75,6 +75,7 @@ export const microcopy: Microcopy = {
     reward: "REWARD: one full-time offer.",
     available: "Available from October 2026.",
   },
+  loaderTitle: "Chapter I: Dhaka",
   loadingTips: [
     {
       text: "Tip: Idempotency keys stop a nervous customer from buying the same saddle twice.",
