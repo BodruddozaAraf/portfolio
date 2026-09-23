@@ -7,9 +7,9 @@
 - **Current phase:** Phase 5 (polish and launch) in progress. Sound is in "Later" (D75).
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-5/perf-pass` (5.1). Next: `phase-5/a11y-pass` (5.2).
-- **Next action:** 5.2 accessibility pass (keyboard, screen reader semantics, contrast, reduced
-  motion). Known item: the 404's outline "Plain mode" button is nearly invisible on the paper.
+- **Active branch:** `phase-5/a11y-pass` (5.2). Next: `phase-5/cross-browser` (5.3).
+- **Next action:** 5.3 cross-browser (Chromium, Firefox and WebKit engines through Playwright;
+  real iOS Safari and Android only on Araf's devices).
 - **Araf (2026-09-23, D74):** load speed and size are not strict; performance budgets are
   guidance now. The loading screen must be animated from the first paint, never a blank wait.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
@@ -83,12 +83,27 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 4.1 weapon-wheel · [x] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [x] 4.4 og-images → `v0.4.0` (tagged)
 
 ### Phase 5: Polish and launch
-- [x] 5.1 perf · [ ] 5.2 a11y · [ ] 5.3 cross-browser · [ ] 5.4 tests/CI · [ ] 5.5 launch → `v1.0.0`
+- [x] 5.1 perf · [x] 5.2 a11y · [ ] 5.3 cross-browser · [ ] 5.4 tests/CI · [ ] 5.5 launch → `v1.0.0`
 
 (Ask Arthur AI chat was dropped for v1; see D20 and roadmap "Later".)
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-24 (an) · `phase-5/a11y-pass`
+- Audits: axe (WCAG 2.2 A/AA and best practice) over 9 routes in 4 modes (desktop, phone,
+  reduced motion, Plain mode); a contrast script for text on textured surfaces (axe skips
+  those); a keyboard walk flagging stops that are invisible, off screen or without a ring; a
+  reduced-motion audit (running animations, canvas, smooth scroll); heading, landmark and name
+  checks from the accessibility tree; reflow at 320px.
+- Fixed (D81): paper sheets carry ink surface colours (the 404's outline button, focus rings in
+  sheets), a skip link on every page via `TopBar`, one `main` from the case study poster down,
+  Plain mode's banner, focusable code blocks, trail stops show at once on focus, the poster
+  focus ring inside the paper.
+- Verified: axe clean in all 36 runs; Lighthouse accessibility 100 on home and case study;
+  reduced motion and Plain mode run no long or looping animation, no canvas, no Lenis; no
+  sideways scroll at 320px; one h1 per page, no skipped levels, every control and image named.
+  NVDA not available here (noted in D81). Types, lint, tests, format, detector clean.
 
 ### 2026-09-24 (am) · `phase-5/perf-pass`
 - Araf: "Go on with phase 5". Bundle analysis (`next experimental-analyze --output`, read with a

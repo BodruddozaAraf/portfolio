@@ -24,14 +24,8 @@ export default function Home() {
         title={microcopy.loaderTitle}
         tips={microcopy.loadingTips.filter(isLive).map((t) => t.text)}
       />
-      <a
-        href="#about"
-        className="night text-small fixed top-3 left-3 z-50 -translate-y-24 px-4 py-2 focus:translate-y-0"
-      >
-        Skip to the journal
-      </a>
       <PersonJsonLd />
-      <TopBar />
+      <TopBar skip={{ href: "#about", label: "Skip to the journal" }} />
       <main id="content" className="flex-1">
         <Hero />
         <About />

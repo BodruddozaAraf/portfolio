@@ -45,8 +45,10 @@ const components: MDXComponents = {
   ),
   hr: () => <hr className="border-ink/15 my-12" />,
   code: (props) => <code className="font-code text-[0.9em]" {...props} />,
+  // focusable, so a keyboard can scroll a code block wider than the column (WCAG 2.1.1)
   pre: (props) => (
     <pre
+      tabIndex={0}
       className="paper-dark text-small shadow-pasted my-6 max-w-full overflow-x-auto p-5 leading-relaxed"
       {...props}
     />

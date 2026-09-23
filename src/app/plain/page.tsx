@@ -45,14 +45,14 @@ export default function PlainPage() {
   ];
   return (
     <div className="paper-light min-h-[100dvh]">
-      <div className="print-hidden border-ink/15 border-b">
+      <header className="print-hidden border-ink/15 border-b">
         <div className="text-small mx-auto flex max-w-3xl flex-wrap items-center justify-between gap-4 px-(--gutter) py-4">
           <Link href="/" className={link}>
             Open the journal
           </Link>
           <PlainModeSwitch />
         </div>
-      </div>
+      </header>
 
       <main
         id="content"

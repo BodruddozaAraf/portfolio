@@ -58,116 +58,129 @@ export function CaseStudy({
 }: CaseStudyProps) {
   return (
     <PageTurn>
+      {/* one main landmark from the poster down, so the skip link lands on the title (5.2); the
+          board runs behind the bar and the poster, the account sits on the page's paper */}
       <div className="wood">
         <TopBar surface="inherit" />
-        <header className="shell grid items-center gap-10 pt-6 pb-16 md:pt-10 md:pb-24 lg:grid-cols-[minmax(0,32rem)_minmax(0,1fr)] lg:gap-16">
-          <ViewTransition
-            name={`poster-${seed}`}
-            share="poster-morph"
-            default="none"
-          >
-            <Poster seed={seed} className="text-ink">
-              <h1 className="font-display text-h1 tracking-poster uppercase">
-                {title}
-              </h1>
-              {posterLine ? (
-                <p className="text-lead mt-3 italic">{posterLine}</p>
-              ) : null}
-              <p className="mt-6">
-                <span className="text-h4">{name}</span>
-                <span className="text-small text-ink-soft block">
-                  {tagline}
-                </span>
-              </p>
-              {metric ? (
-                <p className="mt-6">
-                  <InkUnderline seed={`${seed}-metric`}>
-                    <span className="font-type text-h3">{metric.value}</span>
-                  </InkUnderline>
-                  <span className="text-small mt-3 block">{metric.label}</span>
-                </p>
-              ) : null}
-              <div className="mt-7">
-                <Stamp seed={`${seed}-claimed`}>{stamp}</Stamp>
-              </div>
-            </Poster>
-          </ViewTransition>
-          <div className="text-paper-light">
-            {meta ? <div className="text-lead">{meta}</div> : null}
-            {links.length ? (
-              <ul className="mt-8 flex flex-wrap gap-4">
-                {links.map((l) => (
-                  <li key={l.href}>
-                    <Button
-                      href={l.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      variant="outline"
-                      icon={<Icon icon={ArrowSquareOut} />}
-                    >
-                      {l.label}
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    </Button>
-                  </li>
-                ))}
-              </ul>
-            ) : null}
-            <p className="mt-8">
-              <Link
-                href={back.href}
-                transitionTypes={TURN_BACK}
-                className="text-small hover:text-ember-glow inline-flex items-center gap-2 tracking-(--tracking-caps) uppercase underline-offset-[0.3em] hover:underline"
-              >
-                <Icon icon={ArrowLeft} />
-                {back.label}
-              </Link>
-            </p>
-          </div>
-        </header>
-      </div>
-
-      <main id="content" className="shell chapter">
-        <article className="max-w-(--measure) lg:max-w-4xl">{children}</article>
-
-        {screenshots?.length ? (
-          <Screens
-            title="The store, as it stands"
-            shots={screenshots}
-            seed={seed}
-          />
-        ) : null}
-
-        <section
-          aria-labelledby="stack-title"
-          className="border-ink/20 mt-20 max-w-3xl border-t pt-10"
-        >
-          <h2 id="stack-title" className="font-note text-h4 text-ink-soft">
-            The stack
-          </h2>
-          <p className="font-type text-lead mt-3">{stackLine}</p>
-        </section>
-
-        {next ? (
-          <nav aria-label="Next bounty" className="mt-20">
-            <Link
-              href={next.href}
-              transitionTypes={TURN_FORWARD}
-              className="group paper-light shadow-pinned ease-journal hover:shadow-lifted inline-flex max-w-full items-center gap-6 px-6 py-5 transition-[translate,box-shadow] duration-(--dur-hover) motion-safe:hover:-translate-y-0.5"
+        <main id="content">
+          <div className="shell grid items-center gap-10 pt-6 pb-16 md:pt-10 md:pb-24 lg:grid-cols-[minmax(0,32rem)_minmax(0,1fr)] lg:gap-16">
+            <ViewTransition
+              name={`poster-${seed}`}
+              share="poster-morph"
+              default="none"
             >
-              <span>
-                <span className="font-note text-lead text-ink-soft block">
-                  next on the board
-                </span>
-                <span className="font-display text-h3 tracking-poster group-hover:text-blood block uppercase">
-                  {next.title}
-                </span>
-                <span className="text-small block">{next.name}</span>
-              </span>
-              <Icon icon={ArrowRight} size={28} className="shrink-0" />
-            </Link>
-          </nav>
-        ) : null}
-      </main>
+              <Poster seed={seed} className="text-ink">
+                <h1 className="font-display text-h1 tracking-poster uppercase">
+                  {title}
+                </h1>
+                {posterLine ? (
+                  <p className="text-lead mt-3 italic">{posterLine}</p>
+                ) : null}
+                <p className="mt-6">
+                  <span className="text-h4">{name}</span>
+                  <span className="text-small text-ink-soft block">
+                    {tagline}
+                  </span>
+                </p>
+                {metric ? (
+                  <p className="mt-6">
+                    <InkUnderline seed={`${seed}-metric`}>
+                      <span className="font-type text-h3">{metric.value}</span>
+                    </InkUnderline>
+                    <span className="text-small mt-3 block">
+                      {metric.label}
+                    </span>
+                  </p>
+                ) : null}
+                <div className="mt-7">
+                  <Stamp seed={`${seed}-claimed`}>{stamp}</Stamp>
+                </div>
+              </Poster>
+            </ViewTransition>
+            <div className="text-paper-light">
+              {meta ? <div className="text-lead">{meta}</div> : null}
+              {links.length ? (
+                <ul className="mt-8 flex flex-wrap gap-4">
+                  {links.map((l) => (
+                    <li key={l.href}>
+                      <Button
+                        href={l.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        variant="outline"
+                        icon={<Icon icon={ArrowSquareOut} />}
+                      >
+                        {l.label}
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </Button>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              <p className="mt-8">
+                <Link
+                  href={back.href}
+                  transitionTypes={TURN_BACK}
+                  className="text-small hover:text-ember-glow inline-flex items-center gap-2 tracking-(--tracking-caps) uppercase underline-offset-[0.3em] hover:underline"
+                >
+                  <Icon icon={ArrowLeft} />
+                  {back.label}
+                </Link>
+              </p>
+            </div>
+          </div>
+
+          <div className="paper">
+            <div className="shell chapter">
+              <article className="max-w-(--measure) lg:max-w-4xl">
+                {children}
+              </article>
+
+              {screenshots?.length ? (
+                <Screens
+                  title="The store, as it stands"
+                  shots={screenshots}
+                  seed={seed}
+                />
+              ) : null}
+
+              <section
+                aria-labelledby="stack-title"
+                className="border-ink/20 mt-20 max-w-3xl border-t pt-10"
+              >
+                <h2
+                  id="stack-title"
+                  className="font-note text-h4 text-ink-soft"
+                >
+                  The stack
+                </h2>
+                <p className="font-type text-lead mt-3">{stackLine}</p>
+              </section>
+
+              {next ? (
+                <nav aria-label="Next bounty" className="mt-20">
+                  <Link
+                    href={next.href}
+                    transitionTypes={TURN_FORWARD}
+                    className="group paper-light shadow-pinned ease-journal hover:shadow-lifted inline-flex max-w-full items-center gap-6 px-6 py-5 transition-[translate,box-shadow] duration-(--dur-hover) motion-safe:hover:-translate-y-0.5"
+                  >
+                    <span>
+                      <span className="font-note text-lead text-ink-soft block">
+                        next on the board
+                      </span>
+                      <span className="font-display text-h3 tracking-poster group-hover:text-blood block uppercase">
+                        {next.title}
+                      </span>
+                      <span className="text-small block">{next.name}</span>
+                    </span>
+                    <Icon icon={ArrowRight} size={28} className="shrink-0" />
+                  </Link>
+                </nav>
+              ) : null}
+            </div>
+          </div>
+        </main>
+      </div>
       <Colophon />
     </PageTurn>
   );
