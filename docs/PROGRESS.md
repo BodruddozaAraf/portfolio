@@ -8,16 +8,18 @@
   step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-3/postprocessing` (3.6). Next: `phase-3/research-reconstruct` (3.7).
-- **Next action:** 3.7 research-reconstruct: the torn-page reconstruction for Research (spec 05
-  section 5), scroll-driven, with a static fallback. Then the Phase 3 Vercel check and `v0.3.0`.
-  Re-export the static hero with `scripts/hero/render.mjs` whenever the scene changes.
+- **Active branch:** `phase-3/research-reconstruct` (3.7). Next: `fix/loader-first-paint`.
+- **Next action:** Araf (mid-phase): loading speed and size are not strict; there must be a good
+  animated loading screen while the site loads, never a blank wait. Rework the loader so it
+  animates from the first paint (before scripts) and holds until the page and camp are ready.
+  Then the Phase 3 Vercel check, live smoke test, `v0.3.0`, check in with Araf.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
   Lighthouse mobile perf 72 to 73, A11y/BP/SEO 100. After 3.1: initial 279.8 KB, 3D chunk 235.5 KB
   (budget 350), models 0 MB. After 3.2: initial 279.8 KB, 3D chunk 240.5 KB, models 0 MB. After 3.3: 279.8 KB, 242.7 KB,
   0 MB. After 3.4: 279.7 KB, 245.1 KB, 0 MB models; static hero 21 KB (phone) or 34 KB (desktop)
   of AVIF; Lighthouse mobile perf 71 to 72, A11y/BP/SEO 100, CLS 0. After 3.5: 279.7 KB,
-  245.8 KB. After 3.6: 279.7 KB, 247.4 KB.
+  245.8 KB. After 3.6: 279.7 KB, 247.4 KB. After 3.7: 280.2 KB, 247.4 KB (the torn page is its own
+  small lazy chunk).
 - **Waiting on Araf:**
   1. Vercel > `portfolio` > Settings > Domains: make `bodruddozaaraf.me` (apex) the primary domain
      and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
@@ -75,7 +77,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 3: 3D Camp
 - [x] 3.1 r3f-setup · [x] 3.2 camp-environment · [x] 3.3 campfire · [x] 3.4 props-horse
-- [x] 3.5 scroll-camera · [ ] 3.6 postprocessing · [ ] 3.7 research-reconstruct → `v0.3.0`
+- [x] 3.5 scroll-camera · [ ] 3.6 postprocessing · [x] 3.7 research-reconstruct → `v0.3.0`
 
 ### Phase 4: Signature features
 - [ ] 4.1 weapon-wheel · [ ] 4.2 dead-eye · [ ] 4.3 sound · [ ] 4.4 og-images → `v0.4.0`
@@ -87,6 +89,13 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (ae) · `phase-3/research-reconstruct`
+- Torn page (D73): the Homer plate burnt through at its campfire, rebuilt on scroll as tokens,
+  refined cells, then detail; the pipeline stage doing the work is inked in beside it.
+- Verified (Playwright, dev and `next start`): frames at six scroll positions, stages light
+  100, 010, 001 in order; reduced motion, Plain mode and a `#research` deep link keep the plate
+  whole; no console errors. Initial JS +0.5 KB.
 
 ### 2026-09-23 (ad) · `phase-3/postprocessing`
 - Hand-written post for the high tier (D72): half-float scene target, dual-filter bloom, a

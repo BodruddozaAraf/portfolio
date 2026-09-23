@@ -2,6 +2,7 @@ import { ArrowDown } from "@phosphor-icons/react/ssr";
 import { Engraving } from "@/components/journal/Engraving";
 import { InkUnderline } from "@/components/journal/InkUnderline";
 import { KeyText } from "@/components/journal/KeyText";
+import { ReconstructMoment } from "@/components/motion/ReconstructMoment";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { research } from "@/content";
@@ -9,7 +10,9 @@ import { ChapterTitle } from "./ChapterTitle";
 import { TURN_FORWARD } from "@/lib/page-turn";
 
 // 5. The Torn Page. The thesis in plain figures: the three-stage pipeline, the metrics, what Araf
-// owned. The engraving stands in for the torn page until step 3.7 builds the reconstruction.
+// owned. The engraving is the torn page: with full motion it is burnt through where its fire
+// smoulders and rebuilds as the reader scrolls, stage by stage, the matching pipeline stage lit
+// beside it (ReconstructMoment). Everyone else sees the plate whole.
 
 export function Research() {
   const [lead, ...metrics] = research.metrics;
@@ -34,7 +37,10 @@ export function Research() {
           <ol className="mt-10 space-y-3" aria-label="Pipeline">
             {research.architecture.map((stage, i) => (
               <li key={stage}>
-                <p className="border-ink/40 text-lead border px-4 py-3">
+                <p
+                  data-stage={i}
+                  className="pipeline-stage border-ink/40 text-lead border px-4 py-3"
+                >
                   {stage}
                 </p>
                 {i < research.architecture.length - 1 ? (
@@ -57,14 +63,17 @@ export function Research() {
         </div>
 
         <div>
-          <Engraving
-            src="/engravings/camping-out-adirondacks.webp"
-            width={1600}
-            height={1074}
-            alt="Wood engraving: two men rest by a bark lean-to and a smouldering campfire on a lakeshore"
-            caption="Camping Out in the Adirondack Mountains, after Winslow Homer, 1874"
-            sizes="(min-width: 1024px) 45vw, 100vw"
-          />
+          {/* the plate's campfire smoulders about two thirds across, low down */}
+          <ReconstructMoment center={[0.66, 0.69]}>
+            <Engraving
+              src="/engravings/camping-out-adirondacks.webp"
+              width={1600}
+              height={1074}
+              alt="Wood engraving: two men rest by a bark lean-to and a smouldering campfire on a lakeshore"
+              caption="Camping Out in the Adirondack Mountains, after Winslow Homer, 1874"
+              sizes="(min-width: 1024px) 45vw, 100vw"
+            />
+          </ReconstructMoment>
           <dl className="border-ink/15 mt-10 border-t">
             <div className="border-ink/15 flex items-baseline justify-between gap-6 border-b py-4">
               <dt>{lead.label}</dt>

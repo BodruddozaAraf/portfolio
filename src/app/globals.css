@@ -453,6 +453,25 @@
     }
   }
 
+  /* Research's torn page (src/components/motion/ReconstructMoment.tsx): the canvas lies exactly
+     over the plate, and the pipeline stage doing the rebuilding is inked in. */
+  .reconstruct-canvas {
+    position: absolute;
+  }
+  .pipeline-stage {
+    transition:
+      border-color var(--dur-hover) var(--ease-journal),
+      background-color var(--dur-hover) var(--ease-journal);
+  }
+  .pipeline-stage[data-active] {
+    border-color: var(--color-ink);
+    background-color: color-mix(
+      in srgb,
+      var(--color-paper-light) 80%,
+      transparent
+    );
+  }
+
   /* The 3D camp (src/components/three/CampStage.tsx) fades in over the server-rendered hero once
      its first frames are drawn; until then, and for everyone without WebGL, the hero's own art
      is the picture. */
