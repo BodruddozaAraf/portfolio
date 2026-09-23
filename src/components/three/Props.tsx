@@ -7,7 +7,14 @@ import { billboard, haloFragment, ramp } from "./Campfire";
 import { groundHeight } from "./land";
 import { camp, campMaterial, tone } from "./materials";
 import { palette } from "./palette";
-import { BEDROLL, JOURNAL, LANTERN, POST, type Vec3 } from "./world";
+import {
+  BEDROLL,
+  JOURNAL,
+  JOURNAL_TURN,
+  LANTERN,
+  POST,
+  type Vec3,
+} from "./world";
 
 /** A spot on the ground itself. */
 export const onGround = ([x, , z]: Vec3, lift = 0): Vec3 => [
@@ -29,8 +36,12 @@ export function Journal({ cover }: { cover?: RefObject<Group | null> }) {
     () => campMaterial(tone("leather", { scale: 1.05 })),
     [],
   );
+  // ruled pages; the stripes also read as page edges on the sides of the block
   const pages = useMemo(
-    () => campMaterial(tone("paper-dark", { mix: "leather", amount: 0.2 })),
+    () =>
+      campMaterial(tone("paper-dark", { mix: "leather", amount: 0.12 }), {
+        defines: { RULED: "" },
+      }),
     [],
   );
   const strap = useMemo(
@@ -38,9 +49,10 @@ export function Journal({ cover }: { cover?: RefObject<Group | null> }) {
     [],
   );
   const { w, l, t, board } = BOOK;
-  const block = t - board * 2;
+  const leaf = 0.003;
+  const block = t - board * 2 - leaf;
   return (
-    <group position={onGround(JOURNAL)} rotation={[0, -0.42, 0]}>
+    <group position={onGround(JOURNAL)} rotation={[0, JOURNAL_TURN, 0]}>
       {/* back board */}
       <mesh material={leather} position={[0, board / 2, 0]}>
         <boxGeometry args={[w, board, l]} />
@@ -57,6 +69,13 @@ export function Journal({ cover }: { cover?: RefObject<Group | null> }) {
       <group ref={cover} position={[-w / 2, t - board / 2, 0]}>
         <mesh material={leather} position={[w / 2, 0, 0]}>
           <boxGeometry args={[w, board, l]} />
+        </mesh>
+        {/* the first leaf, glued inside the cover: the left page once the book is open */}
+        <mesh
+          material={pages}
+          position={[w / 2 - 0.004, -board / 2 - leaf / 2, 0]}
+        >
+          <boxGeometry args={[w - 0.014, leaf, l - 0.012]} />
         </mesh>
         {/* the wrap strap across the cover */}
         <mesh material={strap} position={[w / 2, board * 0.6, 0.02]}>

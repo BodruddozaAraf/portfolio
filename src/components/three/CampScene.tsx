@@ -1,9 +1,12 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
+import { useRef } from "react";
+import type { Group } from "three";
 import type { Tier } from "@/lib/device-tier";
 import { CameraRig } from "./CameraRig";
 import { CAPTURE_TIME, capture } from "./capture";
+import { dolly, ease } from "./dolly";
 import { Campfire } from "./Campfire";
 import { Horse } from "./Horse";
 import { camp } from "./materials";
@@ -20,11 +23,16 @@ import { DETAIL } from "./world";
 
 export function CampScene({ tier }: { tier: Exclude<Tier, "low"> }) {
   const detail = DETAIL[tier];
+  const cover = useRef<Group>(null);
   useFrame((state, delta) => {
     camp.uTime.value = capture
       ? CAPTURE_TIME
       : camp.uTime.value + Math.min(delta, 0.1);
     camp.uPixelRatio.value = state.viewport.dpr;
+    // the journal opens as the camera arrives over it (CameraRig reads the progress first)
+    if (cover.current)
+      cover.current.rotation.z =
+        ease(0.48, 0.84, dolly.progress) * Math.PI * 0.985;
   });
   const far = capture !== "near";
   const near = capture !== "far";
@@ -38,7 +46,7 @@ export function CampScene({ tier }: { tier: Exclude<Tier, "low"> }) {
       {near ? (
         <>
           <Campfire sparks={detail.sparks} />
-          <Props />
+          <Props cover={cover} />
           <Horse />
         </>
       ) : null}

@@ -3,7 +3,8 @@
 // mode (src/components/three/capture.ts) with the clock frozen:
 //   far   sky, stars, ridges, valley mist (opaque)
 //   near  the hillside, its trees, the camp, the fire and the horse (transparent above the land)
-// plus where the fire's heart lands, so the hero's CSS glow and embers sit on it at any size.
+// plus where the fire's heart and the journal land, so the hero's CSS glow and embers sit on the
+// fire at any size and the scroll zoom heads for the journal.
 // Needs the site running (npm run build && npx next start -p 3100) and a Chromium:
 //   BASE=http://localhost:3100 PLAYWRIGHT_CHROMIUM=<path> NODE_PATH=<dir with playwright-core> \
 //     node scripts/hero/render.mjs
@@ -51,18 +52,22 @@ async function grab(layer, { width, height, scale }) {
       .querySelector("[data-camp-stage] canvas")
       .toDataURL("image/png"),
     fire: window.__campCapture.fire,
+    journal: window.__campCapture.journal,
   }));
   await context.close();
   return {
     png: Buffer.from(result.png.split(",")[1], "base64"),
     fire: result.fire,
+    journal: result.journal,
   };
 }
+
+const point = (p) => ({ x: +p.x.toFixed(4), y: +p.y.toFixed(4) });
 
 const art = {};
 for (const [orientation, size] of Object.entries(SIZES)) {
   for (const layer of ["far", "near"]) {
-    const { png, fire } = await grab(layer, size);
+    const { png, fire, journal } = await grab(layer, size);
     const base = path.join(OUT, `${layer}-${orientation}`);
     const img = sharp(png);
     // gradients band easily: keep full chroma and a moderate quality
@@ -78,11 +83,12 @@ for (const [orientation, size] of Object.entries(SIZES)) {
     art[orientation] = {
       width,
       height,
-      fire: { x: +fire.x.toFixed(4), y: +fire.y.toFixed(4) },
+      fire: point(fire),
+      journal: point(journal),
     };
     console.log(
-      `${layer}-${orientation}: ${width}x${height}, fire at`,
-      art[orientation].fire,
+      `${layer}-${orientation}: ${width}x${height}`,
+      art[orientation],
     );
   }
 }

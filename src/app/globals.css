@@ -205,12 +205,39 @@
   /* The static hero (src/components/sections/Hero.tsx): the camp exported from the 3D scene as a
      far and a near layer per orientation. `background-position` at the fire's own fraction pins
      the fire to the same fraction of the section whatever the crop, so the glow and the embers can
-     sit on it. The far layer drifts down as the page scrolls (slower than the land); the glow and
-     embers move only for full motion, and stop once the 3D camp covers them. */
+     sit on it. The glow and embers move only for full motion, and stop once the 3D camp covers
+     them. The hero's scroll (the track, below) zooms the layers toward the journal: from the
+     picture's shape (--art) the container units give its drawn size under `cover` (--rw, --rh),
+     hence where the journal lands (--jx, --jy) and the move that centers it (--dx, --dy). */
   .hero-art {
     --fire-x: var(--fire-lx);
     --fire-y: var(--fire-ly);
+    --book-x: var(--book-lx);
+    --book-y: var(--book-ly);
+    --art: var(--art-l);
+    --rw: max(100cqw, 100cqh * var(--art));
+    --rh: max(100cqh, 100cqw / var(--art));
+    --jx: calc(
+      var(--fire-x) * 100cqw + (var(--book-x) - var(--fire-x)) * var(--rw)
+    );
+    --jy: calc(
+      var(--fire-y) * 100cqh + (var(--book-y) - var(--fire-y)) * var(--rh)
+    );
+    --dx: calc(50cqw - var(--jx));
+    --dy: calc(50cqh - var(--jy));
+    container-type: size;
     background: var(--color-night);
+  }
+  .hero-land {
+    position: absolute;
+    inset: 0;
+  }
+  /* the hero section is positioned here, not by a utility, so the track can make it sticky */
+  .hero-track > section {
+    position: relative;
+  }
+  .hero-paper {
+    opacity: 0;
   }
   .hero-layer {
     position: absolute;
@@ -237,6 +264,9 @@
     .hero-art {
       --fire-x: var(--fire-px);
       --fire-y: var(--fire-py);
+      --book-x: var(--book-px);
+      --book-y: var(--book-py);
+      --art: var(--art-p);
     }
     .hero-far {
       background-image: url(/hero/far-portrait.webp);
@@ -292,12 +322,90 @@
       animation-timing-function: linear;
       animation-iteration-count: infinite;
     }
-    @supports (animation-timeline: scroll()) {
+  }
+  /* phones: the far layer drifts as the hero scrolls away */
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) and (max-width: 47.99rem) {
       .hero-far {
         animation: hero-drift linear both;
         animation-timeline: scroll(root);
         animation-range: 0 100vh;
       }
+    }
+  }
+  /* The hero's track (step 3.5): with full motion on wider screens in browsers with scroll
+     timelines, the hero sticks for 150svh of scroll. Over it the copy steps back, the view goes
+     down to the journal (the 3D camera reads the same scroll; the picture zooms its layers, the
+     land faster than the far hills), and the paper of the next chapter comes up. Plain mode,
+     reduced motion, phones and other browsers keep a plain hero; the layout is known before the
+     first paint either way. */
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
+      :root:not([data-plain="true"]) {
+        .hero-track {
+          height: calc(100dvh + 150svh);
+        }
+        .hero-track > section {
+          position: sticky;
+          top: 0;
+        }
+        .hero-copy,
+        .hero-far,
+        .hero-land,
+        .hero-paper {
+          animation-timing-function: linear;
+          animation-fill-mode: both;
+          animation-timeline: scroll(root);
+        }
+        .hero-copy {
+          animation-name: hero-copy-out;
+          animation-range: 0 45svh;
+        }
+        .hero-far {
+          transform-origin: var(--jx) var(--jy);
+          animation-name: hero-dolly-far;
+          animation-range: 0 150svh;
+        }
+        .hero-land {
+          transform-origin: var(--jx) var(--jy);
+          animation-name: hero-dolly-land;
+          animation-range: 0 150svh;
+        }
+        .hero-paper {
+          animation-name: hero-paper-in;
+          animation-range: 108svh 150svh;
+        }
+      }
+    }
+  }
+  @keyframes hero-copy-out {
+    to {
+      opacity: 0;
+      transform: translateY(-3rem);
+    }
+  }
+  @keyframes hero-dolly-far {
+    to {
+      transform: translate(calc(var(--dx) * 0.35), calc(var(--dy) * 0.35))
+        scale(1.4);
+    }
+  }
+  /* the land always covers the frame: it grows faster than it moves up toward the journal */
+  @keyframes hero-dolly-land {
+    40% {
+      transform: translate(calc(var(--dx) * 0.25), calc(var(--dy) * 0.25))
+        scale(2.2);
+    }
+    to {
+      transform: translate(var(--dx), var(--dy)) scale(7);
+    }
+  }
+  @keyframes hero-paper-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
   [data-camp="ready"] .hero-glow,
