@@ -23,7 +23,8 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | A02 | Leather texture | AVIF ≤ 150 KB + normal map (3D) | 1/3 | 2D done: `public/textures/leather.webp` (114 KB, procedural); normal map in Phase 3 |
 | A03 | Wood planks (bounty board) | AVIF ≤ 150 KB | 1 | todo |
 | A04 | Map illustration (original, stylized) | SVG | 2 | todo |
-| A05 | Sketch set: campfire, desk/laptop, football, satchel items, horse, lantern | SVG line art | 1–2 | todo |
+| A05 | Sketch set: campfire, desk/laptop, football, satchel items, horse, lantern | SVG line art | 1–2 | campfire done (`src/content/sketches/campfire.ts`, traced from A17); rest todo |
+| A17 | Engraving plate: *Camping Out in the Adirondack Mountains* (Winslow Homer, 1874) | WebP 1600w, grayscale | 1 | done: `public/engravings/camping-out-adirondacks.webp` (471 KB, served resized by `next/image`) |
 | A06 | Portrait (sketch-style) for the wanted poster | SVG or high-contrast PNG | 1 | placeholder first (`picsum.photos/seed/wanted-portrait/...`, desaturated); real photo → sketch later (D13) |
 | A07 | Hero fallback render | AVIF 1920w + 960w | 3 (placeholder in 1) | todo |
 | A08 | Campfire, logs, stones | glTF (meshopt) | 3 | todo |
@@ -46,5 +47,6 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 ## Attribution log
 | Asset ID | File path | Source URL | Author | License |
 |---|---|---|---|---|
-| A01, A02, grain | `public/textures/*.webp` | `scripts/textures.mjs` | Original (this repo) | Own work |
+| A01, A02, grain, stamp wear | `public/textures/*.webp` | `scripts/textures.mjs` | Original (this repo) | Own work |
+| A17, A05 campfire | `public/engravings/camping-out-adirondacks.webp`, `src/content/sketches/campfire.ts` | https://commons.wikimedia.org/wiki/File:Camping_out_in_the_Adirondack_Mountains_SAAM-1967.66.4_1.jpg (Smithsonian American Art Museum 1967.66.4) | Winslow Homer (after), *Harper's Weekly*, 7 Nov 1874 | CC0 (public domain) |
 | Fonts | via `next/font/google` | fonts.google.com | Rye, IM Fell English, Homemade Apple, Caveat, Special Elite authors | OFL |
