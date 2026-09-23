@@ -99,10 +99,10 @@ function pairing(token: ColorToken, byName: Map<string, string>) {
 }
 
 const textured: Record<string, string> = {
-  paper: "bg-[url('/textures/paper.webp')] bg-size-[512px_512px]",
-  "paper-light": "bg-[url('/textures/paper.webp')] bg-size-[512px_512px]",
-  "paper-dark": "bg-[url('/textures/paper.webp')] bg-size-[512px_512px]",
-  leather: "bg-[url('/textures/leather.webp')] bg-size-[320px_320px]",
+  paper: "tex-paper",
+  "paper-light": "tex-paper",
+  "paper-dark": "tex-paper",
+  leather: "tex-leather",
 };
 
 function Swatch({

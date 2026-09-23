@@ -1,6 +1,8 @@
 // Generates the journal's tileable material textures (original, deterministic, no sources).
 //   node scripts/textures.mjs
-// Writes PNGs to .textures-tmp/, then converts them to WebP in public/textures/ with ffmpeg.
+// Writes PNGs to .textures-tmp/, then converts them to WebP in public/textures/ with ffmpeg, and
+// the surfaces also to AVIF with sharp (a third to a tenth of the bytes; CSS serves it through
+// image-set with the WebP as fallback, step 5.1).
 // Each texture is a transparent overlay: the page's own token color shows through it.
 
 import { execFileSync } from "node:child_process";
@@ -253,12 +255,14 @@ function embedOrigin(file, name) {
 
 mkdirSync(TMP, { recursive: true });
 mkdirSync(OUT, { recursive: true });
-for (const [name, make, quality] of [
-  ["paper", paper, 70],
-  ["leather", leather, 62],
-  ["grain", grain, 45],
-  ["stamp-wear", stampWear, 60],
-  ["wood", wood, 66],
+const { default: sharp } = await import("sharp");
+// [name, generator, WebP quality, AVIF quality (null: WebP only; the stamp is a mask)]
+for (const [name, make, quality, avif] of [
+  ["paper", paper, 70, 75],
+  ["leather", leather, 62, 55],
+  ["grain", grain, 45, 60],
+  ["stamp-wear", stampWear, 60, null],
+  ["wood", wood, 66, 55],
 ]) {
   const src = path.join(TMP, `${name}.png`);
   writeFileSync(src, make());
@@ -280,5 +284,11 @@ for (const [name, make, quality] of [
   const out = path.join(OUT, `${name}.webp`);
   embedOrigin(out, name);
   console.log(`wrote ${out}`);
+  if (avif) {
+    const a = path.join(OUT, `${name}.avif`);
+    await sharp(src).avif({ quality: avif, effort: 9 }).toFile(a);
+    embedOrigin(a, name);
+    console.log(`wrote ${a}`);
+  }
 }
 rmSync(TMP, { recursive: true, force: true });

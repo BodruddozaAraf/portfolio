@@ -8,6 +8,7 @@ import {
   telegramBody,
   telegramSubject,
   TELEGRAM_TO,
+  validateTelegram,
 } from "../src/lib/telegram.ts";
 
 const tricky =
@@ -48,4 +49,27 @@ assert.ok(
   `gmail length ${gmailComposeUrl(long).length}`,
 );
 
-console.log("telegram links: all checks passed");
+// validation: trims, reports the first problem per field, in the form's words
+const ok = validateTelegram({
+  name: "  Ada ",
+  email: " ada@example.com ",
+  message: "  Ten chars at least  ",
+});
+assert.ok(ok.ok);
+assert.deepEqual(ok.data, {
+  name: "Ada",
+  email: "ada@example.com",
+  message: "Ten chars at least",
+});
+const bad = validateTelegram({ name: "   ", email: "ada@", message: "short" });
+assert.ok(!bad.ok);
+assert.deepEqual(Object.keys(bad.errors).sort(), ["email", "message", "name"]);
+assert.equal(bad.errors.name, "Put your name on it.");
+for (const e of ["a@b.co", "first.last+tag@mail.example.org", "o'neil@x.io"])
+  assert.ok(validateTelegram({ ...t, email: e }).ok, e);
+for (const e of ["a@b", "a b@c.com", "@c.com", "a@.com", "a@c.c"])
+  assert.ok(!validateTelegram({ ...t, email: e }).ok, e);
+assert.ok(!validateTelegram({ ...t, name: "x".repeat(81) }).ok);
+assert.ok(!validateTelegram({ ...t, message: "x".repeat(MESSAGE_MAX + 1) }).ok);
+assert.ok(validateTelegram({ ...t, message: "x".repeat(MESSAGE_MAX) }).ok);
+console.log("telegram links and validation: all checks passed");

@@ -52,7 +52,7 @@ export function Grain() {
     <div
       ref={ref}
       aria-hidden
-      className="grain-layer pointer-events-none fixed -inset-40 z-(--z-grain) bg-[url('/textures/grain.webp')] bg-size-[160px_160px] opacity-20 will-change-transform"
+      className="grain-layer tex-grain pointer-events-none fixed -inset-40 z-(--z-grain) opacity-20 will-change-transform"
     />
   );
 }
