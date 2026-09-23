@@ -245,8 +245,9 @@ ink or leather, never black. Rest state is flat or pasted; lift is a response to
 **The Burn Rule.** A standalone sheet darkens toward its edges (the `burn` utility: inset leather
 shadow), never a drawn border.
 
-**The Tilt Rule.** Pasted and pinned items may rotate up to 0.6deg, from deterministic values so
-server and client render the same.
+**The Tilt Rule.** Pasted items and handwriting may rotate up to 0.6deg; posters hanging from a
+pin up to 1.5deg; stamps land up to 8deg off true. Every angle comes from a string seed
+(`src/lib/seed.ts`), so server and client render the same.
 
 ## Shapes
 
@@ -282,6 +283,32 @@ surface accent. External links open in a new tab and announce it to screen reade
 ### Icons
 Phosphor, regular weight only, 1.25em by default, colored by the text. Decorative icons are
 hidden from assistive tech; icon-only controls carry a label.
+
+### Journal primitives (signature)
+All server components in `src/components/journal/`, all static until Phase 2 animates them.
+- **Page:** aged paper with scorched edges and a leather-tinted gutter on its bound edge.
+- **Spread:** two pages on the leather cover (an 8 to 12px leather frame). Side by side from
+  1024px, meeting at the spine; stacked below, each bound on its left.
+- **HandwrittenText:** `entry` (Homemade Apple, 24 to 28px) or `note` (Caveat, 20 to 22px, faded
+  ink). Real text; optional `lines` for per-line reveal later; seeded tilt.
+- **SketchSVG:** a traced public-domain engraving (`src/content/sketches`) filled in faded ink with
+  a faint displacement wobble; every path has `pathLength=1` for draw-on in step 2.3.
+- **Engraving:** the raw engraving as a print: grayscale plate, paper tone lifted to white,
+  multiplied onto the page with a light sepia, always captioned with title, artist and year.
+- **Poster:** a fresh sheet with burn and the pinned shadow, one or two brass pins, seeded hang.
+- **Pin:** a brass tack, 16px, lit from the top left, shadow down and right.
+- **Stamp:** Rye caps in blood (or ink), a 3px border with an inner hairline, worn by a mask
+  (`public/textures/stamp-wear.webp`), multiplied into the paper; rect or round.
+- **InkUnderline:** a seeded pen stroke under a key figure, blood or ink, single or double.
+- **KeyText:** renders `**key term**` markers from content as italic `<strong>`.
+
+### Named Rules
+**The Plate Rule.** Period art is either traced (SketchSVG, for anything that draws itself) or
+shown raw as a plate (Engraving). Never redraw, recolor or composite it into a new picture, and
+always credit it.
+
+**The Legible Stamp Rule.** A stamp may overlap paper, never a fact. If it would cover text,
+it moves into the flow.
 
 ### Surfaces (signature)
 `paper`, `paper-light`, `paper-dark`, `leather` and `night` utilities set ground, texture and the

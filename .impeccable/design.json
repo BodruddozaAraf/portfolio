@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-22T21:56:38.963978+00:00",
+  "generatedAt": "2026-09-23T00:00:52.387862+00:00",
   "title": "Design System: The Outlaw's Journal",
   "extensions": {
     "colorMeta": {
@@ -462,8 +462,18 @@
       },
       {
         "name": "The Tilt Rule",
-        "body": "Pasted and pinned items may rotate up to 0.6deg, from deterministic values so server and client render the same.",
+        "body": "Pasted items and handwriting may rotate up to 0.6deg; posters hanging from a pin up to 1.5deg; stamps land up to 8deg off true. Every angle comes from a string seed (`src/lib/seed.ts`), so server and client render the same.",
         "section": "elevation"
+      },
+      {
+        "name": "The Plate Rule",
+        "body": "Period art is either traced (SketchSVG, for anything that draws itself) or shown raw as a plate (Engraving). Never redraw, recolor or composite it into a new picture, and always credit it.",
+        "section": "components"
+      },
+      {
+        "name": "The Legible Stamp Rule",
+        "body": "A stamp may overlap paper, never a fact. If it would cover text, it moves into the flow.",
+        "section": "components"
       }
     ],
     "dos": [

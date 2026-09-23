@@ -5,16 +5,19 @@
 
 ## Now
 - **Current phase:** Phase 1: Foundation
-- **Current step:** 1.3 content-layer done on `phase-1/content-layer` (PR open, awaiting Araf's merge).
-- **Active branch:** `phase-1/content-layer`
-- **Next action:** after the 1.3 PR merges, start step 1.4 on branch `phase-1/journal-primitives`:
-  `Page`, `Spread`, `HandwrittenText`, `SketchSVG`, `Stamp`, `Pin`, `Poster`, `InkUnderline`
-  (Button/TextLink/Icon exist), showcased on `/styleguide`. Read content via `@/content` only.
+- **Current step:** 1.4 journal-primitives done on `phase-1/journal-primitives` (PR open, awaiting Araf's merge).
+- **Active branch:** `phase-1/journal-primitives`
+- **Next action:** after the 1.4 PR merges, start step 1.5 on branch `phase-1/sections-static`:
+  sections 1 to 10 built statically from `@/content` with the journal primitives, responsive,
+  every fact from 02 present. Hero uses a static placeholder (Engraving plate is an option, D45).
+  Consider sourcing more PD engravings for A05 (football, satchel, lantern, horse) first.
 - **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
   PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
-- **Pending from Araf (non-blocking):** unlink Netlify (D42: remove the `portfolioaraf` site's
-  repo link on Netlify and the Netlify GitHub App's access to `portfolio`); Jack The Jelli
-  screenshots (A16); real photo for the wanted poster later (A06); resume PDF (A15).
+- **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16); real photo for the
+  wanted poster later (A06); resume PDF (A15).
+- **Tracing sketches:** `node scripts/trace-sketch.mjs <source.jpg> <name> --crop w:h:x:y --blur 0
+  --threshold 72 --turd 30 --tolerance 1.0 --width 680 --preview out.svg` (campfire settings).
+  Keep source images out of the repo; log every source in `08-assets.md`.
 - **Screenshots:** the in-app browser pane often times out on screenshots. Use headless capture:
   Playwright's `chrome-headless-shell.exe` (in `~/AppData/Local/ms-playwright/`) with
   `--screenshot --window-size=390,12000` for mobile (regular headless Chrome clamps narrow widths).
@@ -30,7 +33,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.1 scaffold (Next.js 16.3.6, React 19.2, Tailwind v4, ESLint 9 + Prettier)
 - [x] 1.2 design-tokens (DESIGN.md, tokens, fonts, textures, surfaces, `/styleguide`)
 - [x] 1.3 content-layer (`src/content/*`, Zod + build-time invariants, MDX)
-- [ ] 1.4 journal-primitives (`Button`, `TextLink`, `Icon` already exist from 1.2; extend, don't duplicate)
+- [x] 1.4 journal-primitives (Page, Spread, HandwrittenText, SketchSVG, Engraving, Poster, Pin, Stamp, InkUnderline, KeyText)
 - [ ] 1.5 sections-static
 - [ ] 1.6 case-studies
 - [ ] 1.7 plain-mode
@@ -56,6 +59,23 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (h) · `phase-1/journal-primitives`
+- Verified Netlify is fully gone: PR #4 ran no Netlify checks, no Netlify statuses on `main`,
+  `portfolioaraf.netlify.app` returns 404 (D42 done).
+- Araf chose to source real sketch art now and approved the download: Winslow Homer, *Camping Out
+  in the Adirondack Mountains* (Harper's Weekly 1874, SAAM 1967.66.4, CC0, 2.5 MB, kept in scratch
+  only). Araf: the raw engravings are good as they are, so they ship two ways (D45): a raw plate
+  (`public/engravings/camping-out-adirondacks.webp`) and a traced campfire sketch
+  (`scripts/trace-sketch.mjs`, potrace dev dependency; 190 paths, 40 KB gzip).
+- `src/components/journal/`: Page, Spread, HandwrittenText, SketchSVG, Engraving, Poster, Pin,
+  Stamp (+ `stamp-wear.webp` mask from textures.mjs), InkUnderline, KeyText; `src/lib/seed.ts`
+  for deterministic tilts (D46). All server components. `/styleguide` Journal section shows them
+  with real content (journal entry + summary spread, wanted poster, Leather Job bounty poster).
+- Two inspection rounds (1440px, 390px): fixed WANTED overflow, a stamp covering the stack line,
+  heavy sketch tone. Detector clean; provenance on all 5 rasters. DESIGN.md: journal primitives,
+  The Plate Rule, The Legible Stamp Rule, updated Tilt Rule; sidecar regenerated.
+- **Next:** merge PR, then 1.5 sections-static.
 
 ### 2026-09-23 (g) · `phase-1/content-layer`
 - Netlify (Araf's request, D42): disabled the Netlify connector for Claude sessions. The repo is
