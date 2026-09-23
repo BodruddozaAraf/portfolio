@@ -8,16 +8,16 @@
   step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-3/scroll-camera` (3.5). Next: `phase-3/postprocessing` (3.6).
-- **Next action:** 3.6 postprocessing: bloom, vignette, grain, color grade on the high tier only,
-  inside the 350 KB chunk budget. Re-export the static hero with `scripts/hero/render.mjs`
-  whenever the scene changes (it needs `?capture` and a running server).
+- **Active branch:** `phase-3/postprocessing` (3.6). Next: `phase-3/research-reconstruct` (3.7).
+- **Next action:** 3.7 research-reconstruct: the torn-page reconstruction for Research (spec 05
+  section 5), scroll-driven, with a static fallback. Then the Phase 3 Vercel check and `v0.3.0`.
+  Re-export the static hero with `scripts/hero/render.mjs` whenever the scene changes.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
   Lighthouse mobile perf 72 to 73, A11y/BP/SEO 100. After 3.1: initial 279.8 KB, 3D chunk 235.5 KB
   (budget 350), models 0 MB. After 3.2: initial 279.8 KB, 3D chunk 240.5 KB, models 0 MB. After 3.3: 279.8 KB, 242.7 KB,
   0 MB. After 3.4: 279.7 KB, 245.1 KB, 0 MB models; static hero 21 KB (phone) or 34 KB (desktop)
   of AVIF; Lighthouse mobile perf 71 to 72, A11y/BP/SEO 100, CLS 0. After 3.5: 279.7 KB,
-  245.8 KB.
+  245.8 KB. After 3.6: 279.7 KB, 247.4 KB.
 - **Waiting on Araf:**
   1. Vercel > `portfolio` > Settings > Domains: make `bodruddozaaraf.me` (apex) the primary domain
      and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
@@ -87,6 +87,14 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (ad) · `phase-3/postprocessing`
+- Hand-written post for the high tier (D72): half-float scene target, dual-filter bloom, a
+  perceptual composite (split toning, contrast, vignette, moving grain) that eases off on the
+  journal pages. 1.6 KB gzip.
+- Verified (Playwright, `next start`): high vs mid captures (post only on high); 60 fps at 2x on
+  high, at 4x CPU throttle and while scrolling the dolly; SwiftShader forced high still falls back
+  to the static hero; dolly frames end on paper with no grade seam. No console errors.
 
 ### 2026-09-23 (ac) · `phase-3/scroll-camera`
 - Scroll camera (D71): the hero sticks in a CSS-sized track (full motion, 48rem and up, scroll
