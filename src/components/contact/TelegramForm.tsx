@@ -8,7 +8,11 @@ import {
 } from "@phosphor-icons/react";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { z } from "zod";
+import { Stamp } from "@/components/journal/Stamp";
+import { SlamIn } from "@/components/motion/SlamIn";
+import { Transmission } from "@/components/motion/Transmission";
 import { Button } from "@/components/ui/Button";
+import { useMotionLevel } from "@/hooks/useReducedMotion";
 import { Icon } from "@/components/ui/Icon";
 import {
   gmailComposeUrl,
@@ -18,7 +22,9 @@ import {
 } from "@/lib/telegram";
 
 // The telegram form (docs/05-sections.md section 9, D19). Validates in the browser, then hands
-// the visitor two ways to send it from their own address. The transmit animation is step 2.6.
+// the visitor two ways to send it from their own address. With full motion the message is first
+// transmitted (Morse along a wire), then stamped "Composed": not "Delivered", because nothing
+// is sent until the visitor sends it from their own mail (D19, D63).
 
 const schema = z.object({
   name: z
@@ -53,6 +59,8 @@ export function TelegramForm({ subjectTemplate }: { subjectTemplate: string }) {
   });
   const [errors, setErrors] = useState<Errors>({});
   const [ready, setReady] = useState<Telegram | null>(null);
+  const [sending, setSending] = useState<Telegram | null>(null);
+  const level = useMotionLevel();
   const status = useRef<HTMLDivElement>(null);
   // the form is replaced by its result: move focus there so keyboard users are not stranded
   useEffect(() => {
@@ -80,7 +88,20 @@ export function TelegramForm({ subjectTemplate }: { subjectTemplate: string }) {
       if (first) document.getElementById(`${id}-${first}`)?.focus();
       return;
     }
-    setReady(result.data);
+    if (level === "full") setSending(result.data);
+    else setReady(result.data);
+  }
+
+  if (sending) {
+    return (
+      <Transmission
+        message={sending.message}
+        onDone={() => {
+          setReady(sending);
+          setSending(null);
+        }}
+      />
+    );
   }
 
   if (ready) {
@@ -92,9 +113,16 @@ export function TelegramForm({ subjectTemplate }: { subjectTemplate: string }) {
         aria-live="polite"
         className="outline-none"
       >
-        <p className="font-type text-h4 uppercase">
-          Telegram ready to send, {ready.name}
-        </p>
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <p className="font-type text-h4 uppercase">
+            Telegram ready to send, {ready.name}
+          </p>
+          <SlamIn>
+            <Stamp seed="telegram-ready" size="sm">
+              Composed
+            </Stamp>
+          </SlamIn>
+        </div>
         <p className="mt-3 max-w-(--measure)">
           It goes from your own address, so a reply finds you. Pick how to send
           it:

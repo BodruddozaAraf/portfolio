@@ -201,6 +201,36 @@
     }
   }
 
+  /* A satchel item card (a native popover): it lifts into view, and the page dims behind it. */
+  .item-card {
+    opacity: 0;
+    translate: 0 0.75rem;
+    transition:
+      opacity var(--dur-hover) var(--ease-journal),
+      translate var(--dur-hover) var(--ease-journal),
+      overlay var(--dur-hover) allow-discrete,
+      display var(--dur-hover) allow-discrete;
+  }
+  .item-card:popover-open {
+    opacity: 1;
+    translate: 0 0;
+  }
+  @starting-style {
+    .item-card:popover-open {
+      opacity: 0;
+      translate: 0 0.75rem;
+    }
+  }
+  .item-card::backdrop {
+    background: color-mix(in srgb, var(--color-night) 45%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .item-card,
+    .item-card:popover-open {
+      translate: none;
+    }
+  }
+
   /* Named view transitions (React <ViewTransition>): a bounty poster morphs between the board and
      its case study. None under reduced motion or in Plain mode. */
   ::view-transition-group(.poster-morph) {

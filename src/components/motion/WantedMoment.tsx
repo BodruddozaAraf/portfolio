@@ -2,8 +2,8 @@
 
 import { useRef, type ReactNode } from "react";
 import { useMotionLevel } from "@/hooks/useReducedMotion";
+import { useLazyGsap } from "@/hooks/useLazyGsap";
 import { useScrollMoment } from "@/hooks/useScrollMoment";
-import { gsap, useGSAP } from "@/lib/gsap";
 import { dur, reducedFade } from "@/lib/motion";
 
 // Wanted's moment (docs/05-sections.md section 3). The poster flutters down in the wind and
@@ -128,8 +128,9 @@ export function WantedMoment({
   });
 
   // the lean toward the cursor, on pointers that hover
-  useGSAP(
-    () => {
+  useLazyGsap(
+    ref,
+    ({ gsap }) => {
       const poster = ref.current?.querySelector<HTMLElement>(
         '[data-moment="poster"]',
       );
@@ -162,7 +163,7 @@ export function WantedMoment({
         poster.removeEventListener("pointerleave", onLeave);
       };
     },
-    { scope: ref, dependencies: [level], revertOnUpdate: true },
+    [level],
   );
 
   return (

@@ -2,7 +2,7 @@
 
 import { useRef, useSyncExternalStore, type ReactNode } from "react";
 import { useMotionLevel } from "@/hooks/useReducedMotion";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { useLazyGsap } from "@/hooks/useLazyGsap";
 import { getLenis } from "@/lib/lenis";
 import { dur } from "@/lib/motion";
 
@@ -38,8 +38,9 @@ export function TrailMoment({
   );
   const riding = level === "full" && wide;
 
-  useGSAP(
-    () => {
+  useLazyGsap(
+    ref,
+    ({ gsap, ScrollTrigger }) => {
       const root = ref.current;
       if (!root || level !== "full") return;
       const q = <T extends Element = HTMLElement>(s: string) =>
@@ -139,7 +140,7 @@ export function TrailMoment({
         line.style.clipPath = "";
       };
     },
-    { scope: ref, dependencies: [level, riding], revertOnUpdate: true },
+    [level, riding],
   );
 
   return (

@@ -1,6 +1,5 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -11,9 +10,9 @@ import { EASE, easeJournal } from "./motion";
 // and the journal ease are always registered before use.
 
 if (typeof window !== "undefined") {
-  gsap.registerPlugin(useGSAP, ScrollTrigger, CustomEase, SplitText);
+  gsap.registerPlugin(ScrollTrigger, CustomEase, SplitText);
   CustomEase.create(EASE, easeJournal.join(","));
   gsap.defaults({ ease: EASE });
 }
 
-export { gsap, ScrollTrigger, SplitText, useGSAP };
+export { gsap, ScrollTrigger, SplitText };

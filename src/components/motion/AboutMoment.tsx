@@ -2,7 +2,6 @@
 
 import { useRef, type ReactNode } from "react";
 import { useScrollMoment } from "@/hooks/useScrollMoment";
-import { SplitText } from "@/lib/gsap";
 import { dur, reducedFade } from "@/lib/motion";
 
 // About's moment (docs/05-sections.md section 2): the entry writes itself line by line, a pen
@@ -16,7 +15,7 @@ const LINE_GAP_S = 0.34;
 export function AboutMoment({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
-  useScrollMoment(ref, ({ tl, level, q }) => {
+  useScrollMoment(ref, ({ tl, level, q, m }) => {
     const entry = q('[data-moment="entry"] > *');
     const notes = q('[data-moment="note"]');
     if (level === "reduced") {
@@ -28,7 +27,7 @@ export function AboutMoment({ children }: { children: ReactNode }) {
       return;
     }
 
-    const split = SplitText.create(entry, { type: "lines" });
+    const split = m.SplitText.create(entry, { type: "lines" });
     tl.fromTo(
       split.lines,
       { clipPath: "inset(-40% 100% -40% 0%)" },

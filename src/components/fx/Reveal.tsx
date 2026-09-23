@@ -2,7 +2,7 @@
 
 import { useRef, type ElementType, type ReactNode } from "react";
 import { useMotionLevel } from "@/hooks/useReducedMotion";
-import { gsap, ScrollTrigger, useGSAP } from "@/lib/gsap";
+import { useLazyGsap } from "@/hooks/useLazyGsap";
 import { dur, reducedFade, revealRise, stagger } from "@/lib/motion";
 
 // Section reveal helper (docs/03 section 5): the block rises 24px and inks in as it scrolls into
@@ -29,8 +29,9 @@ export function Reveal({
   const ref = useRef<HTMLElement>(null);
   const level = useMotionLevel();
 
-  useGSAP(
-    () => {
+  useLazyGsap(
+    ref,
+    ({ gsap, ScrollTrigger }) => {
       const root = ref.current;
       if (!root || level === "none") return;
       if (root.getBoundingClientRect().top < window.innerHeight) return;
@@ -52,7 +53,7 @@ export function Reveal({
           }),
       });
     },
-    { scope: ref, dependencies: [level, staggered], revertOnUpdate: true },
+    [level, staggered],
   );
 
   return (
