@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { profile, skills, skillUsage } from "@/content";
+import { TURN_FORWARD } from "@/lib/page-turn";
 import { ChapterTitle } from "./ChapterTitle";
 
 // 7. Tools of the Trade. The satchel's pouches on the leather: one tag per category, each tool
@@ -62,6 +63,7 @@ export function Satchel() {
                               {k ? ", " : ""}
                               <Link
                                 href={u.href}
+                                transitionTypes={TURN_FORWARD}
                                 className="decoration-ink/35 hover:text-blood hover:decoration-blood underline underline-offset-2"
                               >
                                 {u.name}
@@ -96,6 +98,7 @@ export function Satchel() {
                                 <li key={u.href}>
                                   <Link
                                     href={u.href}
+                                    transitionTypes={TURN_FORWARD}
                                     className="text-h4 decoration-ink/40 hover:text-blood hover:decoration-blood underline underline-offset-[0.2em]"
                                   >
                                     {u.name}

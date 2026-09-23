@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CleanHash } from "@/components/fx/CleanHash";
 import { Grain } from "@/components/fx/Grain";
 import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { microcopy, profile } from "@/content";
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Grain />
         <SmoothScroll />
+        <CleanHash />
       </body>
     </html>
   );

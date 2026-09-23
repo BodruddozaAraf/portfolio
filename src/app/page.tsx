@@ -1,4 +1,5 @@
 import { Loader } from "@/components/fx/Loader";
+import { PageTurn } from "@/components/fx/PageTurn";
 import { TopBar } from "@/components/nav/TopBar";
 import { PersonJsonLd } from "@/components/seo/PersonJsonLd";
 import { About } from "@/components/sections/About";
@@ -17,7 +18,7 @@ import { isLive } from "@/lib/features";
 // The whole journey on one page (docs/05-sections.md). Night once, then paper (D32).
 export default function Home() {
   return (
-    <>
+    <PageTurn>
       <Loader
         title={microcopy.loaderTitle}
         tips={microcopy.loadingTips.filter(isLive).map((t) => t.text)}
@@ -42,6 +43,6 @@ export default function Home() {
         <Telegram />
       </main>
       <Colophon />
-    </>
+    </PageTurn>
   );
 }

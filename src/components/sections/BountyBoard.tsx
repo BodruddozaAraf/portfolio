@@ -6,6 +6,7 @@ import { Poster } from "@/components/journal/Poster";
 import { Stamp } from "@/components/journal/Stamp";
 import { BoardMoment } from "@/components/motion/BoardMoment";
 import { projects } from "@/content";
+import { TURN_FORWARD } from "@/lib/page-turn";
 import { ChapterTitle } from "./ChapterTitle";
 
 // 4. Bounty Board. Four posters pinned to the planks at seeded angles, staggered so the board
@@ -48,6 +49,7 @@ export function BountyBoard() {
                     <h3 className="font-display text-h3 tracking-poster uppercase">
                       <Link
                         href={`/bounties/${p.slug}`}
+                        transitionTypes={TURN_FORWARD}
                         className="focus-visible:after:outline-blood after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-4"
                       >
                         {p.bountyTitle}

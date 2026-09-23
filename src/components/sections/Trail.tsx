@@ -11,6 +11,7 @@ import {
   timeline,
 } from "@/content";
 import { ChapterTitle } from "./ChapterTitle";
+import { TURN_FORWARD } from "@/lib/page-turn";
 
 // 6. Trail So Far. The pins in trail order on the survey map (A04, scripts/map), joined by a
 // dotted trail: across the map on desktop, down it on phones. As rendered here the trail is fully
@@ -94,6 +95,11 @@ export function Trail() {
                         {pin.href ? (
                           <Link
                             href={pin.href}
+                            transitionTypes={
+                              pin.href.startsWith("/#")
+                                ? undefined
+                                : TURN_FORWARD
+                            }
                             className="decoration-ink/40 hover:text-blood hover:decoration-blood underline underline-offset-[0.2em] transition-colors duration-(--dur-hover)"
                           >
                             {pin.title}

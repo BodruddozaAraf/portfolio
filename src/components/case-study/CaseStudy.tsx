@@ -6,6 +6,7 @@ import {
 import Link from "next/link";
 import { ViewTransition, type ReactNode } from "react";
 import { InkUnderline } from "@/components/journal/InkUnderline";
+import { PageTurn } from "@/components/fx/PageTurn";
 import { Poster } from "@/components/journal/Poster";
 import { Stamp } from "@/components/journal/Stamp";
 import { TopBar } from "@/components/nav/TopBar";
@@ -13,6 +14,7 @@ import { Colophon } from "@/components/sections/Colophon";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import type { Link as ContentLink, Stat } from "@/content";
+import { TURN_BACK, TURN_FORWARD } from "@/lib/page-turn";
 
 // The case-study page (docs/05-sections.md section 4): the poster pinned to the board, then the
 // account on paper, then the stack, the links and the next bounty. The board's poster morphs into
@@ -51,7 +53,7 @@ export function CaseStudy({
   children,
 }: CaseStudyProps) {
   return (
-    <>
+    <PageTurn>
       <div className="wood">
         <TopBar surface="inherit" />
         <header className="shell grid items-center gap-10 pt-6 pb-16 md:pt-10 md:pb-24 lg:grid-cols-[minmax(0,32rem)_minmax(0,1fr)] lg:gap-16">
@@ -109,6 +111,7 @@ export function CaseStudy({
             <p className="mt-8">
               <Link
                 href={back.href}
+                transitionTypes={TURN_BACK}
                 className="text-small hover:text-ember-glow inline-flex items-center gap-2 tracking-(--tracking-caps) uppercase underline-offset-[0.3em] hover:underline"
               >
                 <Icon icon={ArrowLeft} />
@@ -136,6 +139,7 @@ export function CaseStudy({
           <nav aria-label="Next bounty" className="mt-20">
             <Link
               href={next.href}
+              transitionTypes={TURN_FORWARD}
               className="group paper-light shadow-pinned ease-journal hover:shadow-lifted inline-flex max-w-full items-center gap-6 px-6 py-5 transition-[translate,box-shadow] duration-(--dur-hover) motion-safe:hover:-translate-y-0.5"
             >
               <span>
@@ -153,6 +157,6 @@ export function CaseStudy({
         ) : null}
       </main>
       <Colophon />
-    </>
+    </PageTurn>
   );
 }

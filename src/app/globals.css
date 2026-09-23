@@ -246,6 +246,42 @@
       filter: blur(2px);
     }
   }
+  /* Page turn (src/components/fx/PageTurn.tsx): the new page wipes over the old one like a leaf
+     turned from the right edge (forward) or the left (back); the old page dims under it. */
+  ::view-transition-old(.page-forward),
+  ::view-transition-old(.page-back) {
+    animation: page-under var(--dur-page) var(--ease-journal) both;
+  }
+  ::view-transition-new(.page-forward) {
+    animation: page-over-forward var(--dur-page) var(--ease-journal) both;
+  }
+  ::view-transition-new(.page-back) {
+    animation: page-over-back var(--dur-page) var(--ease-journal) both;
+  }
+  @keyframes page-under {
+    to {
+      opacity: 0.4;
+      filter: brightness(0.7);
+    }
+  }
+  @keyframes page-over-forward {
+    from {
+      clip-path: inset(0 0 0 100%);
+      box-shadow: -2rem 0 3rem -1rem
+        color-mix(in srgb, var(--color-ink) 45%, transparent);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
+  @keyframes page-over-back {
+    from {
+      clip-path: inset(0 100% 0 0);
+    }
+    to {
+      clip-path: inset(0 0 0 0);
+    }
+  }
   :root[data-plain="true"]::view-transition-group(*),
   :root[data-plain="true"]::view-transition-old(*),
   :root[data-plain="true"]::view-transition-new(*) {

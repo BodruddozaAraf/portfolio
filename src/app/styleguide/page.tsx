@@ -277,7 +277,11 @@ const motion = [
     value: ms(dur.morph),
     use: "A poster morphing between the board and its case study",
   },
-  { token: "--dur-page", value: ms(dur.page), use: "Page turn" },
+  {
+    token: "--dur-page",
+    value: ms(dur.page),
+    use: "Page turn between the journal and a case study",
+  },
   {
     token: "--dur-draw",
     value: ms(dur.draw),
