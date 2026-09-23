@@ -8,9 +8,9 @@
   capture Jack The Jelli screenshots from jackthejelli.com (or placeholders) for A16 and 4.4.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-4/dead-eye` (4.2). Next: `phase-4/og-images` (4.4).
-- **Next action:** 4.4 share images per page (`next/og`, wanted-poster style) and the Jack The
-  Jelli screenshots from jackthejelli.com (A16), then the Vercel check and `v0.4.0`.
+- **Active branch:** `phase-4/og-images` (4.4). Next: the Phase 4 Vercel check.
+- **Next action:** check Vercel (previews and the production deploy READY), smoke-test the live
+  site (wheel, Dead Eye, share tags, Jack The Jelli screenshots), tag `v0.4.0`, check in.
 - **Araf (2026-09-23, D74):** load speed and size are not strict; performance budgets are
   guidance now. The loading screen must be animated from the first paint, never a blank wait.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
@@ -25,8 +25,8 @@
      and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
      sitemap and OG (D12, D54) use the apex, so every canonical points at a redirect. (Or say the
      word and the code switches to `www` instead.)
-  2. Jack The Jelli screenshots (A16), a real photo for the portrait (A06), more PD engravings
-     for A05 if wanted.
+  2. A real photo for the portrait (A06), more PD engravings for A05 if wanted. (Jack The Jelli
+     screenshots were captured from the live store, D78.)
 - **Performance (guidance since D74):** home Lighthouse mobile performance 71 to 73 (target 85),
   home initial JS 280 KB gzip (target 180 KB). Step 5.1 may still improve them; not blocking.
 - **Blockers:** none for Phase 2. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash
@@ -80,7 +80,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 3.5 scroll-camera · [x] 3.6 postprocessing · [x] 3.7 research-reconstruct → `v0.3.0` (tagged)
 
 ### Phase 4: Signature features
-- [x] 4.1 weapon-wheel · [x] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [ ] 4.4 og-images → `v0.4.0`
+- [x] 4.1 weapon-wheel · [x] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [x] 4.4 og-images → `v0.4.0`
 
 ### Phase 5: Polish and launch
 - [ ] 5.1 perf · [ ] 5.2 a11y · [ ] 5.3 cross-browser · [ ] 5.4 tests/CI · [ ] 5.5 launch → `v1.0.0`
@@ -89,6 +89,15 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (aj) · `phase-4/og-images`
+- Jack The Jelli screenshots captured from the live store (storefront, collection, product,
+  phone) and pasted into its case study (A16). Share cards for the four bounties and the thesis,
+  rendered by the site's own components through a development-only route and
+  `scripts/brand/og.mjs`, wired into each page's Open Graph and X tags (D78).
+- Verified (`next start`): each page's `og:image` and `twitter:image` point at its card; cards
+  serve as JPEG; `/og-card/*` is a 404 in production and not in the sitemap; the case study
+  photos load at 1440 and 390; Lighthouse on the Jack The Jelli page 77 / 100 / 100 / 100.
 
 ### 2026-09-23 (ai) · `phase-4/dead-eye`
 - Dead Eye (D77): E or the footer eye; six seconds of sepia, red cast and vignette over

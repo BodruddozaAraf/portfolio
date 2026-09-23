@@ -143,6 +143,20 @@ export const projectSchema = z
     metric: statSchema.optional(),
     /** Images the owner still has to supply (D18). Empty when none are expected. */
     pendingAssets: z.array(text),
+    /** Screenshots of the live work, in public/work/<slug>/ (A16, D75). */
+    screenshots: z
+      .array(
+        z
+          .object({
+            src: z.string().startsWith("/work/"),
+            width: z.number().int(),
+            height: z.number().int(),
+            alt: text,
+            caption: text,
+          })
+          .strict(),
+      )
+      .optional(),
   })
   .strict();
 

@@ -24,7 +24,38 @@ export const projects: Project[] = [
       value: "2 months",
       label: "sole engineer, empty repo to live store",
     },
-    pendingAssets: ["Store screenshots (A16, D18)"],
+    pendingAssets: [],
+    // captured from the live store on 2026-09-23 (A16, D75)
+    screenshots: [
+      {
+        src: "/work/jack-the-jelli/storefront.webp",
+        width: 1440,
+        height: 900,
+        alt: "The Jack The Jelli storefront: a bifold wallet under the line Everyday wallets, without the noise.",
+        caption: "The storefront.",
+      },
+      {
+        src: "/work/jack-the-jelli/collection.webp",
+        width: 1440,
+        height: 900,
+        alt: "The collection page, with search, category and sort controls above the first wallets.",
+        caption: "The collection, searchable and sortable.",
+      },
+      {
+        src: "/work/jack-the-jelli/product.webp",
+        width: 1440,
+        height: 900,
+        alt: "A product page for the Frostbite wallet: photo gallery, price, stock left, add to cart, delivery and payment terms.",
+        caption: "A product page.",
+      },
+      {
+        src: "/work/jack-the-jelli/product-phone.webp",
+        width: 780,
+        height: 1688,
+        alt: "The same product page on a phone, with the price and add to cart held at the bottom of the screen.",
+        caption: "The same page on a phone.",
+      },
+    ],
   },
   {
     slug: "edubridge-ai",

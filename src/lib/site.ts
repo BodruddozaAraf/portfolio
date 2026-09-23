@@ -16,3 +16,8 @@ export const openGraphBase = {
     },
   ],
 };
+
+/** A page's own share card (public/og/<name>.jpg, rendered by scripts/brand/og.mjs, D78). */
+export function shareCard(name: string, alt: string) {
+  return [{ url: `/og/${name}.jpg`, width: 1200, height: 630, alt }];
+}
