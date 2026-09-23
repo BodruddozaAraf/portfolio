@@ -1,0 +1,240 @@
+<!doctype html>
+<!-- The trail map (asset A04): an original survey-style map, drawn procedurally and seeded, so it
+     is deterministic and owes nothing to any source. Ink on white; the site multiplies it onto
+     the paper. Rendered by scripts/map/render.mjs. -->
+<html>
+  <head>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: white;
+      }
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c"></canvas>
+    <script>
+      const W = 3000;
+      const H = 1000;
+      const INK = "42,33,24";
+      const canvas = document.getElementById("c");
+      canvas.width = W;
+      canvas.height = H;
+      const g = canvas.getContext("2d");
+      g.fillStyle = "white";
+      g.fillRect(0, 0, W, H);
+      g.lineCap = "round";
+      g.lineJoin = "round";
+
+      // seeded randomness and value noise
+      function mulberry32(s) {
+        return () => {
+          s = (s + 0x6d2b79f5) | 0;
+          let t = Math.imul(s ^ (s >>> 15), 1 | s);
+          t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rnd = mulberry32(1874);
+      const P = 256;
+      const lattice = Array.from({ length: P * P }, rnd);
+      const L = (x, y) =>
+        lattice[(((y % P) + P) % P) * P + (((x % P) + P) % P)];
+      const smooth = (t) => t * t * (3 - 2 * t);
+      function noise(x, y) {
+        const xi = Math.floor(x);
+        const yi = Math.floor(y);
+        const xf = smooth(x - xi);
+        const yf = smooth(y - yi);
+        const a = L(xi, yi);
+        const b = L(xi + 1, yi);
+        const c = L(xi, yi + 1);
+        const d = L(xi + 1, yi + 1);
+        return a + (b - a) * xf + (c - a) * yf + (a - b - c + d) * xf * yf;
+      }
+      function fbm(x, y) {
+        let v = 0;
+        let amp = 0.5;
+        let f = 1;
+        for (let o = 0; o < 5; o++) {
+          v += amp * noise(x * f, y * f);
+          amp *= 0.5;
+          f *= 2.03;
+        }
+        return v;
+      }
+
+      // the river: a meander from the left edge to the right, which carves the valley
+      const river = [];
+      {
+        let y = H * 0.62;
+        for (let x = -40; x <= W + 40; x += 12) {
+          y += (fbm(x / 260, 7.3) - 0.5) * 26 + (H * 0.66 - y) * 0.02;
+          river.push([x, y + Math.sin(x / 190) * 38]);
+        }
+      }
+      const riverY = (x) => {
+        const i = Math.max(
+          0,
+          Math.min(river.length - 1, Math.round((x + 40) / 12)),
+        );
+        return river[i][1];
+      };
+
+      // height: hills in the north, the river valley low, a gentle rise in the south
+      const S = 6;
+      const GW = Math.ceil(W / S) + 1;
+      const GH = Math.ceil(H / S) + 1;
+      const hgt = new Float32Array(GW * GH);
+      for (let j = 0; j < GH; j++) {
+        for (let i = 0; i < GW; i++) {
+          const x = i * S;
+          const y = j * S;
+          const d = Math.abs(y - riverY(x)) / H;
+          hgt[j * GW + i] =
+            fbm(x / 520, y / 520) * 0.9 +
+            Math.min(d, 0.45) * 1.25 +
+            (1 - y / H) * 0.35;
+        }
+      }
+
+      // contours by marching squares; every fifth is a heavier index contour
+      function contour(level, width, alpha) {
+        g.strokeStyle = `rgba(${INK},${alpha})`;
+        g.lineWidth = width;
+        g.beginPath();
+        for (let j = 0; j < GH - 1; j++) {
+          for (let i = 0; i < GW - 1; i++) {
+            const a = hgt[j * GW + i];
+            const b = hgt[j * GW + i + 1];
+            const d = hgt[(j + 1) * GW + i];
+            const c = hgt[(j + 1) * GW + i + 1];
+            const pts = [];
+            const edge = (p, q, x1, y1, x2, y2) => {
+              if (p < level !== q < level) {
+                const t = (level - p) / (q - p);
+                pts.push([x1 + (x2 - x1) * t, y1 + (y2 - y1) * t]);
+              }
+            };
+            const x = i * S;
+            const y = j * S;
+            edge(a, b, x, y, x + S, y);
+            edge(b, c, x + S, y, x + S, y + S);
+            edge(d, c, x, y + S, x + S, y + S);
+            edge(a, d, x, y, x, y + S);
+            for (let k = 0; k + 1 < pts.length; k += 2) {
+              g.moveTo(pts[k][0], pts[k][1]);
+              g.lineTo(pts[k + 1][0], pts[k + 1][1]);
+            }
+          }
+        }
+        g.stroke();
+      }
+      for (let k = 0, lv = 0.42; lv < 1.6; lv += 0.055, k++) {
+        contour(lv, k % 5 === 0 ? 1.8 : 1, k % 5 === 0 ? 0.34 : 0.2);
+      }
+
+      // the river: two banks and a faint water line; a tributary from the northern hills
+      function polyline(pts, width, alpha, dy) {
+        g.strokeStyle = `rgba(${INK},${alpha})`;
+        g.lineWidth = width;
+        g.beginPath();
+        pts.forEach(([x, y], i) =>
+          i ? g.lineTo(x, y + dy) : g.moveTo(x, y + dy),
+        );
+        g.stroke();
+      }
+      polyline(river, 2.2, 0.55, -7);
+      polyline(river, 2.2, 0.55, 7);
+      polyline(river, 1, 0.22, 0);
+      const trib = [];
+      {
+        let x = W * 0.52;
+        for (let y = 0; y <= riverY(W * 0.6); y += 10) {
+          x += (fbm(y / 150, 3.1) - 0.5) * 18;
+          trib.push([x + y * 0.08, y]);
+        }
+      }
+      polyline(trib, 1.6, 0.45, -3);
+      polyline(trib, 1.6, 0.45, 3);
+
+      // marsh marks in the lowlands along the river
+      g.strokeStyle = `rgba(${INK},0.32)`;
+      g.lineWidth = 1.2;
+      for (let n = 0; n < 260; n++) {
+        const x = rnd() * W;
+        const y = riverY(x) + (rnd() - 0.5) * 220;
+        if (Math.abs(y - riverY(x)) < 22) continue;
+        g.beginPath();
+        for (const dx of [-6, 0, 6]) {
+          g.moveTo(x + dx, y);
+          g.lineTo(x + dx * 1.4, y - 7 - (dx === 0 ? 4 : 0));
+        }
+        g.moveTo(x - 9, y);
+        g.lineTo(x + 9, y);
+        g.stroke();
+      }
+
+      // the town on the river bend (Dhaka): a cluster of hatched blocks
+      const tx = W * 0.1;
+      const ty = riverY(W * 0.1) - 58;
+      g.strokeStyle = `rgba(${INK},0.6)`;
+      g.lineWidth = 1.4;
+      for (let n = 0; n < 22; n++) {
+        const bx = tx + (rnd() - 0.5) * 150;
+        const by = ty + (rnd() - 0.5) * 60;
+        const w = 10 + rnd() * 14;
+        const h = 8 + rnd() * 10;
+        g.strokeRect(bx, by, w, h);
+        g.beginPath();
+        for (let k = 3; k < w + h; k += 4) {
+          g.moveTo(bx + Math.min(k, w), by + Math.max(0, k - w));
+          g.lineTo(bx + Math.max(0, k - h), by + Math.min(k, h));
+        }
+        g.stroke();
+      }
+
+      // compass rose, top right
+      const cx = W - 150;
+      const cy = 150;
+      g.strokeStyle = `rgba(${INK},0.55)`;
+      g.fillStyle = `rgba(${INK},0.55)`;
+      g.lineWidth = 1.4;
+      for (const r of [70, 62]) {
+        g.beginPath();
+        g.arc(cx, cy, r, 0, Math.PI * 2);
+        g.stroke();
+      }
+      for (let k = 0; k < 8; k++) {
+        const a = (k * Math.PI) / 4 - Math.PI / 2;
+        const r = k % 2 ? 48 : 92;
+        const w = k % 2 ? 7 : 11;
+        const px = cx + Math.cos(a) * r;
+        const py = cy + Math.sin(a) * r;
+        const lx = cx + Math.cos(a - Math.PI / 2) * w;
+        const ly = cy + Math.sin(a - Math.PI / 2) * w;
+        const rx = cx + Math.cos(a + Math.PI / 2) * w;
+        const ry = cy + Math.sin(a + Math.PI / 2) * w;
+        g.beginPath();
+        g.moveTo(px, py);
+        g.lineTo(lx, ly);
+        g.lineTo(cx, cy);
+        g.closePath();
+        g.fill();
+        g.beginPath();
+        g.moveTo(px, py);
+        g.lineTo(rx, ry);
+        g.lineTo(cx, cy);
+        g.closePath();
+        g.stroke();
+      }
+      g.font = "italic 34px Georgia, serif";
+      g.textAlign = "center";
+      g.fillText("N", cx, cy - 104);
+    </script>
+  </body>
+</html>
