@@ -14,6 +14,7 @@ import {
   PenNib,
   Scroll,
 } from "@phosphor-icons/react/ssr";
+import { Reveal } from "@/components/fx/Reveal";
 import { Engraving } from "@/components/journal/Engraving";
 import { HandwrittenText } from "@/components/journal/HandwrittenText";
 import { InkUnderline } from "@/components/journal/InkUnderline";
@@ -27,6 +28,7 @@ import { Icon } from "@/components/ui/Icon";
 import { TextLink } from "@/components/ui/TextLink";
 import { getProject, microcopy, profile } from "@/content";
 import { campfire } from "@/content/sketches";
+import { dur, easeJournal, stagger } from "@/lib/motion";
 import ProseSample from "./prose-sample.mdx";
 import { contrast, readColorTokens, type ColorToken } from "./tokens";
 
@@ -246,23 +248,55 @@ const scale = [
   { step: "caption", px: "14", className: "text-caption" },
 ];
 
+// Values come from src/lib/motion.ts, which `npm test` checks against tokens.css.
+const ms = (seconds: number) => `${Math.round(seconds * 1000)}ms`;
 const motion = [
   {
     token: "--ease-journal",
-    value: "cubic-bezier(0.22, 1, 0.36, 1)",
+    value: `cubic-bezier(${easeJournal.join(", ")})`,
     use: "Default ease: weighty, settles slowly",
   },
-  { token: "--dur-hover", value: "200ms", use: "Hover lift and color" },
-  { token: "--dur-stamp", value: "180ms", use: "A stamp slamming down" },
+  { token: "--dur-hover", value: ms(dur.hover), use: "Hover lift and color" },
+  {
+    token: "--dur-stamp",
+    value: ms(dur.stamp),
+    use: "A stamp slamming down",
+  },
   {
     token: "--dur-pin",
-    value: "500ms",
+    value: ms(dur.pin),
     use: "Pinning a poster: a keyframed swing that settles, never an overshoot curve",
   },
-  { token: "--dur-reveal", value: "800ms", use: "Section reveal, 24px rise" },
-  { token: "--dur-page", value: "900ms", use: "Page turn" },
-  { token: "--dur-draw", value: "1800ms", use: "A sketch drawing itself" },
-  { token: "--stagger", value: "60ms", use: "Between revealed siblings" },
+  {
+    token: "--dur-reveal",
+    value: ms(dur.reveal),
+    use: "Section reveal, 24px rise",
+  },
+  { token: "--dur-page", value: ms(dur.page), use: "Page turn" },
+  {
+    token: "--dur-draw",
+    value: ms(dur.draw),
+    use: "A sketch drawing itself",
+  },
+  { token: "--stagger", value: ms(stagger), use: "Between revealed siblings" },
+];
+
+const motionLevels = [
+  {
+    level: "Full",
+    when: "The journal as designed",
+    what: "Lenis smooth scroll, reveals, drawn sketches, stamps and pins.",
+  },
+  {
+    level: "Reduced",
+    when: "The system asks for reduced motion",
+    what: "The browser's own scroll. Reveals become fades of 200ms or less; sketches arrive drawn.",
+  },
+  {
+    level: "None",
+    when: "Plain mode is on",
+    what: "A still page: no smooth scroll, no scripted motion, no grain or tilts.",
+  },
 ];
 
 const icons = [
@@ -718,6 +752,21 @@ export default async function StyleguidePage() {
             </div>
           ))}
         </dl>
+        <h3 className="text-h4 mt-16">Three levels of motion</h3>
+        <p className="mt-3 max-w-(--measure)">
+          Every scripted animation asks <code>useMotionLevel()</code> first.
+          These notes use the reveal helper with a stagger, so on a fresh load
+          they rise into place one after another as you scroll to them.
+        </p>
+        <Reveal as="ul" stagger className="mt-8 grid gap-6 md:grid-cols-3">
+          {motionLevels.map((m) => (
+            <li key={m.level} className="paper-light shadow-pasted px-6 py-7">
+              <p className="text-h4">{m.level}</p>
+              <p className="text-ink-soft mt-1 italic">{m.when}</p>
+              <p className="mt-3">{m.what}</p>
+            </li>
+          ))}
+        </Reveal>
       </section>
 
       <section

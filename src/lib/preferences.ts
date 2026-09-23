@@ -9,7 +9,7 @@ import {
 
 // Visitor preferences (docs/04-architecture.md, State). Persisted in localStorage, which can be
 // missing or throw (private windows, blocked storage), so every access is wrapped.
-// plainMode: the whole journal without effects; Phase 2 and 3 skip smooth scroll and 3D on it.
+// plainMode: the whole journal without effects; useMotionLevel turns it into motion level "none".
 
 import { PREFERENCES_KEY } from "./preferences-key";
 

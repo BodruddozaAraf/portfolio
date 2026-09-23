@@ -324,6 +324,24 @@ it moves into the flow.
 `--surface-*` variables in one class. `burn` adds scorched edges to a sheet. The global grain is a
 fixed, pointer-events-none layer at 20% opacity with no blend mode, so it stays cheap to composite.
 
+### Motion (signature)
+Script-driven motion lives in client leaves and asks `useMotionLevel()` first:
+- **full:** Lenis smooth scroll (lerp 0.1) on the GSAP ticker, synced to ScrollTrigger; same-page
+  anchors glide, then focus their target. GSAP knows `--ease-journal` as the ease `"journal"`.
+- **reduced** (`prefers-reduced-motion`): the browser's scroll; fades of 200ms or less, no travel.
+- **none** (Plain mode, D52): no smooth scroll, no scripted motion; the page is still.
+
+Durations come from `src/lib/motion.ts`, a mirror of the `--dur-*` tokens that `npm test` checks.
+`Reveal` (`src/components/fx/Reveal.tsx`) is the supporting-content entrance: a 24px rise over
+800ms, with an optional 60ms stagger for things that read as a list.
+
+**The Still Fallback Rule.** The server render is the finished page. Motion may only set content
+back from its final state on the client, and only where the visitor cannot see it yet (below the
+fold at hydration). A failed script or a mid-page reload never leaves text hidden.
+
+**The One Moment Rule.** Each section gets one authored moment of its own (a drawn sketch, a
+stamp, a trail). `Reveal` is for supporting content; it never becomes every section's entrance.
+
 ## Do's and Don'ts
 
 ### Do:
@@ -332,7 +350,8 @@ fixed, pointer-events-none layer at 20% opacity with no blend mode, so it stays 
 - **Do** use italic for emphasis in IM Fell, and Special Elite for figures and tabular data.
 - **Do** theme browser surfaces: selection is a blood wash on paper and ember on night, and the
   scrollbar is leather on a paper-dark track.
-- **Do** use `--ease-journal` (cubic-bezier(0.22, 1, 0.36, 1)) and the `--dur-*` tokens for motion.
+- **Do** use `--ease-journal` (cubic-bezier(0.22, 1, 0.36, 1)) and the `--dur-*` tokens for motion;
+  in GSAP, the `"journal"` ease and `dur` from `src/lib/motion.ts`.
 - **Do** regenerate textures with `node scripts/textures.mjs`; they are original and deterministic.
 
 ### Don't:

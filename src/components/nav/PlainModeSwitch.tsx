@@ -3,8 +3,8 @@
 import { useSyncExternalStore } from "react";
 import { usePreferences } from "@/lib/preferences";
 
-// The Plain mode switch: when on, the whole journal drops its effects (grain and tilts now;
-// smooth scroll and 3D once those phases land). The choice is remembered.
+// The Plain mode switch: when on, the whole journal drops its effects (grain, tilts, smooth
+// scroll and scripted motion; 3D once Phase 3 lands). The choice is remembered.
 
 const noop = () => () => {};
 

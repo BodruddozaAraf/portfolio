@@ -154,6 +154,12 @@
     outline-offset: 3px;
   }
 
+  /* Skip links and in-page links move focus to their section; the section itself is not a
+     control, so it takes no ring. */
+  [tabindex="-1"]:focus {
+    outline: none;
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -171,8 +177,8 @@
     text-decoration-thickness: 1px;
   }
 
-  /* Plain mode (the switch on /plain): the journal without effects. Later phases also check the
-     store to skip smooth scroll and 3D. */
+  /* Plain mode (the switch on /plain): the journal without effects. Script-driven motion (Lenis,
+     GSAP, later 3D) reads the same store through useMotionLevel. */
   [data-plain="true"] .grain-layer {
     display: none;
   }

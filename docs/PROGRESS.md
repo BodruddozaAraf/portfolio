@@ -4,14 +4,14 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 1 complete (tag `v0.1.0`), live on Vercel. Next: Phase 2 (2D motion).
+- **Current phase:** Phase 2 (2D motion). Step 2.1 motion-infra merged.
 - **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Start Phase 2 step 2.1 on `phase-2/motion-infra`.
-- **Next action:** step 2.1 motion-infra (GSAP + ScrollTrigger + Lenis, `useReducedMotion`,
-  motion tokens, section reveal helper). Read `docs/05-sections.md` and `docs/03` section 5 first.
-  Plain mode (`usePreferences().plainMode`, `html[data-plain]`) and reduced motion must both turn
-  smooth scroll and effects off (D52).
+- **Active branch:** none. Start step 2.2 on `phase-2/loader`.
+- **Next action:** step 2.2 loader ("Chapter I" title card, self-drawing campfire sketch, tips;
+  spec `docs/05-sections.md` section 0). Build on the motion layer from 2.1 (D58, DESIGN.md
+  "Motion"): ask `useMotionLevel()` first, import GSAP from `@/lib/gsap`, use `dur`/`"journal"`
+  from `@/lib/motion`, stop the scroll with `useLenis()?.stop()`. Reduced motion shows no loader.
 - **Waiting on Araf (the agent's permissions block DNS/domain changes):**
   1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
      `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
@@ -22,7 +22,8 @@
   4. A phone-free resume PDF at `public/resume.pdf` (D53); resume links appear automatically.
   5. Jack The Jelli screenshots (A16), a real photo for the portrait (A06), more PD engravings
      for A05 if wanted.
-- **Known debt:** home Lighthouse performance 77 on mobile (budget 85, D55): step 5.1.
+- **Known debt (step 5.1):** home Lighthouse mobile performance 74 to 77 depending on the run
+  (budget 85, D55); home initial JS 275.7 KB gzip (budget 180 KB, D58).
 - **Blockers:** none for Phase 2. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash
   add it to PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Tooling notes for agents:**
@@ -58,7 +59,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.10 deploy (live on Vercel, `v0.1.0`); custom domain DNS waiting on Araf (D57)
 
 ### Phase 2: 2D Motion
-- [ ] 2.1 motion-infra · [ ] 2.2 loader · [ ] 2.3 about-wanted · [ ] 2.4 bounty-board
+- [x] 2.1 motion-infra · [ ] 2.2 loader · [ ] 2.3 about-wanted · [ ] 2.4 bounty-board
 - [ ] 2.5 map-trail · [ ] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
 
 ### Phase 3: 3D Camp
@@ -75,6 +76,27 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (o) · `phase-2/motion-infra`
+- Araf: run Phase 2 step by step (branch, build, verify, PR, merge, PROGRESS), checking in after
+  each step.
+- Added gsap 3.15 (+ ScrollTrigger, CustomEase, `@gsap/react`) and lenis 1.3.26.
+  `src/lib/motion.ts` (token mirror in seconds, `npm test` checks it against tokens.css),
+  `src/lib/gsap.ts` (plugins + the `"journal"` ease), `src/hooks/useReducedMotion.ts`
+  (`useReducedMotion`, `useMotionLevel`: full / reduced / none), `src/lib/lenis.ts`
+  (`useLenis`), `src/components/fx/SmoothScroll.tsx` (root layout; lazy Lenis on the GSAP
+  ticker, off for reduced motion, Plain mode and `/plain`; same-page anchors glide, then focus),
+  `src/components/fx/Reveal.tsx` (24px rise, optional stagger; never hides in-view content).
+  Styleguide Motion section reads motion.ts and demos a staggered reveal. DESIGN.md "Motion"
+  (The Still Fallback Rule, The One Moment Rule). D58.
+- Verified with Playwright on `next start`: Lenis on at 1440 and 390 (touch stays native), wheel
+  inertia, "Open the journal" and "Send word" glide and focus their section, off under reduced
+  motion, with Plain mode stored, on `/plain` and after switching Plain mode on then client
+  navigating home (and back on after switching off); back from a case study restores the exact
+  scroll (3179 px, same as without Lenis); reveal staggers, reduced fade settles in 195 ms; no
+  console errors; no horizontal scroll.
+- Lighthouse mobile, same machine: perf 74 with and without SmoothScroll (A11y/BP/SEO 100);
+  initial JS +2.1 KB gzip (Lenis and GSAP load after hydration). Detector clean.
 
 ### 2026-09-23 (n) · `phase-1/deploy`
 - Merged PR #10 (1.9). Created Vercel project `portfolio` and deployed `main` (`c33f8ca`) to
