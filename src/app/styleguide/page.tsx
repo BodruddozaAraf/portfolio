@@ -272,6 +272,11 @@ const motion = [
     value: ms(dur.reveal),
     use: "Section reveal, 24px rise",
   },
+  {
+    token: "--dur-morph",
+    value: ms(dur.morph),
+    use: "A poster morphing between the board and its case study",
+  },
   { token: "--dur-page", value: ms(dur.page), use: "Page turn" },
   {
     token: "--dur-draw",
