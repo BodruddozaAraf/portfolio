@@ -213,6 +213,27 @@ export const microcopySchema = z
     telegram: z.object({ heading: text, cta: text, subject: text }).strict(),
     notFound: text,
     colophon: z.array(text).min(1),
+    /** The weapon wheel (docs/05-sections.md, Weapon Wheel): one wedge per chapter, clockwise. */
+    wheel: z
+      .object({
+        label: text,
+        chapters: z
+          .array(
+            z
+              .object({
+                /** the section's id on the home page */
+                id: z.string().regex(/^[a-z-]+$/),
+                /** the short name on the wedge */
+                wedge: text,
+                /** the chapter's own title, shown in the middle */
+                title: text,
+                line: text,
+              })
+              .strict(),
+          )
+          .length(8),
+      })
+      .strict(),
   })
   .strict();
 

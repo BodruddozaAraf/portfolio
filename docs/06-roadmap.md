@@ -68,7 +68,7 @@ Goal: the jaw-drop opener.
 |---|---|---|---|
 | 4.1 | `phase-4/weapon-wheel` | Radial nav (Tab-hold + button + keyboard) | Spec in 05 "Weapon Wheel"; a11y verified |
 | 4.2 | `phase-4/dead-eye` | Dead Eye mode | Spec in 05 "Dead Eye" |
-| 4.3 | `phase-4/sound` | Sound provider, toggle, ambient + UI sounds | Off by default, remembered |
+| ~~4.3~~ | ~~`phase-4/sound`~~ | Moved to "Later" (D75) | |
 | 4.4 | `phase-4/og-images` | Dynamic wanted-poster OG images per page (`next/og`) | Shares look great on LinkedIn/X |
 | — | merge | tag `v0.4.0` | |
 
@@ -83,6 +83,8 @@ Goal: the jaw-drop opener.
 
 ## Later / nice-to-have (not scheduled)
 - **Ask Arthur** AI chat grounded in site content (dropped for v1, D20).
+- **Sound** (was step 4.3, deferred by Araf, D75): provider, toggle, ambient and UI sounds, off
+  by default and remembered; needs CC0 audio downloads, each approved by Araf.
 - **Thesis future work** (D17): real figures + sample outputs, report link.
 - Blog ("Campfire Tales"), Bangla language toggle, a real image-completion demo running a
   small ONNX model in the browser (WebGPU), day/night cycle based on visitor's local time,
