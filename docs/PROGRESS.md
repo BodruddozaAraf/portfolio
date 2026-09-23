@@ -43,7 +43,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.6 case-studies (4 bounties + thesis, MDX bodies, copy check in lint)
 - [x] 1.7 plain-mode (`/plain`, persisted switch, print styles)
 - [x] 1.8 seo-meta (Lighthouse SEO 100, a11y 100, BP 100; perf 77 owed to 5.1)
-- [ ] 1.9 contact-form (client-side Gmail/mailto)
+- [x] 1.9 contact-form (Zod-validated telegram, Gmail + mailto, `npm test`)
 - [ ] 1.10 deploy + bodruddozaaraf.me DNS → `v0.1.0`
 
 ### Phase 2: 2D Motion
@@ -64,6 +64,13 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (m) · `phase-1/contact-form`
+- Merged PR #9 (1.8). Telegram form (`src/components/contact/TelegramForm.tsx`) in the Telegram
+  Office section; compose builders `src/lib/telegram.ts`; `npm test` runs
+  `scripts/test-telegram.mjs` (round-trip of tricky characters, long-message URL lengths).
+  Driven end to end with Playwright: errors, focus, Gmail/mailto bodies exact, new tab, edit
+  keeps the draft, no-JS mailto links present (D56).
 
 ### 2026-09-23 (l) · `phase-1/seo-meta`
 - Merged PR #8 (1.7). Metadata base, title template, canonicals, shared OG base, JSON-LD Person,
