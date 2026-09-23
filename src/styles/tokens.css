@@ -101,6 +101,7 @@
   --gutter: 1rem;
   --page-max: 80rem;
 
+  --z-loader: 55;
   --z-grain: 60;
 }
 

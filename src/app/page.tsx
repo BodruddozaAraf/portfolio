@@ -1,3 +1,4 @@
+import { Loader } from "@/components/fx/Loader";
 import { TopBar } from "@/components/nav/TopBar";
 import { PersonJsonLd } from "@/components/seo/PersonJsonLd";
 import { About } from "@/components/sections/About";
@@ -10,11 +11,17 @@ import { Satchel } from "@/components/sections/Satchel";
 import { Telegram } from "@/components/sections/Telegram";
 import { Trail } from "@/components/sections/Trail";
 import { Wanted } from "@/components/sections/Wanted";
+import { microcopy } from "@/content";
+import { isLive } from "@/lib/features";
 
 // The whole journey on one page (docs/05-sections.md). Night once, then paper (D32).
 export default function Home() {
   return (
     <>
+      <Loader
+        title={microcopy.loaderTitle}
+        tips={microcopy.loadingTips.filter(isLive).map((t) => t.text)}
+      />
       <a
         href="#about"
         className="night text-small fixed top-3 left-3 z-50 -translate-y-24 px-4 py-2 focus:translate-y-0"

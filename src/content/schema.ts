@@ -207,6 +207,8 @@ export const microcopySchema = z
         available: text,
       })
       .strict(),
+    /** The loader's title card, the only numbered chapter on the site (D33). */
+    loaderTitle: text,
     loadingTips: z.array(loadingTipSchema).min(1),
     telegram: z.object({ heading: text, cta: text, subject: text }).strict(),
     notFound: text,
