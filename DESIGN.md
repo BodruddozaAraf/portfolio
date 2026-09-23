@@ -218,14 +218,23 @@ Mono) is loaded only on routes that show code.
 
 ## Layout
 
-Content sits in a centered column up to 80rem (1280px) with a 16px gutter on phones and 24px from
-768px up. Reading text is capped at 68ch. Sections breathe: 64px of vertical padding on phones,
+Content sits in the `shell` column (centered, up to 80rem / 1280px with a 16px gutter on phones and 24px from
+768px up). Sections use the `chapter` rhythm: 80px above and 64px below on phones, 128px and
+96px from 768px. Reading text is capped at 68ch. Sections breathe: 64px of vertical padding on phones,
 96px on desktop, with more space above a heading than below it. Structure is ledger-like: rows
 separated by ink hairlines at 15% (`border-ink/15`), not boxes. Multi-column layouts collapse to
 one column below 768px, declared per component; nothing may scroll horizontally.
 
 The journal itself (from step 1.4) is a two-page spread on desktop, one page with the spine on the
 left on tablet, and a single full-width page on phones.
+
+The home page runs night (hero), then paper, with wood, leather and paper grounds alternating
+so no two neighbouring sections share a surface: paper (journal entry, wanted poster on its post),
+wood (bounty board), paper (research, trail), leather (satchel), paper (camp stories, telegram),
+leather (colophon).
+
+**The Home Order Rule.** Neighbouring sections never share a ground or a layout family. A new
+section takes the surface its neighbours are not.
 
 ## Elevation & Depth
 
@@ -311,7 +320,7 @@ always credit it.
 it moves into the flow.
 
 ### Surfaces (signature)
-`paper`, `paper-light`, `paper-dark`, `leather` and `night` utilities set ground, texture and the
+`paper`, `paper-light`, `paper-dark`, `leather`, `wood` and `night` utilities set ground, texture and the
 `--surface-*` variables in one class. `burn` adds scorched edges to a sheet. The global grain is a
 fixed, pointer-events-none layer at 20% opacity with no blend mode, so it stays cheap to composite.
 

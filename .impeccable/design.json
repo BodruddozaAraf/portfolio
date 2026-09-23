@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-23T00:00:52.387862+00:00",
+  "generatedAt": "2026-09-23T00:18:26.013925+00:00",
   "title": "Design System: The Outlaw's Journal",
   "extensions": {
     "colorMeta": {
@@ -454,6 +454,11 @@
         "name": "The Five Faces Rule",
         "body": "Five families site-wide, the performance budget. A code face (JetBrains Mono) is loaded only on routes that show code.",
         "section": "typography"
+      },
+      {
+        "name": "The Home Order Rule",
+        "body": "Neighbouring sections never share a ground or a layout family. A new section takes the surface its neighbours are not.",
+        "section": "layout"
       },
       {
         "name": "The Burn Rule",

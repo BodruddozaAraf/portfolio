@@ -22,8 +22,8 @@ const sizes = {
 };
 const roundSizes = {
   sm: "size-20 text-caption",
-  md: "size-28 text-small",
-  lg: "size-36 text-lead",
+  md: "size-28 text-caption",
+  lg: "size-36 text-small",
 };
 const tones = { blood: "text-blood", ink: "text-ink" };
 

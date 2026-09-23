@@ -156,4 +156,4 @@ learning for computer vision. Graduating October 2026 and available full time.
 - **Telegram (contact):** "SEND WORD STOP ARAF READS EVERY TELEGRAM STOP". The form opens the
   visitor's own mail (Gmail compose / mail app) pre-filled to bodruddozaaraf@gmail.com (D19).
 - **404:** "You've wandered off the map, partner."
-- **Footer colophon:** "Built by hand in Dhaka. Inspired by a certain outlaw's journal. All art original."
+- **Footer colophon:** "Built by hand in Dhaka. Inspired by a certain outlaw's journal. Original art, plus public-domain engravings, credited below." (changed in step 1.5: the site now shows a credited PD engraving, D45)

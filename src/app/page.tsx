@@ -1,19 +1,38 @@
-import { profile } from "@/content";
+import { TopBar } from "@/components/nav/TopBar";
+import { About } from "@/components/sections/About";
+import { BountyBoard } from "@/components/sections/BountyBoard";
+import { CampStories } from "@/components/sections/CampStories";
+import { Colophon } from "@/components/sections/Colophon";
+import { Hero } from "@/components/sections/Hero";
+import { Research } from "@/components/sections/Research";
+import { Satchel } from "@/components/sections/Satchel";
+import { Telegram } from "@/components/sections/Telegram";
+import { Trail } from "@/components/sections/Trail";
+import { Wanted } from "@/components/sections/Wanted";
 
-// Placeholder until step 1.5 builds the real sections (see docs/06-roadmap.md).
+// The whole journey on one page (docs/05-sections.md). Night once, then paper (D32).
 export default function Home() {
   return (
-    <main
-      id="content"
-      className="flex flex-1 flex-col items-center justify-center gap-4 p-8 text-center"
-    >
-      <h1 className="font-display text-h1 tracking-poster uppercase">
-        {profile.name}
-      </h1>
-      <p className="text-lead">{profile.roleLine}</p>
-      <p className="text-lead italic">
-        The Outlaw&apos;s Journal is being written.
-      </p>
-    </main>
+    <>
+      <a
+        href="#about"
+        className="night text-small fixed top-3 left-3 z-50 -translate-y-24 px-4 py-2 focus:translate-y-0"
+      >
+        Skip to the journal
+      </a>
+      <TopBar />
+      <main id="content" className="flex-1">
+        <Hero />
+        <About />
+        <Wanted />
+        <BountyBoard />
+        <Research />
+        <Trail />
+        <Satchel />
+        <CampStories />
+        <Telegram />
+      </main>
+      <Colophon />
+    </>
   );
 }

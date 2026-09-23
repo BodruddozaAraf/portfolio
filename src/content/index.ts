@@ -78,6 +78,7 @@ validateContent(
     skillIds: allSkills.map((s) => s.id),
     projects,
     research,
+    strengths: profile.strengths,
     experience,
     timeline,
   },
@@ -98,6 +99,11 @@ export const skillUsage: ReadonlyMap<string, UsedIn[]> = new Map(
         : []),
     ],
   ]),
+);
+
+/** Skill id to its display name. */
+export const skillName: ReadonlyMap<string, string> = new Map(
+  allSkills.map((s) => [s.id, s.name]),
 );
 
 export function getProject(slug: string) {
