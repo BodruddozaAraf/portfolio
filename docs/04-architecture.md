@@ -5,7 +5,7 @@
 |---|---|---|
 | Framework | **Next.js 16, App Router**, TypeScript strict | Araf's primary stack; SSG for speed; good SEO |
 | Styling | **Tailwind CSS v4** + CSS variables (`tokens.css`) | Fast, consistent tokens |
-| 3D | **three**, **@react-three/fiber**, **@react-three/drei**, **@react-three/postprocessing** | Declarative 3D in React |
+| 3D | **three**, **@react-three/fiber**, **@react-three/drei** (PerformanceMonitor); postprocessing hand-written (D72) | Declarative 3D in React |
 | Shaders | GLSL via `shaderMaterial` (drei) | Fire, fog, paper, ink effects |
 | Scroll animation | **GSAP + ScrollTrigger** (free incl. plugins) | Industry standard, scrubbing, pinning |
 | Smooth scroll | **Lenis** | Pairs with ScrollTrigger |
@@ -89,7 +89,9 @@ and a quick GPU check (drei `PerformanceMonitor` / `detect-gpu`):
 | **low / mobile** | Static hero image + 2D parallax layers, no WebGL |
 | **reduced-motion** | Same as low, plus no motion (see 03) |
 
-## Performance budgets (requirements)
+## Performance budgets (guidance since D74; accessibility stays a requirement)
+Araf (2026-09-23): load speed and size are not strict for a portfolio. Measure and report them,
+keep the 3D lazy, but a good animated loading screen matters more than a faster first load.
 | Metric | Budget |
 |---|---|
 | LCP (mobile, 4G) | ≤ 2.5 s |

@@ -178,15 +178,17 @@
   }
 
   /* The Chapter I loader (src/components/fx/Loader.tsx) shows only when the boot script asks for
-     it, with the tip it picked. CSS alone guarantees the 3.5s cap: from 3s it fades out on its
-     own, however late the scripts arrive (on a slow first load they hydrate after that). */
+     it, with the tip it picked, and moves from the first paint without any script: the sketch
+     draws itself (an SVG with its own animation), the glow breathes, embers rise, and the fuse
+     crawls. When scripts arrive the fuse follows the real loading. CSS alone guarantees the cap
+     (LOADER_MAX_MS, 9s): from 8.5s it fades out on its own, however late the scripts are. */
   .loader,
   .loader-tip {
     display: none;
   }
   [data-loader="show"] .loader {
     display: grid;
-    animation: loader-fallback 0.5s var(--ease-journal) 3s forwards;
+    animation: loader-fallback 0.5s var(--ease-journal) 8.5s forwards;
   }
   [data-tip="0"] .loader-tip[data-tip="0"],
   [data-tip="1"] .loader-tip[data-tip="1"],
@@ -199,6 +201,88 @@
     to {
       opacity: 0;
       visibility: hidden;
+    }
+  }
+  /* the fire's glow and embers sit on the drawn fire, low in the middle of the sketch */
+  .loader-glow {
+    position: absolute;
+    left: 50%;
+    top: 62%;
+    width: 70%;
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--color-ember) 30%, transparent),
+      color-mix(in srgb, var(--color-ember) 8%, transparent) 55%,
+      transparent
+    );
+    opacity: 0;
+    animation:
+      loader-glow-in 1.6s var(--ease-journal) 0.6s forwards,
+      hero-flicker 3.1s steps(9, jump-none) 2.2s infinite alternate;
+  }
+  .loader-embers {
+    position: absolute;
+    left: 50%;
+    top: 58%;
+  }
+  .loader-embers span {
+    position: absolute;
+    left: var(--ember-x);
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--color-ember-glow);
+    box-shadow: 0 0 6px 1px
+      color-mix(in srgb, var(--color-ember) 70%, transparent);
+    opacity: 0;
+    animation-name: hero-ember;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  /* the fuse: a hairline that burns from left to right, its lit end glowing. Before scripts it
+     crawls on its own toward three quarters; the loader then drives --p with the real progress */
+  .loader-fuse-track {
+    width: min(14rem, 60vw);
+    height: 1px;
+    background: color-mix(in srgb, var(--color-paper-light) 22%, transparent);
+  }
+  .loader-fuse {
+    position: relative;
+    width: calc(var(--p) * 100%);
+    height: 100%;
+    background: var(--color-ember);
+    animation: loader-crawl 7s cubic-bezier(0.15, 0.6, 0.3, 1) forwards;
+  }
+  .loader-fuse::after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-ember-glow);
+    box-shadow: 0 0 8px 2px
+      color-mix(in srgb, var(--color-ember) 70%, transparent);
+  }
+  .loader-fuse.is-live {
+    animation: none;
+    transition: --p 0.5s var(--ease-journal);
+  }
+  @keyframes loader-crawl {
+    from {
+      --p: 0;
+    }
+    to {
+      --p: 0.75;
+    }
+  }
+  @keyframes loader-glow-in {
+    to {
+      opacity: 1;
     }
   }
 
@@ -634,4 +718,11 @@
       scroll-behavior: auto !important;
     }
   }
+}
+
+/* the loader's fuse (see .loader-fuse): registered so it can be animated and read back */
+@property --p {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 0;
 }
