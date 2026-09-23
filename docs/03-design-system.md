@@ -90,7 +90,7 @@ on the paper.
 | Sketch draw-on | 1.2–2.4 s, `stroke-dashoffset`, linear-ish with slight ease |
 | Stamp (wanted "REWARD", "DELIVERED") | scale 1.6 → 1, rotate −8°, 180 ms, then 2px shake |
 | Pin a poster | drop from −40px, keyframed swing that settles (no overshoot curve, D40), 500 ms |
-| Page turn | 3D rotateY with page curl shader (3D) or CSS 3D fallback, 900 ms |
+| Page turn | The new page wipes over the old like a leaf turned from the right edge (forward) or left (back), old page dimmed under it, 700 ms (D64; the 3D page curl is not built) |
 | Camera moves (3D) | scroll-scrubbed via GSAP ScrollTrigger, never time-based while scrolling |
 | Hover | lift 2–4px + warm shadow, 200 ms |
 | Magnetic cursor elements | max 12px pull |

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { research } from "@/content";
 import { ChapterTitle } from "./ChapterTitle";
+import { TURN_FORWARD } from "@/lib/page-turn";
 
 // 5. The Torn Page. The thesis in plain figures: the three-stage pipeline, the metrics, what Araf
 // owned. The engraving stands in for the torn page until step 3.7 builds the reconstruction.
@@ -86,7 +87,10 @@ export function Research() {
             ))}
           </dl>
           <div className="mt-10">
-            <Button href={`/research/${research.slug}`}>
+            <Button
+              href={`/research/${research.slug}`}
+              transitionTypes={TURN_FORWARD}
+            >
               Read the account
             </Button>
           </div>

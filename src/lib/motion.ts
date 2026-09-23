@@ -12,7 +12,7 @@ export const dur = {
   pin: 0.5,
   reveal: 0.8,
   morph: 0.5,
-  page: 0.9,
+  page: 0.7,
   draw: 1.8,
 } as const;
 

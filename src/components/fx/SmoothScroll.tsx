@@ -9,7 +9,8 @@ import "lenis/dist/lenis.css";
 // Lenis smooth scroll (docs/03 section 5: lerp about 0.1), driven by the GSAP ticker so every
 // ScrollTrigger reads the same frame. Off under reduced motion, in Plain mode and on /plain, where
 // the browser's own scroll is used. Loaded after hydration so it never delays the first paint.
-// Same-page anchor links glide too, then move focus to their target like a native jump.
+// Same-page anchor links glide too, then move focus to their target like a native jump. They do
+// not write the hash into the history, so Back restores the scroll (see CleanHash).
 
 export function SmoothScroll() {
   const level = useMotionLevel();
@@ -61,7 +62,6 @@ export function SmoothScroll() {
           // capture phase, so Next's Link does not also jump
           event.preventDefault();
           event.stopPropagation();
-          if (url.hash !== location.hash) history.pushState(null, "", url.hash);
           lenis.scrollTo(target, {
             onComplete: () => {
               if (!target.hasAttribute("tabindex"))

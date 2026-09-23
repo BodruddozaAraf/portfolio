@@ -32,7 +32,11 @@ type Common = {
 type ButtonAsButton = Common &
   Omit<ComponentProps<"button">, keyof Common> & { href?: undefined };
 type ButtonAsLink = Common &
-  Omit<ComponentProps<"a">, keyof Common> & { href: string };
+  Omit<ComponentProps<"a">, keyof Common> & {
+    href: string;
+    /** Route transition types for internal links (src/lib/page-turn.ts). */
+    transitionTypes?: string[];
+  };
 
 export function Button(props: ButtonAsButton | ButtonAsLink) {
   const { variant = "solid", icon, children, className = "", ...rest } = props;
@@ -49,10 +53,15 @@ export function Button(props: ButtonAsButton | ButtonAsLink) {
   );
 
   if (typeof rest.href === "string") {
-    const { href, ...anchor } = rest as ButtonAsLink;
+    const { href, transitionTypes, ...anchor } = rest as ButtonAsLink;
     const internal = href.startsWith("/") || href.startsWith("#");
     return internal ? (
-      <Link href={href} className={classes} {...anchor}>
+      <Link
+        href={href}
+        transitionTypes={transitionTypes}
+        className={classes}
+        {...anchor}
+      >
         {content}
       </Link>
     ) : (

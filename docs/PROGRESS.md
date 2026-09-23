@@ -4,11 +4,11 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 2 (2D motion). Steps 2.1 to 2.6 merged.
+- **Current phase:** Phase 2 (2D motion). Steps 2.1 to 2.7 merged.
 - **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Next: `phase-2/page-transitions`.
-- **Next action:** step 2.7 page-transitions (route transitions between home and case studies, e.g. page turn or ink wipe, with React `<ViewTransition>` alongside the poster morph, D61; back navigation must restore scroll).
+- **Active branch:** none. Next: `phase-2/grain`.
+- **Next action:** step 2.8 grain (global film grain on a fixed pointer-events-none layer, animated; off in reduced motion; no scroll jank on mobile), then the Phase 2 Vercel check and tag `v0.2.0`.
 - **Waiting on Araf (the agent's permissions block DNS/domain changes):**
   1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
      `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
@@ -59,7 +59,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 2: 2D Motion
 - [x] 2.1 motion-infra · [x] 2.2 loader · [x] 2.3 about-wanted · [x] 2.4 bounty-board
-- [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
+- [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [x] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
 
 ### Phase 3: 3D Camp
 - [ ] 3.1 r3f-setup · [ ] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
@@ -75,6 +75,18 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (u) · `phase-2/page-transitions`
+- `PageTurn` wraps the home page and every case study; typed links turn the page forward or back
+  (wipe, 700ms, D64). Untyped browser navigation is instant; the poster morph still plays.
+- Found and fixed three scroll bugs on the way: hashes in the history made Back re-jump to the
+  hash (glide pushed one; Next links wrote one); deep links below the Trail landed 1456px short
+  because the pin spacer arrives after load; `lenis.scrollTo` right after a route change clamped
+  to the previous page's height. `CleanHash` handles all three.
+- Verified (Playwright, `next start`): forward and back wipes captured mid-flight; Back from a
+  case study restores exactly (3272, 9125); "Back to the journal" lands on Research at 0;
+  `/#send-word` deep link lands at 0 on desktop, reduced motion and phone; the top bar's Send word
+  from a case study lands at 0; hashes cleared after arrival; no console errors.
 
 ### 2026-09-23 (t) · `phase-2/satchel-camp-telegram`
 - Satchel pouches lift their tools on hover; every tool opens a popover item card with its pouch

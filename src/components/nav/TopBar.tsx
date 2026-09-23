@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { microcopy, profile } from "@/content";
+import { TURN_BACK } from "@/lib/page-turn";
 
 // The camp's top bar: the B.A. monogram home, and the two routes a visitor needs at any moment.
 // Over the night hero on the home page ("night"); elsewhere it takes the colors of the surface it
@@ -27,6 +28,7 @@ export function TopBar({ surface = "night" }: TopBarProps) {
       >
         <Link
           href="/"
+          transitionTypes={TURN_BACK}
           className="font-display text-small tracking-poster ease-journal inline-grid size-11 place-items-center rounded-full border border-current/60 transition-colors duration-(--dur-hover) hover:border-(--surface-accent) hover:text-(--surface-accent)"
         >
           <span aria-hidden>{initials}</span>
@@ -44,6 +46,7 @@ export function TopBar({ surface = "night" }: TopBarProps) {
           <li>
             <Link
               href="/#send-word"
+              transitionTypes={TURN_BACK}
               className="ease-journal underline-offset-[0.3em] transition-colors duration-(--dur-hover) hover:text-(--surface-accent) hover:underline"
             >
               {microcopy.telegram.cta}
