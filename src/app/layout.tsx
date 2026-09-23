@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CleanHash } from "@/components/fx/CleanHash";
+import { DeadEye } from "@/components/fx/DeadEye";
 import { Grain } from "@/components/fx/Grain";
 import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { microcopy, profile } from "@/content";
@@ -52,6 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Grain />
         <SmoothScroll />
         <CleanHash />
+        <DeadEye />
       </body>
     </html>
   );

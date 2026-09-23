@@ -8,9 +8,9 @@
   capture Jack The Jelli screenshots from jackthejelli.com (or placeholders) for A16 and 4.4.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-4/weapon-wheel` (4.1). Next: `phase-4/dead-eye` (4.2).
-- **Next action:** 4.2 Dead Eye (press E, or the eye in the footer; share `slowTime` at 25%),
-  then 4.4 share images with the Jack The Jelli screenshots, then the Vercel check and `v0.4.0`.
+- **Active branch:** `phase-4/dead-eye` (4.2). Next: `phase-4/og-images` (4.4).
+- **Next action:** 4.4 share images per page (`next/og`, wanted-poster style) and the Jack The
+  Jelli screenshots from jackthejelli.com (A16), then the Vercel check and `v0.4.0`.
 - **Araf (2026-09-23, D74):** load speed and size are not strict; performance budgets are
   guidance now. The loading screen must be animated from the first paint, never a blank wait.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
@@ -80,7 +80,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 3.5 scroll-camera · [x] 3.6 postprocessing · [x] 3.7 research-reconstruct → `v0.3.0` (tagged)
 
 ### Phase 4: Signature features
-- [x] 4.1 weapon-wheel · [ ] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [ ] 4.4 og-images → `v0.4.0`
+- [x] 4.1 weapon-wheel · [x] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [ ] 4.4 og-images → `v0.4.0`
 
 ### Phase 5: Polish and launch
 - [ ] 5.1 perf · [ ] 5.2 a11y · [ ] 5.3 cross-browser · [ ] 5.4 tests/CI · [ ] 5.5 launch → `v1.0.0`
@@ -89,6 +89,15 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (ai) · `phase-4/dead-eye`
+- Dead Eye (D77): E or the footer eye; six seconds of sepia, red cast and vignette over
+  everything, time at 25%, a draining meter; links are marked with a red X instead of followed
+  and the last one fires at the end (or on a second E); Esc calls it off.
+- Verified (Playwright, `next start`): two marks then the timer opens the second bounty; Esc
+  clears without navigating; E fires early into the thesis page; typing an "e" in the telegram
+  does nothing; the footer eye starts it; reduced motion ignores it; the wheel suite passes
+  again. No console errors. Initial JS 286.7 KB.
 
 ### 2026-09-23 (ah) · `phase-4/weapon-wheel`
 - Araf: sound goes to "Later"; take Jack The Jelli screenshots from jackthejelli.com or use
