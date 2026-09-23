@@ -75,6 +75,37 @@
   background-size: 320px 320px;
 }
 
+/* Weathered planks: the bounty board and the wanted post. Paper sheets are pinned on it. */
+@utility wood {
+  --surface-fg: var(--color-paper-light);
+  --surface-accent: var(--color-ember-glow);
+  --surface-selection: var(--color-ember-glow);
+  --surface-selection-fg: var(--color-night);
+  --surface-solid: var(--color-paper-light);
+  --surface-on-solid: var(--color-leather);
+  --surface-solid-hover: var(--color-ember-glow);
+  color: var(--color-paper-light);
+  background-color: var(--color-leather);
+  background-image: url("/textures/wood.webp");
+  background-size: 512px 512px;
+}
+
+/* The page column: centered, capped at --page-max, with the responsive gutter. */
+@utility shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--page-max);
+  padding-inline: var(--gutter);
+}
+
+/* Section rhythm: more air on desktop, more above a heading than below it. */
+@utility chapter {
+  padding-block: 5rem 4rem;
+  @media (min-width: 48rem) {
+    padding-block: 8rem 6rem;
+  }
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;

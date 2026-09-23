@@ -189,6 +189,47 @@ function stampWear() {
   });
 }
 
+// Weathered wood planks for the bounty board: four planks per tile, long grain along x, a few
+// knots, dark seams between planks. Overlay on the leather color.
+function wood() {
+  const size = 512;
+  const grainA = fbm(2, 32, 4, 71);
+  const grainB = fbm(1, 90, 3, 73);
+  const stainW = fbm(3, 3, 3, 79);
+  const fibre = lattice(6, 384, 83);
+  const knotR = mulberry32(97);
+  const knots = Array.from({ length: 5 }, () => ({
+    x: knotR(),
+    y: knotR(),
+    r: 0.012 + knotR() * 0.02,
+  }));
+  return render(size, (u, w) => {
+    const plank = Math.floor(w * 4);
+    const inPlank = w * 4 - plank;
+    const shift = plank * 0.37; // each plank's grain is offset
+    let g =
+      grainA((u + shift) % 1, w) * 0.7 + grainB((u + shift * 2) % 1, w) * 0.3;
+    g += (fibre((u + shift) % 1, w) - 0.5) * 0.35; // fine fibres
+    for (const k of knots) {
+      const dx = Math.min(Math.abs(u - k.x), 1 - Math.abs(u - k.x)) * 0.4;
+      const dy = Math.min(Math.abs(w - k.y), 1 - Math.abs(w - k.y));
+      const d = Math.hypot(dx, dy) / k.r;
+      if (d < 1)
+        g -= (1 - d) ** 1.5 * 0.45; // dark burl
+      else if (d < 2.4)
+        g += (fibre(u, (w + d * 0.01) % 1) - 0.5) * 0.3 * (2.4 - d); // grain bends round it
+    }
+    const seam = inPlank < 0.018 || inPlank > 0.985;
+    const bevel = inPlank < 0.05 ? (0.05 - inPlank) * 6 : 0; // light catches the top edge
+    const weather = clamp((stainW(u, w) - 0.45) * 2);
+    if (seam) return [14, 8, 4, 0.85];
+    const light = clamp((g - 0.5) * 2.6 + bevel * 0.6 + weather * 0.25, -1, 1);
+    return light > 0
+      ? [236, 214, 178, light * 0.34]
+      : [18, 10, 5, -light * 0.5];
+  });
+}
+
 // Provenance: record the origin inside the file (impeccable embed-prompt), when the tool exists.
 function embedOrigin(file, name) {
   const cli = path.join(
@@ -217,6 +258,7 @@ for (const [name, make, quality] of [
   ["leather", leather, 62],
   ["grain", grain, 45],
   ["stamp-wear", stampWear, 60],
+  ["wood", wood, 66],
 ]) {
   const src = path.join(TMP, `${name}.png`);
   writeFileSync(src, make());
