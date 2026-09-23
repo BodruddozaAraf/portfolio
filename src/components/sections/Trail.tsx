@@ -45,7 +45,7 @@ export function Trail() {
         <div className="shadow-pasted overflow-hidden">
           <div
             data-trail="track"
-            className="bg-paper-dark relative bg-[url('/maps/trail.webp'),url('/textures/paper.webp')] bg-size-[cover,512px_512px] bg-center bg-blend-multiply group-data-riding:flex group-data-riding:h-[min(36rem,78vh)] group-data-riding:w-[168rem] group-data-riding:items-center"
+            className="bg-paper-dark trail-map relative bg-center bg-blend-multiply group-data-riding:flex group-data-riding:h-[min(36rem,78vh)] group-data-riding:w-[168rem] group-data-riding:items-center"
           >
             <div className="relative w-full px-6 py-10 md:px-10 lg:px-0 lg:py-12">
               {/* the trail: a dotted line down the page on phones, a meander across the map on desktop */}

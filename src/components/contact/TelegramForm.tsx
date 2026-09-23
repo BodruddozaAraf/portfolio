@@ -7,7 +7,6 @@ import {
   WarningCircle,
 } from "@phosphor-icons/react";
 import { useEffect, useId, useRef, useState, type FormEvent } from "react";
-import { z } from "zod";
 import { Stamp } from "@/components/journal/Stamp";
 import { SlamIn } from "@/components/motion/SlamIn";
 import { Transmission } from "@/components/motion/Transmission";
@@ -19,6 +18,8 @@ import {
   mailtoUrl,
   MESSAGE_MAX,
   type Telegram,
+  type TelegramErrors,
+  validateTelegram,
 } from "@/lib/telegram";
 
 // The telegram form (docs/05-sections.md section 9, D19). Validates in the browser, then hands
@@ -26,25 +27,8 @@ import {
 // transmitted (Morse along a wire), then stamped "Composed": not "Delivered", because nothing
 // is sent until the visitor sends it from their own mail (D19, D63).
 
-const schema = z.object({
-  name: z
-    .string()
-    .trim()
-    .min(1, "Put your name on it.")
-    .max(80, "Keep the name under 80 characters."),
-  email: z.email("That address will not reach you back. Check it for a typo."),
-  message: z
-    .string()
-    .trim()
-    .min(10, "Say a little more: at least 10 characters.")
-    .max(
-      MESSAGE_MAX,
-      `Keep it under ${MESSAGE_MAX} characters so every mail app can open it.`,
-    ),
-});
-
 type Field = keyof Telegram;
-type Errors = Partial<Record<Field, string>>;
+type Errors = TelegramErrors;
 
 const input =
   "mt-2 w-full border-0 border-b border-ink bg-paper/70 px-3 py-2.5 text-body text-ink placeholder:text-ink-soft/70 aria-invalid:border-blood aria-invalid:bg-blood/5";
@@ -74,13 +58,9 @@ export function TelegramForm({ subjectTemplate }: { subjectTemplate: string }) {
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const result = schema.safeParse(values);
-    if (!result.success) {
-      const next: Errors = {};
-      for (const issue of result.error.issues) {
-        const field = issue.path[0] as Field;
-        next[field] ??= issue.message;
-      }
+    const result = validateTelegram(values);
+    if (!result.ok) {
+      const next = result.errors;
       setErrors(next);
       const first = (["name", "email", "message"] as Field[]).find(
         (f) => next[f],

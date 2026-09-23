@@ -104,6 +104,10 @@ keep the 3D lazy, but a good animated loading screen matters more than a faster 
 | Steady-state FPS (high tier) | ≥ 55 fps on a mid laptop |
 | Lighthouse mobile | Perf ≥ 85, A11y ≥ 95, BP ≥ 95, SEO 100 |
 
+Measured at step 5.1 (D80): home initial JS 198.5 KB gzip (about 170 KB of it is the Next.js and
+React runtime), 3D chunk 247.5 KB, home HTML 39 KB gzip, Lighthouse mobile 78 / 100 / 100 / 100
+(simulated; 2.8 s LCP with real throttling).
+
 Techniques: `next/image` (AVIF), `frameloop="demand"` when the canvas is offscreen, pause
 the render loop when the tab is hidden, dispose GPU resources on unmount, and code-split
 each heavy section with `dynamic()`.

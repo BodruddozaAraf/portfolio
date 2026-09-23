@@ -35,3 +35,34 @@ export function mailtoUrl(t: Telegram, subjectTemplate?: string) {
   const enc = (s: string) => encodeURIComponent(s.replace(/\r?\n/g, "\r\n"));
   return `mailto:${TELEGRAM_TO}?subject=${enc(telegramSubject(t.name, subjectTemplate))}&body=${enc(telegramBody(t))}`;
 }
+
+// Zod's default email pattern (zod/v4/core/regexes), inlined so the form ships no validation
+// library (step 5.1)
+const EMAIL =
+  /^(?:[A-Za-z0-9_'+\-]+\.)*[A-Za-z0-9_'+\-]*[A-Za-z0-9_+-]@(?:[A-Za-z0-9][A-Za-z0-9\-]*\.)+[A-Za-z]{2,}$/;
+
+export type TelegramErrors = Partial<Record<keyof Telegram, string>>;
+
+/** Trims each field and checks it; the first problem per field, in the form's words. */
+export function validateTelegram(
+  values: Telegram,
+): { ok: true; data: Telegram } | { ok: false; errors: TelegramErrors } {
+  const data = {
+    name: values.name.trim(),
+    email: values.email.trim(),
+    message: values.message.trim(),
+  };
+  const errors: TelegramErrors = {};
+  if (!data.name) errors.name = "Put your name on it.";
+  else if (data.name.length > 80)
+    errors.name = "Keep the name under 80 characters.";
+  if (!EMAIL.test(data.email))
+    errors.email = "That address will not reach you back. Check it for a typo.";
+  if (data.message.length < 10)
+    errors.message = "Say a little more: at least 10 characters.";
+  else if (data.message.length > MESSAGE_MAX)
+    errors.message = `Keep it under ${MESSAGE_MAX} characters so every mail app can open it.`;
+  return Object.keys(errors).length
+    ? { ok: false, errors }
+    : { ok: true, data };
+}

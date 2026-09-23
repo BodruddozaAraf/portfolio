@@ -19,9 +19,9 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 ## Needed assets list
 | ID | Asset | Format target | Phase | Status |
 |---|---|---|---|---|
-| A01 | Paper texture (tileable, warm) | AVIF/WebP ≤ 150 KB | 1 | done: `public/textures/paper.webp` (115 KB, procedural) |
-| A02 | Leather texture | AVIF ≤ 150 KB + normal map (3D) | 1/3 | 2D done: `public/textures/leather.webp` (114 KB, procedural); normal map in Phase 3 |
-| A03 | Wood planks (bounty board) | AVIF ≤ 150 KB | 1 | done: `public/textures/wood.webp` (70 KB, procedural) |
+| A01 | Paper texture (tileable, warm) | AVIF/WebP ≤ 150 KB | 1 | done: `public/textures/paper.avif` (27 KB) with `paper.webp` (115 KB) as fallback, procedural (D80) |
+| A02 | Leather texture | AVIF ≤ 150 KB + normal map (3D) | 1/3 | 2D done: `public/textures/leather.avif` (44 KB) with `leather.webp` (114 KB) as fallback, procedural (D80); normal map in Phase 3 |
+| A03 | Wood planks (bounty board) | AVIF ≤ 150 KB | 1 | done: `public/textures/wood.avif` (17 KB) with `wood.webp` (70 KB) as fallback, procedural (D80) |
 | A04 | Map illustration (original, stylized) | WebP (ink on white, multiplied) | 2 | done: `public/maps/trail.webp` (87 KB, 2400x800, procedural survey map from `scripts/map/map.html`, D62) |
 | A05 | Sketch set: campfire, desk/laptop, football, satchel items, horse, lantern | SVG line art | 1–2 | campfire done (`src/content/sketches/campfire.ts`, traced from A17); rest todo |
 | A17 | Engraving plate: *Camping Out in the Adirondack Mountains* (Winslow Homer, 1874) | WebP 1600w, grayscale | 1 | done: `public/engravings/camping-out-adirondacks.webp` (471 KB, served resized by `next/image`) |
@@ -47,7 +47,7 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 ## Attribution log
 | Asset ID | File path | Source URL | Author | License |
 |---|---|---|---|---|
-| A01, A02, grain, stamp wear | `public/textures/*.webp` | `scripts/textures.mjs` | Original (this repo) | Own work |
+| A01, A02, grain, stamp wear | `public/textures/*.avif`, `*.webp` | `scripts/textures.mjs` | Original (this repo) | Own work |
 | A16 | `public/work/jack-the-jelli/*` | https://jackthejelli.com (screenshots of Araf's client work) | Jack The Jelli (store), built by Araf | Shown with the client's permission (D18) |
 | Share cards | `public/og/*.jpg` | `src/app/og-card`, `scripts/brand/og.mjs` | Original (this repo) | Own work |
 | A07 | `public/hero/*` | `scripts/hero/render.mjs` (the 3D camp, all procedural) | Original (this repo) | Own work |

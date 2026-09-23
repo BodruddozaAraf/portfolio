@@ -17,18 +17,30 @@
   color: var(--color-ink);
   background-color: var(--color-paper);
   background-image: url("/textures/paper.webp");
+  background-image: image-set(
+    url("/textures/paper.avif") type("image/avif"),
+    url("/textures/paper.webp") type("image/webp")
+  );
   background-size: 512px 512px;
 }
 
 @utility paper-light {
   background-color: var(--color-paper-light);
   background-image: url("/textures/paper.webp");
+  background-image: image-set(
+    url("/textures/paper.avif") type("image/avif"),
+    url("/textures/paper.webp") type("image/webp")
+  );
   background-size: 512px 512px;
 }
 
 @utility paper-dark {
   background-color: var(--color-paper-dark);
   background-image: url("/textures/paper.webp");
+  background-image: image-set(
+    url("/textures/paper.avif") type("image/avif"),
+    url("/textures/paper.webp") type("image/webp")
+  );
   background-size: 512px 512px;
 }
 
@@ -72,7 +84,51 @@
   color: var(--color-paper-light);
   background-color: var(--color-leather);
   background-image: url("/textures/leather.webp");
+  background-image: image-set(
+    url("/textures/leather.avif") type("image/avif"),
+    url("/textures/leather.webp") type("image/webp")
+  );
   background-size: 320px 320px;
+}
+
+/* The bare textures, for places that pick their own ground color (the grain layer, the styleguide
+   swatches, the trail map). AVIF where the browser takes it, WebP otherwise (step 5.1). */
+@utility tex-paper {
+  background-image: url("/textures/paper.webp");
+  background-image: image-set(
+    url("/textures/paper.avif") type("image/avif"),
+    url("/textures/paper.webp") type("image/webp")
+  );
+  background-size: 512px 512px;
+}
+@utility tex-leather {
+  background-image: url("/textures/leather.webp");
+  background-image: image-set(
+    url("/textures/leather.avif") type("image/avif"),
+    url("/textures/leather.webp") type("image/webp")
+  );
+  background-size: 320px 320px;
+}
+@utility tex-grain {
+  background-image: url("/textures/grain.webp");
+  background-image: image-set(
+    url("/textures/grain.avif") type("image/avif"),
+    url("/textures/grain.webp") type("image/webp")
+  );
+  background-size: 160px 160px;
+}
+/* the trail map printed on paper, multiplied into it */
+@utility trail-map {
+  background-image: url("/maps/trail.webp"), url("/textures/paper.webp");
+  background-image:
+    url("/maps/trail.webp"),
+    image-set(
+      url("/textures/paper.avif") type("image/avif"),
+      url("/textures/paper.webp") type("image/webp")
+    );
+  background-size:
+    cover,
+    512px 512px;
 }
 
 /* Weathered planks: the bounty board and the wanted post. Paper sheets are pinned on it. */
@@ -87,6 +143,10 @@
   color: var(--color-paper-light);
   background-color: var(--color-leather);
   background-image: url("/textures/wood.webp");
+  background-image: image-set(
+    url("/textures/wood.avif") type("image/avif"),
+    url("/textures/wood.webp") type("image/webp")
+  );
   background-size: 512px 512px;
 }
 
