@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Grain } from "@/components/fx/Grain";
+import { SmoothScroll } from "@/components/fx/SmoothScroll";
 import { profile } from "@/content";
 import { PREFERENCES_KEY } from "@/lib/preferences-key";
 import { SITE_URL } from "@/lib/site";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="paper flex min-h-full flex-col">
         {children}
         <Grain />
+        <SmoothScroll />
         {/* Apply the stored Plain mode choice before hydration, so effects never flash */}
         <Script id="plain-mode" strategy="beforeInteractive">
           {`try{var p=JSON.parse(localStorage.getItem(${JSON.stringify(PREFERENCES_KEY)})||"{}");document.documentElement.dataset.plain=p.state&&p.state.plainMode?"true":"false"}catch(e){}`}
