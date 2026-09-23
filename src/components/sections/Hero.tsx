@@ -1,12 +1,13 @@
 import { ArrowDown } from "@phosphor-icons/react/ssr";
 import { preload } from "react-dom";
+import { CampStage } from "@/components/three/CampStage";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { profile } from "@/content";
 
 // 1. The Camp. Night, the fire low on the right, four text elements only (D29): name, role,
-// one sentence, two CTAs. This is the static placeholder; Phase 3 replaces the art with the 3D
-// camp and keeps the copy exactly as is.
+// one sentence, two CTAs. The art below is the finished picture for every visitor; on WebGL
+// tiers the 3D camp (CampStage) fades in over it, behind the copy, which never changes.
 
 const FIRE_MASK = "/sketches/campfire-mask.webp";
 
@@ -34,6 +35,8 @@ export function Hero() {
         aria-hidden
         className="bg-night absolute right-[-6%] bottom-[4%] -z-10 aspect-[680/316] w-[80%] [mask-image:url(/sketches/campfire-mask.webp)] [mask-size:contain] [mask-repeat:no-repeat] opacity-90 md:right-[2%] md:w-[46%]"
       />
+
+      <CampStage />
 
       <div className="shell pt-28 pb-40 md:pt-24 md:pb-24">
         <div className="max-w-3xl">

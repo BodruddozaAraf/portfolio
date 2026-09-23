@@ -1,13 +1,14 @@
-import type { ElementType, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { seededRange } from "@/lib/seed";
 import { Pin } from "./Pin";
+import type { HtmlTag } from "@/lib/html-tag";
 
 // A printed poster tacked to a board: a fresh sheet with scorched edges, lifted at the corners,
 // hung slightly off true. Rotation comes from the seed so SSR and hydration agree
 // (DESIGN.md, The Tilt Rule: pinned posters up to 1.5deg).
 
 type PosterProps = {
-  as?: ElementType;
+  as?: HtmlTag;
   /** Seed for the hang angle; use something stable like the bounty slug. */
   seed: string;
   pins?: 1 | 2;

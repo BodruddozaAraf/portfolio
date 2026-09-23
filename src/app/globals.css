@@ -202,6 +202,16 @@
     }
   }
 
+  /* The 3D camp (src/components/three/CampStage.tsx) fades in over the server-rendered hero once
+     its first frames are drawn; until then, and for everyone without WebGL, the hero's own art
+     is the picture. */
+  .camp-stage {
+    transition: opacity 1.2s var(--ease-journal);
+  }
+  .camp-stage canvas {
+    display: block;
+  }
+
   /* A satchel item card (a native popover): it lifts into view, and the page dims behind it. */
   .item-card {
     opacity: 0;
@@ -291,7 +301,8 @@
 
   /* Plain mode (the switch on /plain): the journal without effects. Script-driven motion (Lenis,
      GSAP, later 3D) reads the same store through useMotionLevel. */
-  [data-plain="true"] .grain-layer {
+  [data-plain="true"] .grain-layer,
+  [data-plain="true"] .camp-stage {
     display: none;
   }
   [data-plain="true"] [style*="rotate"] {

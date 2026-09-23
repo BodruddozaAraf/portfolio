@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, type ElementType, type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { useMotionLevel } from "@/hooks/useReducedMotion";
 import { useLazyGsap } from "@/hooks/useLazyGsap";
 import { dur, reducedFade, revealRise, stagger } from "@/lib/motion";
+import type { HtmlTag } from "@/lib/html-tag";
 
 // Section reveal helper (docs/03 section 5): the block rises 24px and inks in as it scrolls into
 // view, once. With `stagger`, its direct children arrive one after another, 60ms apart; use that
@@ -15,7 +16,7 @@ import { dur, reducedFade, revealRise, stagger } from "@/lib/motion";
 
 type RevealProps = {
   children: ReactNode;
-  as?: ElementType;
+  as?: HtmlTag;
   stagger?: boolean;
   className?: string;
 };

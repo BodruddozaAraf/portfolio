@@ -4,11 +4,17 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 2 complete (tag `v0.2.0`). Next: Phase 3 (3D camp).
+- **Current phase:** Phase 3 (3D camp) in progress. Araf: run 3.1 to 3.7 in order, merge each
+  step PR without waiting for Vercel, check Vercel once at the end, tag `v0.3.0`, then check in.
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Next: `phase-3/r3f-setup`.
-- **Next action:** Phase 3 step 3.1 r3f-setup (R3F canvas, lazy load, device tier detection, fallback image flow, perf monitor; read `docs/06-roadmap.md` Phase 3 and `docs/05-sections.md` section 1). Phase 2 ended with Lighthouse home perf 72 to 73 and initial JS 279 KB (both over budget, owed to 5.1).
+- **Active branch:** `phase-3/r3f-setup` (3.1). Next: `phase-3/camp-environment` (3.2).
+- **Next action:** 3.2 camp-environment: sky and stars, layered hills, pines, fog, lighting, all
+  procedural (no downloads without Araf's OK). The camp runs only with `?tier=high|mid` until
+  `campLive` (`src/lib/features.ts`) is switched on (D67).
+- **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
+  Lighthouse mobile perf 72 to 73, A11y/BP/SEO 100. After 3.1: initial 279.8 KB, 3D chunk 235.5 KB
+  (budget 350), models 0 MB.
 - **Waiting on Araf:**
   1. Vercel > `portfolio` > Settings > Domains: make `bodruddozaaraf.me` (apex) the primary domain
      and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
@@ -29,6 +35,12 @@
   - Lighthouse: `npx lighthouse` from a scratch folder with
     `CHROME_PATH="C:/Program Files/Google/Chrome/Application/chrome.exe"`, against `next start`.
   - Vercel connector: calls fail with an explicit `teamId`; call without it.
+  - 3D in headless Chromium: the headless shell gets SwiftShader by default (the camp detects it
+    as low tier). With `--use-angle=d3d11 --enable-gpu --ignore-gpu-blocklist` it gets the real
+    GPU (RTX 3060 here). `?tier=high|mid|low` forces a tier; `?stats` records frames per second
+    on `window.__campFps`; `html[data-camp]` is `off`, `loading` or `ready`.
+  - JS budgets: `npm run build && node scripts/measure-js.mjs` (initial JS of `/` and the lazy
+    3D chunk, gzip).
   - Araf: check Vercel (preview checks, production deploy) once at the end of each phase, not
     after every step; merge step PRs without waiting for the Vercel check.
   - Brand rasters: `scripts/brand/render.mjs` (needs `PLAYWRIGHT_CHROMIUM` + `NODE_PATH` to a
@@ -59,7 +71,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [x] 2.7 page-transitions · [x] 2.8 grain → `v0.2.0` (tagged)
 
 ### Phase 3: 3D Camp
-- [ ] 3.1 r3f-setup · [ ] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
+- [x] 3.1 r3f-setup · [ ] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
 - [ ] 3.5 scroll-camera · [ ] 3.6 postprocessing · [ ] 3.7 research-reconstruct → `v0.3.0`
 
 ### Phase 4: Signature features
@@ -72,6 +84,19 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (y) · `phase-3/r3f-setup`
+- Araf: run Phase 3 end to end (3.1 to 3.7), verify each step with Playwright, merge without
+  waiting for Vercel, check Vercel and tag `v0.3.0` at the end, ask before downloading any asset.
+- three 0.186, R3F 9.8, drei 10.7. `CampStage` in the hero (initial JS +1.3 KB), lazy
+  `CampCanvas` chunk (235.5 KB gzip), device tiers, perf monitor, loader waits for the camp and
+  its pen follows the camp's progress, 3.5s cap kept (D67). Placeholder scene: the hero's sky
+  gradient. Behind the `campLive` flag, so the live site is unchanged.
+- Verified (Playwright, `next start`): default and phone: no 3D chunk requested, `data-camp=off`;
+  `?tier=high` and `?tier=mid`: ready at about 470ms, 60 fps (RTX 3060), canvas faded in, loader
+  lifts at 3.0s; reduced motion and Plain mode: off; with the flag on (temporary build) the guess
+  gives 3D on the RTX desktop and a tablet, the static hero on phones and on SwiftShader. No
+  console errors. Detector clean.
 
 ### 2026-09-23 (x) · `content/resume-pdf`
 - Araf: domain DNS and the github.io `CNAME` removal are done; publish the resume with the phone
