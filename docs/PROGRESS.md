@@ -95,7 +95,10 @@ Newest first. One entry per session: date, branch, what was done, what's next.
 - Playwright smoke tests (`e2e/smoke.spec.ts`, 12 tests on desktop and phone) and a GitHub
   Actions workflow running every pre-merge check plus the smoke tests on each PR (D82).
 - Verified: 23 passed, 1 skipped (the skip link test is desktop only), four runs in a row
-  without a flake; the first CI run is on this PR.
+  without a flake. First CI runs failed at `npm ci`: the Windows-made lockfile lacked the
+  `@emnapi` packages Linux needs for the wasm32 optional dependencies. Regenerated it (six minor
+  version moves; every check, the build and the smoke tests pass, JS sizes unchanged); CI then
+  green on Node 24 in about 3 minutes.
 
 ### 2026-09-24 (an) · `phase-5/a11y-pass`
 - Audits: axe (WCAG 2.2 A/AA and best practice) over 9 routes in 4 modes (desktop, phone,
