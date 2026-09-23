@@ -24,6 +24,7 @@ export type ContentGraph = {
   skillIds: string[];
   projects: { slug: string; skills: string[] }[];
   research: { slug: string; skills: string[] };
+  strengths: string[];
   experience: { id: string; bounty?: string }[];
   timeline: { id: string; href?: string }[];
 };
@@ -60,6 +61,9 @@ export function validateContent(
     for (const id of owner.skills)
       if (!known.has(id))
         fail(`${owner.slug}.skills`, `unknown skill id "${id}"`);
+
+  for (const id of graph.strengths)
+    if (!known.has(id)) fail("profile.strengths", `unknown skill id "${id}"`);
 
   const bounties = new Set(graph.projects.map((p) => p.slug));
   for (const job of graph.experience)

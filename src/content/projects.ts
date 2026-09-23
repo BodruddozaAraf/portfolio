@@ -11,10 +11,10 @@ export const projects: Project[] = [
   {
     slug: "jack-the-jelli",
     name: "Jack The Jelli",
-    tagline: "E-commerce platform for a leather goods brand",
+    tagline: "E-commerce platform, built on contract",
     bountyTitle: "The Leather Job",
     posterLine: "One gun, two months, sixty-four districts.",
-    client: "Jack The Jelli, a leather goods brand in Dhaka",
+    client: "A leather goods brand in Dhaka",
     stackLine: "Next.js 16, TypeScript, MongoDB",
     skills: ["nextjs", "typescript", "mongodb", "server-actions"],
     links: [{ label: "Live store", href: "https://jackthejelli.com" }],

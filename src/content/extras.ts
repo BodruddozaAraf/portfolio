@@ -95,6 +95,6 @@ export const microcopy: Microcopy = {
   notFound: "You've wandered off the map, partner.",
   colophon: [
     "Built by hand in Dhaka.",
-    "Inspired by a certain outlaw's journal. All art original.",
+    "Inspired by a certain outlaw's journal. Original art, plus public-domain engravings, credited below.",
   ],
 };

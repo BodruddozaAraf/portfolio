@@ -35,6 +35,16 @@ export const profile: Profile = {
     { value: "27.60 dB", label: "PSNR, image completion thesis" },
     { value: "2nd of 6", label: "zero-shot average PSNR" },
   ],
+  // The summary's "strongest in", with the data layer as the two databases on the resume, plus
+  // the thesis framework; shown as the wanted poster's "known associates"
+  strengths: [
+    "typescript",
+    "nextjs",
+    "react",
+    "mongodb",
+    "postgresql",
+    "pytorch",
+  ],
   spokenLanguages: [
     { name: "English", level: "professional working proficiency" },
     { name: "Bangla", level: "native" },

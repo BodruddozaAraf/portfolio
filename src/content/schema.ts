@@ -87,6 +87,8 @@ export const profileSchema = z
       })
       .strict(),
     stats: z.array(statSchema).min(1),
+    /** Skill ids behind "Strongest in TypeScript, Next.js, React and the data layer" (summary). */
+    strengths: z.array(slug).min(1),
     spokenLanguages: z.array(spokenLanguageSchema).min(1),
   })
   .strict();
