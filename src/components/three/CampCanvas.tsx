@@ -5,9 +5,11 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { setCamp, useCamp } from "@/lib/camp";
 import type { Tier } from "@/lib/device-tier";
+import { capture } from "./capture";
 import { CampScene } from "./CampScene";
 import { camp } from "./materials";
-import { CAMERA } from "./world";
+import { CAMERA, FIRE } from "./world";
+import { Vector3 } from "three";
 
 // The 3D camp's own chunk (loaded by CampStage, never in the first JavaScript). It owns the WebGL
 // canvas: pixel ratio per tier, the first-frames handshake that tells the page the camp is ready,
@@ -36,7 +38,9 @@ export function CampCanvas({ tier, active }: CampCanvasProps) {
       frameloop={active ? "always" : "never"}
       gl={{
         antialias: tier === "high",
-        alpha: false,
+        // capture mode keeps its pixels (and the near layer's transparency) for the export script
+        alpha: capture === "near",
+        preserveDrawingBuffer: capture !== null,
         stencil: false,
         powerPreference: "high-performance",
       }}
@@ -59,7 +63,7 @@ export function CampCanvas({ tier, active }: CampCanvasProps) {
       <FpsProbe />
       {/* judged only while running and once the scene has settled, so a pause or the compile
           hitch never reads as a slow device */}
-      {active && ready ? (
+      {active && ready && !capture ? (
         <PerformanceMonitor
           flipflops={3}
           onChange={({ factor }) => setDpr(min + (max - min) * factor)}
@@ -74,6 +78,8 @@ export function CampCanvas({ tier, active }: CampCanvasProps) {
   );
 }
 
+const fireHeart = new Vector3(FIRE[0], FIRE[1] + 0.35, FIRE[2]);
+
 /** Compiles every shader up front, then reports ready after a few drawn frames. */
 function FirstFrames() {
   const { gl, scene, camera } = useThree();
@@ -82,9 +88,17 @@ function FirstFrames() {
     gl.compile(scene, camera);
     setCamp({ progress: 0.9 });
   }, [gl, scene, camera]);
-  useFrame(() => {
+  useFrame((state) => {
     frames.current += 1;
-    if (frames.current === 3) setCamp({ status: "ready", progress: 1 });
+    if (frames.current !== 3) return;
+    setCamp({ status: "ready", progress: 1 });
+    if (capture) {
+      // where the fire's heart lands, as fractions of the canvas, for the static hero's CSS glow
+      const p = fireHeart.clone().project(state.camera);
+      (window as Window & { __campCapture?: object }).__campCapture = {
+        fire: { x: (p.x + 1) / 2, y: (1 - p.y) / 2 },
+      };
+    }
   });
   return null;
 }

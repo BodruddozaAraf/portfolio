@@ -30,7 +30,7 @@ import { FIRE } from "./world";
 const FLARE_RADIUS = 240; // px from the fire's heart where the flare begins
 
 // the fire's colors, from the palette: blood at the tips, ember, the glow, a pale core
-const ramp = {
+export const ramp = {
   uDeep: { value: new Color(palette.blood) },
   uEmber: { value: new Color(palette.ember) },
   uGlow: { value: new Color(palette["ember-glow"]) },
@@ -55,7 +55,7 @@ const noiseGlsl = /* glsl */ `
 `;
 
 // a card that turns about its vertical axis to face the camera; `position` is in card units
-const billboard = /* glsl */ `
+export const billboard = /* glsl */ `
   uniform vec2 uSize;
   uniform float uGrow; // how much taller the card stands at full flare
   uniform float uFlare;
@@ -107,7 +107,7 @@ const flameFragment = /* glsl */ `
   }
 `;
 
-const haloFragment = /* glsl */ `
+export const haloFragment = /* glsl */ `
   uniform float uFireStrength;
   uniform vec3 uGlow;
   uniform vec3 uEmber;

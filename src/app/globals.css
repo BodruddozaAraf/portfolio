@@ -202,6 +202,149 @@
     }
   }
 
+  /* The static hero (src/components/sections/Hero.tsx): the camp exported from the 3D scene as a
+     far and a near layer per orientation. `background-position` at the fire's own fraction pins
+     the fire to the same fraction of the section whatever the crop, so the glow and the embers can
+     sit on it. The far layer drifts down as the page scrolls (slower than the land); the glow and
+     embers move only for full motion, and stop once the 3D camp covers them. */
+  .hero-art {
+    --fire-x: var(--fire-lx);
+    --fire-y: var(--fire-ly);
+    background: var(--color-night);
+  }
+  .hero-layer {
+    position: absolute;
+    inset: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: calc(var(--fire-x) * 100%) calc(var(--fire-y) * 100%);
+  }
+  .hero-far {
+    background-image: url(/hero/far-landscape.webp);
+    background-image: image-set(
+      url(/hero/far-landscape.avif) type("image/avif"),
+      url(/hero/far-landscape.webp) type("image/webp")
+    );
+  }
+  .hero-near {
+    background-image: url(/hero/near-landscape.webp);
+    background-image: image-set(
+      url(/hero/near-landscape.avif) type("image/avif"),
+      url(/hero/near-landscape.webp) type("image/webp")
+    );
+  }
+  @media (orientation: portrait) {
+    .hero-art {
+      --fire-x: var(--fire-px);
+      --fire-y: var(--fire-py);
+    }
+    .hero-far {
+      background-image: url(/hero/far-portrait.webp);
+      background-image: image-set(
+        url(/hero/far-portrait.avif) type("image/avif"),
+        url(/hero/far-portrait.webp) type("image/webp")
+      );
+    }
+    .hero-near {
+      background-image: url(/hero/near-portrait.webp);
+      background-image: image-set(
+        url(/hero/near-portrait.avif) type("image/avif"),
+        url(/hero/near-portrait.webp) type("image/webp")
+      );
+    }
+  }
+  .hero-glow,
+  .hero-embers {
+    position: absolute;
+    left: calc(var(--fire-x) * 100%);
+    top: calc(var(--fire-y) * 100%);
+  }
+  .hero-glow {
+    width: min(70vmin, 40rem);
+    aspect-ratio: 1;
+    translate: -50% -50%;
+    border-radius: 50%;
+    background: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--color-ember) 34%, transparent),
+      color-mix(in srgb, var(--color-ember) 10%, transparent) 50%,
+      transparent
+    );
+    mix-blend-mode: screen;
+  }
+  .hero-embers span {
+    position: absolute;
+    left: var(--ember-x);
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--color-ember-glow);
+    box-shadow: 0 0 6px 1px
+      color-mix(in srgb, var(--color-ember) 70%, transparent);
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-glow {
+      animation: hero-flicker 3.1s steps(9, jump-none) infinite alternate;
+    }
+    .hero-embers span {
+      animation-name: hero-ember;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    @supports (animation-timeline: scroll()) {
+      .hero-far {
+        animation: hero-drift linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 100vh;
+      }
+    }
+  }
+  [data-camp="ready"] .hero-glow,
+  [data-camp="ready"] .hero-embers {
+    visibility: hidden;
+    animation-play-state: paused;
+  }
+  @keyframes hero-flicker {
+    0% {
+      opacity: 0.85;
+    }
+    20% {
+      opacity: 1;
+    }
+    35% {
+      opacity: 0.9;
+    }
+    55% {
+      opacity: 1;
+    }
+    70% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0.95;
+    }
+  }
+  @keyframes hero-ember {
+    0% {
+      opacity: 0;
+      transform: translate(0, 0) scale(1);
+    }
+    10% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      transform: translate(var(--ember-drift), calc(var(--ember-rise) * -1))
+        scale(0.4);
+    }
+  }
+  @keyframes hero-drift {
+    to {
+      transform: translateY(18vh);
+    }
+  }
+
   /* The 3D camp (src/components/three/CampStage.tsx) fades in over the server-rendered hero once
      its first frames are drawn; until then, and for everyone without WebGL, the hero's own art
      is the picture. */

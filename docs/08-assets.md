@@ -26,12 +26,12 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | A05 | Sketch set: campfire, desk/laptop, football, satchel items, horse, lantern | SVG line art | 1–2 | campfire done (`src/content/sketches/campfire.ts`, traced from A17); rest todo |
 | A17 | Engraving plate: *Camping Out in the Adirondack Mountains* (Winslow Homer, 1874) | WebP 1600w, grayscale | 1 | done: `public/engravings/camping-out-adirondacks.webp` (471 KB, served resized by `next/image`) |
 | A06 | Portrait (sketch-style) for the wanted poster | SVG or high-contrast PNG | 1 | placeholder first (`picsum.photos/seed/wanted-portrait/...`, desaturated); real photo → sketch later (D13) |
-| A07 | Hero fallback render | AVIF 1920w + 960w | 3 (placeholder in 1) | todo |
-| A08 | Campfire, logs, stones | glTF (meshopt) | 3 | todo |
-| A09 | Horse (low-poly, idle anim) | glTF ≤ 800 KB | 3 | todo |
-| A10 | Journal (closed + opening anim) | glTF ≤ 500 KB | 3 | todo |
-| A11 | Bedroll, lantern, pines, rocks | glTF | 3 | todo |
-| A12 | Night HDRI | 1k HDR / KTX2 | 3 | todo |
+| A07 | Hero fallback render | AVIF + WebP, far and near layers | 3 | done: `public/hero/{far,near}-{landscape,portrait}.{avif,webp}` (1920x1200 and 780x1688, 125 KB for all eight), exported from the 3D camp by `scripts/hero/render.mjs` (D70) |
+| A08 | Campfire, logs, stones | procedural (no file) | 3 | done: built in code, `src/components/three/Campfire.tsx` (D69) |
+| A09 | Horse (low-poly, idle anim) | procedural (no file) | 3 | done: extruded side profiles, `src/components/three/Horse.tsx` (D70); a CC0 animated model could replace it with Araf's OK |
+| A10 | Journal (closed + opening anim) | procedural (no file) | 3 | done: `Journal` in `src/components/three/Props.tsx`, hinged cover (D70) |
+| A11 | Bedroll, lantern, pines, rocks | procedural (no file) | 3 | done: `Props.tsx`, `Pines.tsx`, `Campfire.tsx` (D68 to D70) |
+| A12 | Night HDRI | not needed | 3 | dropped: the camp uses its own light model (D68), no HDRI |
 | A13 | Audio: fire crackle, wind, page flip, pin tack, stamp, telegraph, heartbeat, harmonica sting | OGG + MP3, mono, ≤ 200 KB each | 4 | todo |
 | A14 | Favicon / monogram "B.A." stamp | SVG + PNG set | 1 | done: `src/app/favicon.ico`, `icon.png`, `apple-icon.png` (from `scripts/brand/icon.html`) |
 | A15 | Resume PDF | PDF | 1 | done: `public/resume.pdf` (123 KB, Araf's resume as is, phone included by Araf's decision, D66) |
@@ -48,6 +48,7 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | Asset ID | File path | Source URL | Author | License |
 |---|---|---|---|---|
 | A01, A02, grain, stamp wear | `public/textures/*.webp` | `scripts/textures.mjs` | Original (this repo) | Own work |
+| A07 | `public/hero/*` | `scripts/hero/render.mjs` (the 3D camp, all procedural) | Original (this repo) | Own work |
 | A04 | `public/maps/trail.webp` | `scripts/map/map.html` + `scripts/map/render.mjs` | Original (this repo) | Own work |
 | A17, A05 campfire | `public/engravings/camping-out-adirondacks.webp`, `src/content/sketches/campfire.ts` | https://commons.wikimedia.org/wiki/File:Camping_out_in_the_Adirondack_Mountains_SAAM-1967.66.4_1.jpg (Smithsonian American Art Museum 1967.66.4) | Winslow Homer (after), *Harper's Weekly*, 7 Nov 1874 | CC0 (public domain) |
 | Fonts | via `next/font/google` | fonts.google.com | Rye, IM Fell English, Homemade Apple, Caveat, Special Elite authors | OFL |

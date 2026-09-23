@@ -8,6 +8,13 @@ export type Vec3 = [number, number, number];
 
 export const FIRE: Vec3 = [0, 0, 0];
 
+/** The camp around the fire (step 3.4). The journal lies on the camera's side of the fire. */
+export const JOURNAL: Vec3 = [-0.95, 0, 1.15];
+export const BEDROLL: Vec3 = [-1.45, 0, -1.0];
+export const LANTERN: Vec3 = [1.25, 0, 0.95];
+export const HORSE: Vec3 = [3.2, 0, -6.4];
+export const POST: Vec3 = [1.8, 0, -6.2];
+
 /** The establishing shot. The rig frames the fire to the right of the hero copy. */
 export const CAMERA = {
   position: [-1.2, 1.7, 7.6] as Vec3,

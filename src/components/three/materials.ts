@@ -5,7 +5,8 @@ import {
   type ShaderMaterialParameters,
 } from "three";
 import { palette } from "./palette";
-import { FIRE } from "./world";
+import { groundHeight } from "./land";
+import { FIRE, LANTERN } from "./world";
 
 // One light model for the whole camp, shared by every surface: a dim cool moon from behind, the
 // campfire as a warm point light that flickers (step 3.3 drives it), and a haze that thickens
@@ -25,6 +26,15 @@ export const camp = {
   uFireStrength: { value: 1 },
   /** 0..1: how hard the fire is flaring (a pointer close to it) */
   uFlare: { value: 0 },
+  /** the lantern: a small, steadier second light */
+  uLanternPos: {
+    value: new Vector3(
+      LANTERN[0],
+      groundHeight(LANTERN[0], LANTERN[2]) + 0.3,
+      LANTERN[2],
+    ),
+  },
+  uLanternStrength: { value: 0.35 },
   uMoonDir: { value: new Vector3(-0.45, 0.75, -0.5).normalize() },
   uMoonColor: { value: new Color(palette["night-blue"]).multiplyScalar(1.9) },
   uAmbient: { value: new Color(palette["night-blue"]).multiplyScalar(0.55) },
@@ -66,6 +76,8 @@ export const lightPars = /* glsl */ `
   uniform vec3 uFirePos;
   uniform vec3 uFireColor;
   uniform float uFireStrength;
+  uniform vec3 uLanternPos;
+  uniform float uLanternStrength;
   uniform vec3 uMoonDir;
   uniform vec3 uMoonColor;
   uniform vec3 uAmbient;
@@ -81,9 +93,16 @@ export const lightPars = /* glsl */ `
     return uFireColor * max(facing, 0.0) * fall * 2.8;
   }
 
+  vec3 lanternLight(vec3 wp, vec3 n) {
+    vec3 to = uLanternPos - wp;
+    float d = length(to);
+    float facing = dot(n, to / max(d, 1e-4)) * 0.5 + 0.5;
+    return uFireColor * facing * uLanternStrength / (1.0 + d * d * 2.5);
+  }
+
   vec3 shade(vec3 albedo, vec3 wp, vec3 n) {
     float moon = max(dot(n, uMoonDir), 0.0);
-    vec3 light = uAmbient + uMoonColor * moon * 0.35 + fireLight(wp, n);
+    vec3 light = uAmbient + uMoonColor * moon * 0.35 + fireLight(wp, n) + lanternLight(wp, n);
     return albedo * light;
   }
 

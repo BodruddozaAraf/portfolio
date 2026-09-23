@@ -184,7 +184,15 @@ function Stand({
   );
 }
 
-export function Pines({ count }: { count: number }) {
+export function Pines({
+  count,
+  hill: showHill = true,
+  ridge: showRidge = true,
+}: {
+  count: number;
+  hill?: boolean;
+  ridge?: boolean;
+}) {
   const geometries = useMemo(() => KINDS.map(conifer), []);
   const { hill, ridge } = useMemo(() => forest(count), [count]);
   // alternate the two kinds through each stand
@@ -196,14 +204,18 @@ export function Pines({ count }: { count: number }) {
     <group>
       {geometries.map((g, k) => (
         <group key={k}>
-          <Stand spots={hillKinds[k]} seed={211 + k} haze={0} geometry={g} />
+          {showHill ? (
+            <Stand spots={hillKinds[k]} seed={211 + k} haze={0} geometry={g} />
+          ) : null}
           {/* hazed like the ridge they stand on */}
-          <Stand
-            spots={ridgeKinds[k]}
-            seed={307 + k}
-            haze={RIDGES[0].haze}
-            geometry={g}
-          />
+          {showRidge ? (
+            <Stand
+              spots={ridgeKinds[k]}
+              seed={307 + k}
+              haze={RIDGES[0].haze}
+              geometry={g}
+            />
+          ) : null}
         </group>
       ))}
     </group>
