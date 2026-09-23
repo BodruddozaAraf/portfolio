@@ -4,11 +4,11 @@
 > A new session should be able to read ONLY this file and know exactly what to do next.
 
 ## Now
-- **Current phase:** Phase 2 (2D motion). Steps 2.1 to 2.5 merged.
+- **Current phase:** Phase 2 (2D motion). Steps 2.1 to 2.6 merged.
 - **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** none. Next: `phase-2/satchel-camp-telegram`.
-- **Next action:** step 2.6 satchel-camp-telegram (spec `docs/05-sections.md` sections 7 to 9: satchel items lift, inventory card with "Used in"; camp stories; telegram typing and transmit animation, DELIVERED stamp).
+- **Active branch:** none. Next: `phase-2/page-transitions`.
+- **Next action:** step 2.7 page-transitions (route transitions between home and case studies, e.g. page turn or ink wipe, with React `<ViewTransition>` alongside the poster morph, D61; back navigation must restore scroll).
 - **Waiting on Araf (the agent's permissions block DNS/domain changes):**
   1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
      `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
@@ -20,7 +20,7 @@
   5. Jack The Jelli screenshots (A16), a real photo for the portrait (A06), more PD engravings
      for A05 if wanted.
 - **Known debt (step 5.1):** home Lighthouse mobile performance 74 to 77 depending on the run
-  (budget 85, D55); home initial JS 275.7 KB gzip (budget 180 KB, D58).
+  (budget 85, D55); home initial JS 278.4 KB gzip (budget 180 KB, D58, D63).
 - **Blockers:** none for Phase 2. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash
   add it to PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Tooling notes for agents:**
@@ -59,7 +59,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ### Phase 2: 2D Motion
 - [x] 2.1 motion-infra · [x] 2.2 loader · [x] 2.3 about-wanted · [x] 2.4 bounty-board
-- [x] 2.5 map-trail · [ ] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
+- [x] 2.5 map-trail · [x] 2.6 satchel-camp-telegram · [ ] 2.7 page-transitions · [ ] 2.8 grain → `v0.2.0`
 
 ### Phase 3: 3D Camp
 - [ ] 3.1 r3f-setup · [ ] 3.2 camp-environment · [ ] 3.3 campfire · [ ] 3.4 props-horse
@@ -75,6 +75,18 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (t) · `phase-2/satchel-camp-telegram`
+- Satchel pouches lift their tools on hover; every tool opens a popover item card with its pouch
+  and "Used in" bounties (with taglines). `CampMoment` pastes the clipping and stamps the medals.
+  Telegram: `Transmission` (Morse along a wire) then a "Composed" stamp (`SlamIn`) (D63).
+- Found and fixed a JS regression from 2.3 to 2.5: static GSAP imports put about 51 KB gzip into
+  the home page's initial JS. New `useLazyGsap` loads GSAP after hydration; all moments,
+  `Reveal`, `SlamIn`, `Transmission` use it; `@gsap/react` removed. Home initial JS 278.4 KB.
+- Verified (Playwright, `next start`): item cards open, list the right bounties, close on Esc
+  with focus back on the tool; medals stamped and settled; telegram transmits then shows the
+  compose links with focus on the result; reduced motion goes straight to the result; the 2.3 to
+  2.5 checks all pass again after the lazy-GSAP change; no console errors.
 
 ### 2026-09-23 (s) · `phase-2/map-trail`
 - A04 done: `scripts/map/map.html` + `render.mjs` draw an original survey map (contours, river,

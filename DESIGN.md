@@ -331,6 +331,8 @@ Script-driven motion lives in client leaves and asks `useMotionLevel()` first:
 - **reduced** (`prefers-reduced-motion`): the browser's scroll; fades of 200ms or less, no travel.
 - **none** (Plain mode, D52): no smooth scroll, no scripted motion; the page is still.
 
+GSAP is never imported statically in a component: `useLazyGsap` loads it after hydration, and
+`useScrollMoment` builds a section's once-only timeline on top of it.
 Durations come from `src/lib/motion.ts`, a mirror of the `--dur-*` tokens that `npm test` checks.
 `Reveal` (`src/components/fx/Reveal.tsx`) is the supporting-content entrance: a 24px rise over
 800ms, with an optional 60ms stagger for things that read as a list.

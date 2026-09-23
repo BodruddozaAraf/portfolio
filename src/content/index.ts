@@ -84,7 +84,8 @@ validateContent(
   },
 );
 
-export type UsedIn = { name: string; href: string };
+/** Where a skill was used: the bounty or research, and a line saying what it was. */
+export type UsedIn = { name: string; href: string; line: string };
 
 /** Skill id to the bounties and research that used it, for the Satchel's "Used in" (D30). */
 export const skillUsage: ReadonlyMap<string, UsedIn[]> = new Map(
@@ -93,9 +94,19 @@ export const skillUsage: ReadonlyMap<string, UsedIn[]> = new Map(
     [
       ...projects
         .filter((p) => p.skills.includes(skill.id))
-        .map((p) => ({ name: p.name, href: `/bounties/${p.slug}` })),
+        .map((p) => ({
+          name: p.name,
+          href: `/bounties/${p.slug}`,
+          line: p.tagline,
+        })),
       ...(research.skills.includes(skill.id)
-        ? [{ name: research.headline, href: `/research/${research.slug}` }]
+        ? [
+            {
+              name: research.headline,
+              href: `/research/${research.slug}`,
+              line: research.type,
+            },
+          ]
         : []),
     ],
   ]),
