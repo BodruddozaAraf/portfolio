@@ -42,3 +42,8 @@ Thumbs.db
 # impeccable review captures and hook cache (local only)
 .impeccable/review/
 .impeccable/hook.cache.json
+
+# playwright (e2e smoke tests)
+/test-results/
+/playwright-report/
+/blob-report/

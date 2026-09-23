@@ -139,9 +139,15 @@ If any are added later: manage with `vercel env`, never commit `.env*`.
 
 ## Testing and quality
 - `npm run typecheck`, `npm run lint`, `npm run build` must pass before every merge.
-- Playwright smoke test (Phase 5): home loads, plain mode has all projects, contact form
-  builds a correct compose link, 404 renders, no console errors.
-- Lighthouse CI on preview deployments (Phase 5).
+- Playwright smoke tests (`e2e/smoke.spec.ts`, `npm run test:e2e`, D82) on a desktop and a
+  phone viewport against `next start`: the loader lifts on its own and the journal is there, the
+  skip link reaches it, Plain mode has every project and the thesis, the Plain mode switch turns
+  the journal plain, the telegram checks its fields and composes a correct Gmail and mailto link,
+  every case study and the research page load with their share card, the 404 returns 404 and
+  leads home, reduced motion gets no loader and no 3D, and nothing logs an error.
+- CI (`.github/workflows/ci.yml`): every PR and push to `main` runs types, lint, unit checks,
+  format check, build and the smoke tests.
+- Lighthouse CI on preview deployments: not set up (D82); Lighthouse runs by hand at each phase.
 
 ## Hosting and domain
 - Vercel project `portfolio` (team "Bodzillaaa's projects") linked to GitHub repo
