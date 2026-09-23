@@ -43,10 +43,11 @@ Package manager: **npm**. Node >= 20.9 (machine has v22).
 ## Commands
 - `npm run dev`: local dev server (http://localhost:3000)
 - `npm run build`: production build
-- `npm run lint`: ESLint (next core-web-vitals + typescript + prettier)
+- `npm run lint`: ESLint (next core-web-vitals + typescript + prettier) + the MDX copy check
+- `npm test`: unit checks (telegram compose links)
 - `npm run typecheck`: `tsc --noEmit`
 - `npm run format` / `npm run format:check`: Prettier (with Tailwind class sorting)
-- **Before every merge:** `npm run typecheck && npm run lint && npm run build`
+- **Before every merge:** `npm run typecheck && npm run lint && npm test && npm run build`
 
 ## Next.js version note
 Next.js 16.3 is newer than most training data. `AGENTS.md` (managed by Next.js, imported

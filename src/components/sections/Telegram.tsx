@@ -4,15 +4,15 @@ import {
   GithubLogo,
   LinkedinLogo,
 } from "@phosphor-icons/react/ssr";
-import { Button } from "@/components/ui/Button";
+import { TelegramForm } from "@/components/contact/TelegramForm";
 import { Icon } from "@/components/ui/Icon";
 import { microcopy, profile } from "@/content";
 import { resumeAvailable } from "@/lib/public-files";
 import { ChapterTitle } from "./ChapterTitle";
 
-// 9. Telegram Office. Phase 1 ships the no-JS path first: a plain mailto that always works, and
-// the direct links. The telegram form (compose in Gmail or the visitor's mail app, D19) is step
-// 1.9. No phone number, ever (D4).
+// 9. Telegram Office. The telegram form composes the message in Gmail or the visitor's own mail
+// app (D19); the direct links below it, email included, work without JavaScript. No phone
+// number, ever (D4).
 
 export function Telegram() {
   const { email, github, linkedin, resume } = profile.links;
@@ -28,7 +28,6 @@ export function Telegram() {
       ? [{ ...resume, text: "Resume (PDF)", icon: FilePdf }]
       : []),
   ];
-  const subject = microcopy.telegram.subject.replace("{name}", "a visitor");
   return (
     <section
       id="send-word"
@@ -41,13 +40,24 @@ export function Telegram() {
           {microcopy.telegram.heading}
         </p>
         <div className="border-ink/40 mt-8 border-t border-dashed pt-8">
-          <Button
-            href={`mailto:${profile.email}?subject=${encodeURIComponent(subject)}`}
-            icon={<Icon icon={Envelope} />}
-          >
-            {microcopy.telegram.cta}
-          </Button>
-          <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+          <TelegramForm subjectTemplate={microcopy.telegram.subject} />
+          <noscript>
+            <p className="mt-6">
+              Without JavaScript the form cannot compose your telegram; write
+              straight to{" "}
+              <a
+                href={`mailto:${profile.email}`}
+                className="underline underline-offset-[0.22em]"
+              >
+                {profile.email}
+              </a>
+              .
+            </p>
+          </noscript>
+          <h3 className="font-note text-h4 text-ink-soft mt-12">
+            Or find him direct
+          </h3>
+          <ul className="mt-4 grid gap-4 sm:grid-cols-2">
             {direct.map((link) => {
               const external = link.href.startsWith("http");
               return (
