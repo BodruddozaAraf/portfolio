@@ -34,7 +34,7 @@ Only CC0 / OFL / MIT / CC-BY (with attribution in the footer credits) are allowe
 | A12 | Night HDRI | 1k HDR / KTX2 | 3 | todo |
 | A13 | Audio: fire crackle, wind, page flip, pin tack, stamp, telegraph, heartbeat, harmonica sting | OGG + MP3, mono, ≤ 200 KB each | 4 | todo |
 | A14 | Favicon / monogram "B.A." stamp | SVG + PNG set | 1 | done: `src/app/favicon.ico`, `icon.png`, `apple-icon.png` (from `scripts/brand/icon.html`) |
-| A15 | Resume PDF | PDF | 1 | todo (public, D14) |
+| A15 | Resume PDF | PDF | 1 | done: `public/resume.pdf` (123 KB, Araf's resume as is, phone included by Araf's decision, D66) |
 | A16 | Jack The Jelli store screenshots | AVIF | 1 | ❗ Araf to provide (D18) |
 
 ## Pipeline
