@@ -138,8 +138,9 @@ If any are added later: manage with `vercel env`, never commit `.env*`.
 - Lighthouse CI on preview deployments (Phase 5).
 
 ## Hosting and domain
-- Vercel project linked to GitHub repo `BodruddozaAraf/portfolio`; production = `main`,
-  preview deployment per branch/PR.
+- Vercel project `portfolio` (team "Bodzillaaa's projects") linked to GitHub repo
+  `BodruddozaAraf/portfolio`; production = `main`, preview deployment per branch/PR.
+  Production alias: https://portfolio-mauve-six-27.vercel.app (D57).
 - Domain `bodruddozaaraf.me` at Namecheap. DNS (Advanced DNS): `A @ 76.76.21.21`,
   `CNAME www cname.vercel-dns.com`; apex is primary, `www` redirects to apex.
 - The old `BodruddozaAraf.github.io` repo's `CNAME` file must be removed so GitHub Pages stops
