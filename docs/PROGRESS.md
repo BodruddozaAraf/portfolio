@@ -5,19 +5,16 @@
 
 ## Now
 - **Current phase:** Phase 2 complete (tag `v0.2.0`). Next: Phase 3 (3D camp).
-- **Live:** https://portfolio-mauve-six-27.vercel.app (Vercel project `portfolio`, team
+- **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
 - **Active branch:** none. Next: `phase-3/r3f-setup`.
 - **Next action:** Phase 3 step 3.1 r3f-setup (R3F canvas, lazy load, device tier detection, fallback image flow, perf monitor; read `docs/06-roadmap.md` Phase 3 and `docs/05-sections.md` section 1). Phase 2 ended with Lighthouse home perf 72 to 73 and initial JS 279 KB (both over budget, owed to 5.1).
-- **Waiting on Araf (the agent's permissions block DNS/domain changes):**
-  1. Vercel > project `portfolio` > Settings > Domains: add `bodruddozaaraf.me`, then
-     `www.bodruddozaaraf.me` redirecting to it. Vercel then shows the exact DNS records.
-  2. Namecheap > Advanced DNS: delete the four GitHub Pages A records (185.199.108-111.153) and
-     the `www` CNAME, add Vercel's records (historically `A @ 76.76.21.21` and
-     `CNAME www cname.vercel-dns.com`; use what Vercel shows).
-  3. GitHub `BodruddozaAraf.github.io`: delete the `CNAME` file (or turn off Pages).
-  4. A phone-free resume PDF at `public/resume.pdf` (D53); resume links appear automatically.
-  5. Jack The Jelli screenshots (A16), a real photo for the portrait (A06), more PD engravings
+- **Waiting on Araf:**
+  1. Vercel > `portfolio` > Settings > Domains: make `bodruddozaaraf.me` (apex) the primary domain
+     and let `www` redirect to it. Today the apex redirects to `www`, but `SITE_URL`, canonicals,
+     sitemap and OG (D12, D54) use the apex, so every canonical points at a redirect. (Or say the
+     word and the code switches to `www` instead.)
+  2. Jack The Jelli screenshots (A16), a real photo for the portrait (A06), more PD engravings
      for A05 if wanted.
 - **Known debt (step 5.1):** home Lighthouse mobile performance 74 to 77 depending on the run
   (budget 85, D55); home initial JS 279.2 KB gzip (budget 180 KB, D58, D63).
@@ -75,6 +72,12 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (x) · `content/resume-pdf`
+- Araf: domain DNS and the github.io `CNAME` removal are done; publish the resume with the phone
+  number (D66). `public/resume.pdf` added (the resume the content was derived from); the resume
+  links now render in the Telegram Office and on `/plain`. Checked: `bodruddozaaraf.me` serves the
+  site over HTTPS, but the apex redirects to `www` (see Waiting on Araf).
 
 ### 2026-09-23 (w) · `fix/loader-cap` · Phase 2 Vercel check
 - Phase 2 Vercel check: previews of PRs #13 to #18 passed; production deploy of `5ee80b2` READY.

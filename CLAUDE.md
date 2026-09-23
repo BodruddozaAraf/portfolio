@@ -20,7 +20,8 @@ but built with **original art only** (see IP rules in `docs/01-vision.md`).
 ## Hard rules
 - **Content source of truth is `docs/02-content.md`** (derived from the resume). Never invent
   projects, numbers, dates or claims. Projects come from the resume, NOT from GitHub.
-- **Never publish the phone number** from the resume on the site.
+- **Never put the phone number in the site's pages or copy** (HTML, content data, MDX). The
+  downloadable resume PDF (`public/resume.pdf`) may contain it: Araf's call (D66).
 - **No Rockstar assets**: no RDR2 logos, screenshots, ripped models, soundtrack, fonts, or
   Arthur Morgan's face/likeness. Original "outlaw journal" aesthetic only.
 - **Git workflow is mandatory** (`docs/07-git-workflow.md`): never commit directly to `main`.
