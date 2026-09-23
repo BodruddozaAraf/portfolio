@@ -407,32 +407,39 @@
       animation-iteration-count: infinite;
     }
   }
-  /* phones: the far layer drifts as the hero scrolls away */
-  @supports (animation-timeline: scroll()) {
-    @media (prefers-reduced-motion: no-preference) and (max-width: 47.99rem) {
-      .hero-far {
-        animation: hero-drift linear both;
-        animation-timeline: scroll(root);
-        animation-range: 0 100vh;
+  /* The hero's track (step 3.5, phones since D79): with full motion (and the boot script run:
+     `data-plain` is set), the hero sticks while the page scrolls one more stretch: 150svh on
+     wider screens, 120svh on phones. Over it the copy steps back, the view goes down to the
+     journal (the 3D camera reads the same scroll; the picture zooms its layers, the land faster
+     than the far hills), and the paper of the next chapter comes up. Plain mode and reduced
+     motion keep a plain hero; the layout is known before the first paint either way. Browsers
+     with scroll timelines run it all in CSS; the others get --hero-p (0 to 1) from HeroTrack. */
+  .hero-track {
+    --track: 150svh;
+  }
+  @media (max-width: 47.99rem) {
+    .hero-track {
+      --track: 120svh;
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :root[data-plain="false"] {
+      .hero-track {
+        height: calc(100dvh + var(--track));
+      }
+      .hero-track > section {
+        position: sticky;
+        top: 0;
+      }
+      .hero-far,
+      .hero-land {
+        transform-origin: var(--jx) var(--jy);
       }
     }
   }
-  /* The hero's track (step 3.5): with full motion on wider screens in browsers with scroll
-     timelines, the hero sticks for 150svh of scroll. Over it the copy steps back, the view goes
-     down to the journal (the 3D camera reads the same scroll; the picture zooms its layers, the
-     land faster than the far hills), and the paper of the next chapter comes up. Plain mode,
-     reduced motion, phones and other browsers keep a plain hero; the layout is known before the
-     first paint either way. */
   @supports (animation-timeline: scroll()) {
-    @media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
-      :root:not([data-plain="true"]) {
-        .hero-track {
-          height: calc(100dvh + 150svh);
-        }
-        .hero-track > section {
-          position: sticky;
-          top: 0;
-        }
+    @media (prefers-reduced-motion: no-preference) {
+      :root[data-plain="false"] {
         .hero-copy,
         .hero-far,
         .hero-land,
@@ -443,21 +450,47 @@
         }
         .hero-copy {
           animation-name: hero-copy-out;
-          animation-range: 0 45svh;
+          animation-range: 0 calc(var(--track) * 0.3);
         }
         .hero-far {
-          transform-origin: var(--jx) var(--jy);
           animation-name: hero-dolly-far;
-          animation-range: 0 150svh;
+          animation-range: 0 var(--track);
         }
         .hero-land {
-          transform-origin: var(--jx) var(--jy);
           animation-name: hero-dolly-land;
-          animation-range: 0 150svh;
+          animation-range: 0 var(--track);
         }
         .hero-paper {
           animation-name: hero-paper-in;
-          animation-range: 108svh 150svh;
+          animation-range: calc(var(--track) * 0.72) var(--track);
+        }
+      }
+    }
+  }
+  @supports not (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      :root[data-plain="false"] {
+        .hero-copy {
+          opacity: clamp(0, 1 - var(--hero-p, 0) * 3.4, 1);
+          transform: translateY(calc(min(var(--hero-p, 0) * 3.4, 1) * -3rem));
+        }
+        .hero-far {
+          transform: translate(
+              calc(var(--dx) * 0.35 * var(--hero-p, 0)),
+              calc(var(--dy) * 0.35 * var(--hero-p, 0))
+            )
+            scale(calc(1 + 0.4 * var(--hero-p, 0)));
+        }
+        /* the move lags the growth (p squared), so the land always covers the frame */
+        .hero-land {
+          transform: translate(
+              calc(var(--dx) * var(--hero-p, 0) * var(--hero-p, 0)),
+              calc(var(--dy) * var(--hero-p, 0) * var(--hero-p, 0))
+            )
+            scale(calc(1 + 6 * var(--hero-p, 0)));
+        }
+        .hero-paper {
+          opacity: clamp(0, (var(--hero-p, 0) - 0.72) * 3.6, 1);
         }
       }
     }
@@ -529,11 +562,6 @@
       opacity: 0;
       transform: translate(var(--ember-drift), calc(var(--ember-rise) * -1))
         scale(0.4);
-    }
-  }
-  @keyframes hero-drift {
-    to {
-      transform: translateY(18vh);
     }
   }
 

@@ -52,10 +52,21 @@ function frame(camera: PerspectiveCamera, width: number, height: number) {
 
 // the dolly's path: from the establishing shot, a swoop up and over to above the journal, then
 // straight down onto the open pages, the view turning so the book reads head up
-const above = spine
-  .clone()
-  .add(new Vector3(0, 0.78, 0))
-  .addScaledVector(head, -0.3);
+const above = new Vector3();
+/** Above the journal, high enough that the whole open spread fits the screen (tall ones too). */
+function aboveFor(camera: PerspectiveCamera) {
+  const half = Math.tan((camera.fov * Math.PI) / 360);
+  // the open spread is about 0.48 by 0.32 m: leave a margin round it
+  const height = Math.max(
+    0.78,
+    0.42 / (2 * half),
+    0.62 / (2 * half * camera.aspect),
+  );
+  return above
+    .copy(spine)
+    .add(new Vector3(0, height, 0))
+    .addScaledVector(head, -0.3 * (height / 0.78));
+}
 const close = spine.clone().add(new Vector3(0, 0.26, 0));
 const worldUp = new Vector3(0, 1, 0);
 const tmp = {
@@ -122,6 +133,7 @@ export function CameraRig() {
       look.copy(target);
       up.copy(worldUp);
     } else {
+      aboveFor(camera);
       ctrl.copy(start).lerp(above, 0.5).add(worldUp);
       bezier(pos, start, ctrl, above, approach).lerp(close, descend);
       look.copy(target).lerp(spine, ease(0, 0.6, p));

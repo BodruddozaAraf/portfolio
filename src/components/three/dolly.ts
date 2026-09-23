@@ -21,7 +21,7 @@ export const dolly = {
 /** Measures the track; call on mount and whenever it or the window resizes. */
 export function measureTrack() {
   const track = document.querySelector<HTMLElement>("[data-hero-track]");
-  const hero = track?.firstElementChild as HTMLElement | null;
+  const hero = track?.querySelector<HTMLElement>(":scope > section") ?? null;
   if (!track || !hero) {
     dolly.range = 0;
     return;
