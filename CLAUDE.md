@@ -47,10 +47,13 @@ Package manager: **npm**. Node >= 20.9 (machine has v22).
 - `npm run dev`: local dev server (http://localhost:3000)
 - `npm run build`: production build
 - `npm run lint`: ESLint (next core-web-vitals + typescript + prettier) + the MDX copy check
-- `npm test`: unit checks (telegram compose links, motion tokens mirror tokens.css)
+- `npm test`: unit checks (telegram links and validation, motion tokens, camp palette, device tiers)
+- `npm run test:e2e`: Playwright smoke tests against the production build (run `npm run build`
+  first; set `PLAYWRIGHT_CHROMIUM` to a local Chromium if Playwright's own is not installed)
 - `npm run typecheck`: `tsc --noEmit`
 - `npm run format` / `npm run format:check`: Prettier (with Tailwind class sorting)
 - **Before every merge:** `npm run typecheck && npm run lint && npm test && npm run build`
+  (GitHub Actions runs these, the format check and the smoke tests on every PR: `.github/workflows/ci.yml`)
 
 ## Next.js version note
 Next.js 16.3 is newer than most training data. `AGENTS.md` (managed by Next.js, imported

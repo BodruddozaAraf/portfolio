@@ -7,9 +7,10 @@
 - **Current phase:** Phase 5 (polish and launch) in progress. Sound is in "Later" (D75).
 - **Live:** https://bodruddozaaraf.me (also https://portfolio-mauve-six-27.vercel.app; Vercel project `portfolio`, team
   "Bodzillaaa's projects"; `main` deploys to production, every PR gets a preview).
-- **Active branch:** `phase-5/a11y-pass` (5.2). Next: `phase-5/cross-browser` (5.3).
-- **Next action:** 5.3 cross-browser (Chromium, Firefox and WebKit engines through Playwright;
-  real iOS Safari and Android only on Araf's devices).
+- **Active branch:** `phase-5/tests` (5.4, done before 5.3: it needs no new downloads). Next:
+  `phase-5/cross-browser` (5.3).
+- **Next action:** 5.3 cross-browser. Needs Araf's OK to download Playwright's Firefox and WebKit
+  builds (real iOS Safari and Android only on Araf's devices).
 - **Araf (2026-09-23, D74):** load speed and size are not strict; performance budgets are
   guidance now. The loading screen must be animated from the first paint, never a blank wait.
 - **Phase 3 numbers:** before: home initial JS 278.5 KB gzip (`node scripts/measure-js.mjs`),
@@ -83,12 +84,21 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 4.1 weapon-wheel · [x] 4.2 dead-eye · ~~4.3 sound~~ (Later, D75) · [x] 4.4 og-images → `v0.4.0` (tagged)
 
 ### Phase 5: Polish and launch
-- [x] 5.1 perf · [x] 5.2 a11y · [ ] 5.3 cross-browser · [ ] 5.4 tests/CI · [ ] 5.5 launch → `v1.0.0`
+- [x] 5.1 perf · [x] 5.2 a11y · [ ] 5.3 cross-browser · [x] 5.4 tests/CI · [ ] 5.5 launch → `v1.0.0`
 
 (Ask Arthur AI chat was dropped for v1; see D20 and roadmap "Later".)
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-24 (ao) · `phase-5/tests`
+- Playwright smoke tests (`e2e/smoke.spec.ts`, 12 tests on desktop and phone) and a GitHub
+  Actions workflow running every pre-merge check plus the smoke tests on each PR (D82).
+- Verified: 23 passed, 1 skipped (the skip link test is desktop only), four runs in a row
+  without a flake. First CI runs failed at `npm ci`: the Windows-made lockfile lacked the
+  `@emnapi` packages Linux needs for the wasm32 optional dependencies. Regenerated it (six minor
+  version moves; every check, the build and the smoke tests pass, JS sizes unchanged); CI then
+  green on Node 24 in about 3 minutes.
 
 ### 2026-09-24 (an) · `phase-5/a11y-pass`
 - Audits: axe (WCAG 2.2 A/AA and best practice) over 9 routes in 4 modes (desktop, phone,
