@@ -7,3 +7,4 @@ package-lock.json
 .impeccable
 skills-lock.json
 public/textures/*.json
+public/engravings/*.json

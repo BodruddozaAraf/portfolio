@@ -14,9 +14,19 @@ import {
   PenNib,
   Scroll,
 } from "@phosphor-icons/react/ssr";
+import { Engraving } from "@/components/journal/Engraving";
+import { HandwrittenText } from "@/components/journal/HandwrittenText";
+import { InkUnderline } from "@/components/journal/InkUnderline";
+import { KeyText } from "@/components/journal/KeyText";
+import { Poster } from "@/components/journal/Poster";
+import { SketchSVG } from "@/components/journal/SketchSVG";
+import { Spread } from "@/components/journal/Spread";
+import { Stamp } from "@/components/journal/Stamp";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
 import { TextLink } from "@/components/ui/TextLink";
+import { getProject, microcopy, profile } from "@/content";
+import { campfire } from "@/content/sketches";
 import ProseSample from "./prose-sample.mdx";
 import { contrast, readColorTokens, type ColorToken } from "./tokens";
 
@@ -533,6 +543,156 @@ export default async function StyleguidePage() {
             </li>
           ))}
         </ul>
+      </section>
+
+      <section
+        aria-labelledby="journal"
+        className="mx-auto max-w-(--page-max) px-(--gutter) py-16 md:py-24"
+      >
+        <SectionHeading id="journal" title="Journal">
+          The objects every section is built from: pages on the leather cover,
+          handwriting with its real-text twin, sketches traced from period
+          engravings, posters, pins and stamps.
+        </SectionHeading>
+
+        <Spread
+          label="Sample spread"
+          left={
+            <>
+              <HandwrittenText tilt="entry">
+                <span className="block">{profile.journalEntry.dateline}</span>
+                {profile.journalEntry.body}
+              </HandwrittenText>
+            </>
+          }
+          right={
+            <>
+              <SketchSVG
+                sketch={campfire}
+                title="Pen sketch of a smouldering campfire of logs"
+                className="text-ink-soft"
+              />
+              <HandwrittenText variant="note" tilt="caption" className="mt-3">
+                the fire, after Winslow Homer, 1874
+              </HandwrittenText>
+              <h3 className="text-h4 mt-10">A note for the lawmen</h3>
+              <p className="mt-3 max-w-(--measure)">{profile.summary}</p>
+            </>
+          }
+        />
+
+        <div className="mt-20 grid items-start gap-12 md:grid-cols-2 md:gap-10 lg:gap-16">
+          <Poster seed="wanted" className="mx-auto w-full max-w-md text-center">
+            <p className="font-display text-h1 tracking-poster leading-none uppercase">
+              {microcopy.wanted.heading}
+            </p>
+            <div className="paper-dark shadow-pasted mx-auto mt-6 grid aspect-[4/5] w-3/5 place-items-center">
+              <HandwrittenText variant="note" as="span" className="px-4">
+                portrait to come
+              </HandwrittenText>
+            </div>
+            <p className="font-display text-h1 tracking-poster mt-6 uppercase">
+              {profile.posterName}
+            </p>
+            <p className="text-lead mt-4">{microcopy.wanted.charge}</p>
+            <p className="mt-2 italic">{microcopy.wanted.aside}</p>
+            <div className="mt-8">
+              <Stamp seed="reward" size="md">
+                {microcopy.wanted.reward}
+              </Stamp>
+            </div>
+            <p className="font-type text-small mt-6">
+              {microcopy.wanted.available}
+            </p>
+          </Poster>
+
+          {(() => {
+            const bounty = getProject("jack-the-jelli")!;
+            return (
+              <Poster
+                seed={bounty.slug}
+                pins={2}
+                className="relative mx-auto w-full max-w-md md:mt-16"
+              >
+                <p className="font-display text-h2 tracking-poster uppercase">
+                  {bounty.bountyTitle}
+                </p>
+                <p className="text-lead mt-2 italic">{bounty.posterLine}</p>
+                <p className="mt-6">
+                  <span className="text-h4">{bounty.name}</span>
+                  <span className="text-small text-ink-soft block">
+                    {bounty.tagline}
+                  </span>
+                </p>
+                {bounty.metric ? (
+                  <p className="mt-6">
+                    <InkUnderline seed={`${bounty.slug}-metric`}>
+                      <span className="font-type text-h3">
+                        {bounty.metric.value}
+                      </span>
+                    </InkUnderline>
+                    <span className="text-small mt-3 block">
+                      {bounty.metric.label}
+                    </span>
+                  </p>
+                ) : null}
+                <p className="font-type text-caption text-ink-soft mt-6">
+                  {bounty.stackLine}
+                </p>
+                <div className="mt-7">
+                  <Stamp seed="claimed" size="lg">
+                    Claimed
+                  </Stamp>
+                </div>
+              </Poster>
+            );
+          })()}
+        </div>
+
+        <div className="mt-20 grid gap-12 lg:grid-cols-2">
+          <div>
+            <h3 className="text-h4">Stamps</h3>
+            <div className="mt-6 flex flex-wrap items-center gap-6">
+              <Stamp seed="a" size="sm">
+                Delivered
+              </Stamp>
+              <Stamp seed="b">Claimed</Stamp>
+              <Stamp seed="c" shape="round">
+                B.A.
+              </Stamp>
+              <Stamp seed="d" shape="round" size="sm" tone="ink">
+                Dhaka 2026
+              </Stamp>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-h4">Ink underline and key terms</h3>
+            <p className="mt-6 max-w-(--measure)">
+              Reached{" "}
+              <InkUnderline seed="acc">
+                <span className="font-type">91.9% accuracy</span>
+              </InkUnderline>{" "}
+              and{" "}
+              <InkUnderline seed="psnr" tone="ink" double>
+                <span className="font-type">27.60 dB PSNR</span>
+              </InkUnderline>
+              .
+            </p>
+            <p className="mt-6 max-w-(--measure)">
+              <KeyText text={getProject("jack-the-jelli")!.highlights[1]} />
+            </p>
+          </div>
+        </div>
+
+        <Engraving
+          src="/engravings/camping-out-adirondacks.webp"
+          width={1600}
+          height={1074}
+          alt="Wood engraving: two men rest by a bark lean-to and a smouldering campfire on a lakeshore, canoes behind them and a dog to the left"
+          caption="Camping Out in the Adirondack Mountains, after Winslow Homer, Harper's Weekly, 1874"
+          sizes="(min-width: 1280px) 1216px, 100vw"
+          className="mt-20"
+        />
       </section>
 
       <section
