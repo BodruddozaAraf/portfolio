@@ -176,6 +176,19 @@ function grain() {
   });
 }
 
+// Stamp wear: an alpha mask for rubber stamps. Mostly solid ink, with patchy gaps where the stamp
+// met the paper unevenly, and pinholes of paper grain. Used as CSS mask-image, so only alpha counts.
+function stampWear() {
+  const size = 256;
+  const patches = fbm(4, 4, 4, 61);
+  const grainy = lattice(128, 128, 67);
+  return render(size, (u, w) => {
+    const gap = clamp((patches(u, w) - 0.6) * 4.5); // broad worn areas
+    const pin = grainy(u, w) > 0.8 ? 0.85 : 0; // pinholes
+    return [255, 255, 255, clamp(1 - gap * 0.75 - pin)];
+  });
+}
+
 // Provenance: record the origin inside the file (impeccable embed-prompt), when the tool exists.
 function embedOrigin(file, name) {
   const cli = path.join(
@@ -203,6 +216,7 @@ for (const [name, make, quality] of [
   ["paper", paper, 70],
   ["leather", leather, 62],
   ["grain", grain, 45],
+  ["stamp-wear", stampWear, 60],
 ]) {
   const src = path.join(TMP, `${name}.png`);
   writeFileSync(src, make());
