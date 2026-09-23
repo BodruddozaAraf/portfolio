@@ -51,6 +51,17 @@ export function TrailMoment({
         s.querySelector<HTMLElement>('[data-trail="card"]'),
       ]);
       const dropped = new Set<number>();
+      // a stop that takes keyboard focus shows at once (with the ones before it), never after
+      // the ride catches up: focus must not land on something still invisible (5.2)
+      const dropTo = (e: FocusEvent) => {
+        const i = stops.findIndex((s) => s.contains(e.target as Node));
+        for (let j = 0; j <= i; j++) {
+          dropped.add(j);
+          gsap.killTweensOf(parts[j]);
+          gsap.set(parts[j], { clearProps: "transform,opacity" });
+        }
+        return i;
+      };
       const drop = (i: number) => {
         if (dropped.has(i)) return;
         dropped.add(i);
@@ -100,7 +111,7 @@ export function TrailMoment({
         // Tab into a stop the camera has not reached: ride there
         const onFocus = (e: FocusEvent) => {
           sheet.scrollLeft = 0;
-          const i = stops.findIndex((s) => s.contains(e.target as Node));
+          const i = dropTo(e);
           const st = pan.scrollTrigger;
           if (i < 0 || !st) return;
           const y = st.start + at[i] * (st.end - st.start);
@@ -123,6 +134,7 @@ export function TrailMoment({
       const [line] = q('[data-trail="line-v"]');
       const [list] = q("ol");
       gsap.set(parts.flat(), { opacity: 0 });
+      root.addEventListener("focusin", dropTo);
       ScrollTrigger.create({
         trigger: list,
         start: "top 70%",
@@ -137,6 +149,7 @@ export function TrailMoment({
       });
       line.style.clipPath = "inset(0 0 100% 0)";
       return () => {
+        root.removeEventListener("focusin", dropTo);
         line.style.clipPath = "";
       };
     },

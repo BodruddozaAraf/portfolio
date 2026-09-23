@@ -4,12 +4,21 @@ import { TURN_BACK } from "@/lib/page-turn";
 
 // The camp's top bar: the B.A. monogram home, and the two routes a visitor needs at any moment.
 // Over the night hero on the home page ("night"); elsewhere it takes the colors of the surface it
-// sits on ("inherit"). The sound toggle and wheel
-// button join it in Phase 4.
+// sits on ("inherit"). It carries the page's skip link, the first thing a keyboard reaches: out
+// of sight until focused (5.2).
 
-type TopBarProps = { surface?: "night" | "inherit" };
+type TopBarProps = {
+  surface?: "night" | "inherit";
+  /** Where the skip link goes: the page's main by default; the home page skips the hero. */
+  skip?: { href: string; label: string };
+};
 
-export function TopBar({ surface = "night" }: TopBarProps) {
+const SKIP_TO_CONTENT = { href: "#content", label: "Skip to the page" };
+
+export function TopBar({
+  surface = "night",
+  skip = SKIP_TO_CONTENT,
+}: TopBarProps) {
   const initials = profile.name
     .split(" ")
     .map((part) => `${part[0]}.`)
@@ -22,6 +31,12 @@ export function TopBar({ surface = "night" }: TopBarProps) {
           : "relative z-10"
       }
     >
+      <a
+        href={skip.href}
+        className="night text-small fixed top-3 left-3 z-50 -translate-y-24 px-4 py-2 focus:translate-y-0"
+      >
+        {skip.label}
+      </a>
       <nav
         aria-label="Primary"
         className="shell flex h-16 items-center justify-between md:h-20"

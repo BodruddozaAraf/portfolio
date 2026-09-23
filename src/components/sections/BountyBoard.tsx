@@ -50,7 +50,7 @@ export function BountyBoard() {
                       <Link
                         href={`/bounties/${p.slug}`}
                         transitionTypes={TURN_FORWARD}
-                        className="focus-visible:after:outline-blood after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-4"
+                        className="focus-visible:after:outline-blood after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:-outline-offset-8"
                       >
                         {p.bountyTitle}
                       </Link>

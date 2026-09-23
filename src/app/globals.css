@@ -25,6 +25,15 @@
 }
 
 @utility paper-light {
+  /* a sheet on the board or the satchel takes the paper's ink colours with it (5.2) */
+  --surface-fg: var(--color-ink);
+  --surface-accent: var(--color-blood);
+  --surface-selection: color-mix(in srgb, var(--color-blood) 22%, transparent);
+  --surface-selection-fg: var(--color-ink);
+  --surface-solid: var(--color-ink);
+  --surface-on-solid: var(--color-paper-light);
+  --surface-solid-hover: var(--color-blood);
+  color-scheme: light;
   background-color: var(--color-paper-light);
   background-image: url("/textures/paper.webp");
   background-image: image-set(
@@ -35,6 +44,14 @@
 }
 
 @utility paper-dark {
+  --surface-fg: var(--color-ink);
+  --surface-accent: var(--color-blood);
+  --surface-selection: color-mix(in srgb, var(--color-blood) 22%, transparent);
+  --surface-selection-fg: var(--color-ink);
+  --surface-solid: var(--color-ink);
+  --surface-on-solid: var(--color-paper-light);
+  --surface-solid-hover: var(--color-blood);
+  color-scheme: light;
   background-color: var(--color-paper-dark);
   background-image: url("/textures/paper.webp");
   background-image: image-set(
