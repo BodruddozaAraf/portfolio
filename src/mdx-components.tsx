@@ -1,11 +1,16 @@
 import type { MDXComponents } from "mdx/types";
 import type { ComponentProps } from "react";
+import { Compare, Figures, Ledger } from "@/components/case-study/Ledger";
 import { TextLink } from "@/components/ui/TextLink";
 
 // Markdown elements in the journal's type (DESIGN.md). IM Fell English has no bold, so **strong**
 // keeps its meaning but renders italic (The Italic Emphasis Rule).
 
 const components: MDXComponents = {
+  // case-study building blocks, usable in any .mdx without an import
+  Ledger,
+  Figures,
+  Compare,
   h2: (props) => (
     <h2
       className="font-display text-h2 tracking-poster mt-16 mb-5 uppercase first:mt-0"

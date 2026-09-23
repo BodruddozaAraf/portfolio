@@ -1,0 +1,44 @@
+## The Problem
+
+Given an image with part of it missing or occluded, predict the complete image. The framework
+does it **without a GAN, in a single pass**, at roughly **32 ms per 256x256 image**.
+
+## The Framework
+
+Co-developed with the thesis team, the framework runs in three stages:
+
+1. **Dual-Manifold VQ-VAE**
+2. **Latent Attention U-Net Mapper**
+3. **Multi-Scale Detail Injection**
+
+## What Araf owned
+
+<Ledger
+  columns={["Part", "What it involved"]}
+  rows={[
+    ["Mask generation", "The masks the model learns to fill."],
+    ["Zero-shot evaluation", "Testing on **four unseen datasets**."],
+    ["Baselines", "**Retraining five baselines under matched conditions**."],
+    [
+      "Ablations",
+      "The study showing a **52.7% cut in mapper validation latent loss**.",
+    ],
+  ]}
+/>
+
+## The Take
+
+<Figures
+  items={[
+    { value: "27.60 dB", label: "PSNR" },
+    { value: "0.861", label: "SSIM" },
+    { value: "~32 ms", label: "per 256x256 image" },
+    { value: "52.7%", label: "cut in mapper validation latent loss" },
+    { value: "2nd of 6", label: "on zero-shot average PSNR" },
+  ]}
+/>
+
+## Still to come
+
+Real thesis figures and sample input, masked and output images, a link to the paper or report,
+and possibly an in-browser demo. Until then, the numbers above are the whole account.

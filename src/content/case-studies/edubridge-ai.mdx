@@ -1,0 +1,26 @@
+## The Job
+
+A **live client brief from Freelancer.com**: a university and scholarship matching platform for
+first-generation international students.
+
+## How it was done
+
+The core idea is to pair **deterministic eligibility scoring** with the **Google Gemini API**, so
+every recommendation carries an explanation, strengths and a roadmap.
+
+<Ledger
+  columns={["Piece", "What it does"]}
+  rows={[
+    ["Accounts", "**Clerk authentication with webhook user sync**."],
+    ["Intake", "**Zod-validated intake**."],
+    [
+      "Advice",
+      "A **conversational AI advisor** and a **recommendations dashboard**.",
+    ],
+    ["Data", "**Neon Postgres through Drizzle ORM**."],
+  ]}
+/>
+
+## The Take
+
+Built to the client brief, live on the web, with the code public on GitHub.

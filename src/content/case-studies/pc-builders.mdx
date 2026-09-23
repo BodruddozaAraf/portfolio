@@ -1,0 +1,38 @@
+## The Job
+
+A PC configurator and storefront: pick the parts for a whole machine, or name a price and let the
+store build to it.
+
+## How it was done
+
+### One coherent specification
+
+The configurator spans **CPU, motherboard, RAM, GPU and storage** as one coherent specification,
+not five separate shopping lists.
+
+### Built to a budget
+
+A **budget-constrained selector** assembles a compatible component set to a price the customer
+picks.
+
+### The stack behind it
+
+<Ledger
+  columns={["Layer", "Built with"]}
+  rows={[
+    [
+      "Frontend",
+      "A deployed **React 19 and Vite** app, with **Zustand** for state.",
+    ],
+    [
+      "API",
+      "**Node.js and Express**, with **JWT auth** and **bcrypt hashing**.",
+    ],
+    ["Data", "**MongoDB**, with **Redis caching**."],
+    ["Media", "**Cloudinary storage**."],
+  ]}
+/>
+
+## The Take
+
+Live on Render, with the code public on GitHub.

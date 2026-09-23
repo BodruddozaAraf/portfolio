@@ -55,6 +55,8 @@ new row that supersedes the old one.
 | D47 | 2026-09-23 | Home page carries every resume fact (checked mechanically in step 1.5): project bullets sit in a native `<details>` ("the job, in full") on each bounty poster, so the board stays airy and find-in-page still reaches them. Case studies (1.6) and Plain mode (1.7) repeat them in full | Done-when for 1.5 without a dense board |
 | D48 | 2026-09-23 | Colophon line changed from "All art original" to "Original art, plus public-domain engravings, credited below" | Truth: the site now shows a credited PD engraving (D45) |
 | D49 | 2026-09-23 | Wanted poster hangs on a single wooden post over paper (not a wood section) so it never merges with the Bounty Board; home surface order recorded in DESIGN.md (The Home Order Rule). Hero name steps down to h1 size below 640px so "BODRUDDOZA" fits a 390px screen | Step 1.5 inspection |
+| D50 | 2026-09-23 | Case studies: `/bounties/[slug]` (4) and `/research/[slug]` (1), statically generated with `dynamicParams = false`. Template: poster on a wood header (h1 = bounty title), MDX body (The Job, How it was done, The Take), the stack, the next bounty. MDX blocks `Ledger`, `Figures`, `Compare` take data props; bodies registered in `src/content/case-studies/index.ts`. The thesis poster is stamped "Defended", not "Claimed" | Step 1.6; every sentence traced to a resume line |
+| D51 | 2026-09-23 | `npm run lint` also runs `scripts/check-copy.mjs`: no em/en dashes, phone-like numbers or double middle dots in any `.md`/`.mdx` under `src` (the content validator already covers the TS data) | D31 and D4 now hold for prose too |
 
 ## Open questions for Araf
 None currently open. Add new ones here as `Q15`, `Q16`, … with a default.

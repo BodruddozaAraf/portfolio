@@ -5,11 +5,11 @@
 
 ## Now
 - **Current phase:** Phase 1: Foundation
-- **Current step:** 1.5 sections-static done on `phase-1/sections-static` (PR open, awaiting Araf's merge).
-- **Active branch:** `phase-1/sections-static`
-- **Next action:** after the 1.5 PR merges, start step 1.6 on branch `phase-1/case-studies`:
-  `/bounties/[slug]` x4 and `/research/image-completion` in MDX (metadata from `projects.ts`,
-  D44; template in 05 section 4). The home already links to these routes.
+- **Current step:** 1.6 case-studies done on `phase-1/case-studies` (PR open, awaiting Araf's merge).
+- **Active branch:** `phase-1/case-studies`
+- **Next action:** after the 1.6 PR merges, start step 1.7 on branch `phase-1/plain-mode`:
+  `/plain` (all content, text-first, printable, < 1 s) + a persisted Plain mode toggle (Zustand,
+  localStorage in try/catch). The TopBar, hero and colophon already link to `/plain`.
 - **Blockers:** none. (`gh` is at `C:\Program Files\GitHub CLI\gh.exe`; in Git Bash add it to
   PATH if missing: `export PATH="$PATH:/c/Program Files/GitHub CLI"`.)
 - **Pending from Araf (non-blocking):** Jack The Jelli screenshots (A16); real photo for the
@@ -40,7 +40,7 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 - [x] 1.3 content-layer (`src/content/*`, Zod + build-time invariants, MDX)
 - [x] 1.4 journal-primitives (Page, Spread, HandwrittenText, SketchSVG, Engraving, Poster, Pin, Stamp, InkUnderline, KeyText)
 - [x] 1.5 sections-static (all ten sections, every 02 fact on the home page)
-- [ ] 1.6 case-studies
+- [x] 1.6 case-studies (4 bounties + thesis, MDX bodies, copy check in lint)
 - [ ] 1.7 plain-mode
 - [ ] 1.8 seo-meta
 - [ ] 1.9 contact-form (client-side Gmail/mailto)
@@ -64,6 +64,19 @@ Mirrors `06-roadmap.md`. `[x]` done · `[~]` in progress · `[ ]` todo.
 
 ## Session log
 Newest first. One entry per session: date, branch, what was done, what's next.
+
+### 2026-09-23 (j) · `phase-1/case-studies`
+- Merged PR #6. Built `/bounties/[slug]` x4 and `/research/image-completion` (SSG,
+  `dynamicParams = false`, unknown slugs 404). `CaseStudy` shell: wood header with the poster
+  (h1), meta, live/GitHub links, back link; MDX body; the stack; "next on the board".
+- MDX bodies in `src/content/case-studies/*.mdx`, typed registry `index.ts`. New MDX blocks
+  `Ledger`, `Figures`, `Compare` (registered globally in `src/mdx-components.tsx`).
+- Truth pass on every body: removed four phrases that went past the resume (an invented split of
+  work in EduBridge, "from the first field", "delivered", Redis "in front", "the thesis asks").
+- `scripts/check-copy.mjs` in `npm run lint` (D51). TopBar gained `surface="inherit"`.
+- Checked: all external links 200 (Render cold-starts in about 6 s; LinkedIn answers bots with
+  999, expected). Captures at 1440 and 390 for a bounty and the thesis page. Detector clean.
+- **Next:** merge PR, then 1.7 plain-mode.
 
 ### 2026-09-23 (i) · `phase-1/sections-static`
 - Merged PR #5. Home page `/` built from `@/content` with the journal primitives, all server

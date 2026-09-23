@@ -1,0 +1,53 @@
+## The Job
+
+A controlled comparison, run by Araf as sole implementer, of how far preprocessing, word
+representation and architecture each move a news topic classifier.
+
+## How it was done
+
+### The grid
+
+<Ledger
+  columns={["Axis", "What was compared"]}
+  rows={[
+    ["Preprocessing", "**Three preprocessing strategies**."],
+    [
+      "Representation",
+      "**Two word representations**: TF-IDF and a custom Skip-gram.",
+    ],
+    [
+      "Architecture",
+      "**Six architectures**: DNN, SimpleRNN, GRU, LSTM, Bi-GRU and Bi-LSTM.",
+    ],
+  ]}
+/>
+
+### Preprocessing from the data, not from habit
+
+Exploratory analysis drove every cleaning step: **bigram frequency isolated HTML noise**, **POS
+tagging justified lemmatisation over stemming**, and **22,067 duplicate records** were removed.
+
+### Two dead baselines, brought back
+
+Two recurrent baselines sat at chance accuracy. The diagnosis was **exploding-gradient
+collapse**; **gradient clipping and targeted regularisation** brought them back.
+
+<Compare
+  columns={["Baseline", "At chance", "Recovered"]}
+  rows={[
+    ["LSTM", "25.0%", "91.4%"],
+    ["SimpleRNN", "26.6%", "87.3%"],
+  ]}
+/>
+
+## The Take
+
+<Figures
+  items={[
+    { value: "91.9%", label: "accuracy, best configuration" },
+    { value: "0.919", label: "macro F1" },
+    { value: "22,067", label: "duplicate records removed" },
+  ]}
+/>
+
+There is no public repository or notebook for this project; this page is the account.
