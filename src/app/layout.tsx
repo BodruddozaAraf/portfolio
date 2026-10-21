@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { CleanHash } from "@/components/fx/CleanHash";
 import { DeadEye } from "@/components/fx/DeadEye";
 import { Grain } from "@/components/fx/Grain";
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SmoothScroll />
         <CleanHash />
         <DeadEye />
+        <Analytics />
       </body>
     </html>
   );
